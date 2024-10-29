@@ -18,24 +18,24 @@ class SupplierServiceImplement extends Service implements SupplierService{
       $this->mainRepository = $mainRepository;
     }
 
-    public function addSupplier($data)
+    public function addSupplier(array $data)
     {
-
-      return $this->mainRepository->create($data);
+      return $this->mainRepository->addSupplier($data);
     }
 
     public function viewSupplier()
     {
-      return $this->mainRepository->all();
+      return $this->mainRepository->viewSupplier();
     }
     
     public function updateSupplier($id, array $data)
     {
-      return $this->mainRepository->update($id,$data);
+      return $this->mainRepository->updateSupplier($id,$data);
     }
     
     public function deleteSupplier($id)
     {
-      return $this->mainRepository->delete($id);
+      
+      return $this->mainRepository->deleteSupplier($id);
     }
 }

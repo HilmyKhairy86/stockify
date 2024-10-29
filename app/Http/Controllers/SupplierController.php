@@ -16,9 +16,8 @@ class SupplierController extends Controller
     public function addSupplier(Request $request)
     {
         $data = $request->all();
-        $data = $request->except('_token');
-
         $this->supplierService->addSupplier($data);
+        return redirect()->back();
     }
 
     public function viewSupplier()
@@ -28,5 +27,18 @@ class SupplierController extends Controller
             'data' => $data,
             'title' => 'Suppliers',
         ]);
+    }
+
+    public function updateSupplier($id, Request $request)
+    {
+        $data = $request->all();
+        $this->supplierService->updateSupplier($id, $data);
+        return redirect()->back();
+    }
+
+    public function deleteSupplier($id)
+    {
+        $this->supplierService->deleteSupplier($id);
+        return redirect()->back();
     }
 }

@@ -35,7 +35,7 @@ class CategoryServiceImplement extends Service implements CategoryService{
     
     public function viewCategory()
     {
-      return $this->mainRepository->all();
+      return $this->mainRepository->viewCategory();
     }
 
     public function updateCategory($id, array $data)
@@ -45,6 +45,6 @@ class CategoryServiceImplement extends Service implements CategoryService{
 
     public function deleteCategory($id)
     {
-      return $this->mainRepository->delete($id);
+      return $this->mainRepository->deleteCategory($id);
     }
 }

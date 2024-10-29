@@ -19,14 +19,14 @@ class CategoryRepositoryImplement extends Eloquent implements CategoryRepository
         $this->model = $model;
     }
 
-    public function getAllCategory()
+    public function viewCategory()
     {
         return $this->model->all();
     }
 
-    public function getCategorybyId($id)
+    public function getCatbyId($id)
     {
-        return $this->model->where('id', $id)->first();
+        return $this->model->find($id);
     }
 
     public function createCategory(array $data)
@@ -42,7 +42,6 @@ class CategoryRepositoryImplement extends Eloquent implements CategoryRepository
 
     public function deleteCategory($id)
     {
-        $user = $this->model->where('id', $id)->first();
-        $user->delete();
+        return $this->model->delete($id);
     }
 }

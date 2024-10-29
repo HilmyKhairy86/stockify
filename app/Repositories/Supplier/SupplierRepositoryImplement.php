@@ -18,6 +18,25 @@ class SupplierRepositoryImplement extends Eloquent implements SupplierRepository
     {
         $this->model = $model;
     }
+    
+    public function addSupplier(array $data)
+    {
+        return $this->model->create($data);
+    } 
 
-    // Write something awesome :)
+    public function viewSupplier()
+    {
+        return $this->model->all();
+    }
+
+    public function updateSupplier($id, array $data)
+    {
+        $update = $this->model->findOrfail($id);
+        return $update->update($data);
+    }
+
+    public function deleteSupplier($id)
+    {
+        return $this->model->delete($id);
+    }
 }

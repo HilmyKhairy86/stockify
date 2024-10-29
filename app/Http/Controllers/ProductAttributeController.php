@@ -42,7 +42,7 @@ class ProductAttributeController extends Controller
 
     public function deleteAttribute($id)
     {
-        $this->attributeService->deleteAttribute($id);
-        return redirect()->back()->with('success');
+        dd($this->attributeService->deleteAttribute($id));
+        return redirect()->back();
     }
 }

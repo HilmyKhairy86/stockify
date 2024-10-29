@@ -41,9 +41,14 @@ class CategoryController extends Controller
 
     public function deleteCategory($id, Request $request)
     {
-        $data = ['category_id' => null];
-        $this->productService->update($id, $data);
-        $this->categoryService->deleteCategory($id);
+        $prodCheck = $this->productService->getProdbyId($id);
+        if ($prodCheck) {
+            $data = ['category_id' => null];
+            $this->productService->update($id, $data);
+            $this->categoryService->deleteCategory($id);
+        } else {
+            $this->categoryService->deleteCategory($id);
+        }
 
         return redirect()->back();
     }

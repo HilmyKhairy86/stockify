@@ -42,4 +42,7 @@ Route::post('Products/Attributes/update/{id}', [ProductAttributeController::clas
 Route::post('Products/Attributes/delete/{id}', [ProductAttributeController::class, 'deleteAttribute'])->name('deleteAttribute')->middleware(['auth', 'verified']);
 
 Route::get('Suppliers',[SupplierController::class, 'viewSupplier'])->name('suppliers')->middleware(['auth', 'verified']);
+Route::post('Suppliers/add', [SupplierController::class, 'addSupplier'])->name('addSupplier')->middleware(['auth', 'verified']);
+Route::post('Suppliers/update/{id}',[SupplierController::class, 'updateSupplier'])->name('updateSupplier')->middleware(['auth', 'verified']);
+Route::post('Suppliers/delete/{id}',[SupplierController::class, 'deleteSupplier'])->name('deleteSupplier')->middleware(['auth', 'verified']);
 require __DIR__.'/auth.php';

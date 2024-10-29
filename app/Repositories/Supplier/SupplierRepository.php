@@ -6,5 +6,8 @@ use LaravelEasyRepository\Repository;
 
 interface SupplierRepository extends Repository{
 
-    // Write something awesome :)
+    public function addSupplier(array $data);
+    public function viewSupplier();
+    public function updateSupplier($id, array $data);
+    public function deleteSupplier($id);
 }

@@ -6,9 +6,9 @@ use LaravelEasyRepository\Repository;
 
 interface ProductRepository extends Repository{
 
-    public function getAllProduct();
+    public function viewProduct();
 
-    public function getAllProductById($id);
+    public function getProdbyId($id);
 
     public function createProduct(array $data);
 

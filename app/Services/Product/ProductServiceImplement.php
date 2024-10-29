@@ -40,7 +40,12 @@ class ProductServiceImplement extends Service implements ProductService{
 
     public function viewProduct()
     {
-      return $this->mainRepository->all();
+      return $this->mainRepository->viewProduct();
+    }
+
+    public function getProdbyId($id)
+    {
+      return $this->mainRepository->getProdbyId($id);
     }
 
     public function updateProduct($id, array $data)

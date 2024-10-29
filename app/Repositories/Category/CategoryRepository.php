@@ -6,9 +6,9 @@ use LaravelEasyRepository\Repository;
 
 interface CategoryRepository extends Repository{
 
-    public function getAllCategory();
+    public function viewCategory();
 
-    public function getCategorybyId($id);
+    public function getCatbyId($id);
     
     public function createCategory(array $data);
 
