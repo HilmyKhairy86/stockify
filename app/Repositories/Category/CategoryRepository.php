@@ -16,4 +16,6 @@ interface CategoryRepository extends Repository{
 
     public function deleteCategory($id);
 
+    public function pagCategory(int $num);
+
 }

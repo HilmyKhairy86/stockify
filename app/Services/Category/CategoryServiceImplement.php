@@ -47,4 +47,9 @@ class CategoryServiceImplement extends Service implements CategoryService{
     {
       return $this->mainRepository->deleteCategory($id);
     }
+
+    public function pagCategory(int $num)
+    {
+      return $this->mainRepository->pagCategory($num);
+    }
 }

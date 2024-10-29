@@ -38,9 +38,9 @@ class ProductServiceImplement extends Service implements ProductService{
       }
     }
 
-    public function viewProduct()
+    public function viewProduct(?int $page = null)
     {
-      return $this->mainRepository->viewProduct();
+      return $this->mainRepository->viewProduct($page);
     }
 
     public function getProdbyId($id)
@@ -56,5 +56,15 @@ class ProductServiceImplement extends Service implements ProductService{
     public function deleteProduct($id)
     {
       return $this->mainRepository->delete($id);
+    }
+
+    public function pagProduct(int $num)
+    {
+      return $this->mainRepository->pagProduct($num);
+    }
+
+    public function searchByName(string $keyword)
+    {
+      return $this->mainRepository->searchByName($keyword);
     }
 }

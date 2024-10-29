@@ -42,6 +42,12 @@ class CategoryRepositoryImplement extends Eloquent implements CategoryRepository
 
     public function deleteCategory($id)
     {
-        return $this->model->delete($id);
+        $cat = $this->model->find($id);
+        return $cat->delete();
+    }
+
+    public function pagCategory(int $num)
+    {
+        return $this->model->paginate($num);
     }
 }

@@ -11,4 +11,5 @@ interface CategoryService{
     public function viewCategory();
     public function updateCategory($id, array $data);
     public function deleteCategory($id);
+    public function pagCategory(int $num);
 }

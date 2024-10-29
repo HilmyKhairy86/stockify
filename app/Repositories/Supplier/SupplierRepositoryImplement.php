@@ -37,6 +37,12 @@ class SupplierRepositoryImplement extends Eloquent implements SupplierRepository
 
     public function deleteSupplier($id)
     {
-        return $this->model->delete($id);
+        $sup = $this->model->find($id);
+        return $sup->delete();
+    }
+
+    public function pagSupplier(int $num)
+    {
+        return $this->model->paginate($num);
     }
 }

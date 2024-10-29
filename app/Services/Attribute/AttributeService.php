@@ -10,4 +10,5 @@ interface AttributeService extends BaseService{
     public function viewAttribute();
     public function updateAttribute($id, $data);
     public function deleteAttribute($id);
+    public function pagAtrribute(int $num);
 }

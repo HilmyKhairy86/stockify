@@ -3,14 +3,14 @@
 namespace App\Services\User;
 
 use App\Models\User;
-use LaravelEasyRepository\Service;
+use LaravelEasyRepository\ServiceApi;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
 use App\Repositories\User\UserRepository;
 use Illuminate\Validation\Rules\Password;
 
-class UserServiceImplement extends Service implements UserService{
+class UserServiceImplement extends ServiceApi implements UserService{
 
      /**
      * don't change $this->mainRepository variable name
@@ -24,12 +24,12 @@ class UserServiceImplement extends Service implements UserService{
       $this->mainRepository = $mainRepository;
     }
 
-    public function getAllUsers()
+    public function viewUsers()
     {
         return $this->mainRepository->all();
     }
 
-    public function store($data)
+    public function addUser($data)
     {
       $data->validate([
         'name' => ['required', 'string', 'max:255'],
@@ -51,13 +51,13 @@ class UserServiceImplement extends Service implements UserService{
 
     }
 
-    public function editUser($data)
+    public function editUser($id, array $data)
     {
-        $id = $data->id;
-        $user = [
-          'name' => $data->name,
-          'email' => $data->email,
-        ];
-        $this->mainRepository->update($id, $user);
+        $this->mainRepository->update($id, $data);
+    }
+
+    public function findUserById($id)
+    {
+      $this->mainRepository->find($id);
     }
 }

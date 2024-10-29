@@ -19,8 +19,12 @@ class ProductRepositoryImplement extends Eloquent implements ProductRepository{
         $this->model = $model;
     }
 
-    public function viewProduct(){
-        return $this->model->all();
+    public function viewProduct(?int $page = null){
+        if ($page === null) {
+            return $this->model->all();
+        } else {
+            return $this->model->paginate($page);
+        }
     }
 
     public function getProdbyId($id){
@@ -39,5 +43,15 @@ class ProductRepositoryImplement extends Eloquent implements ProductRepository{
     public function deleteProduct($id){
         $product = $this->model->where('id', $id)->first();
         $product->delete();
+    }
+
+    public function pagProduct(int $num)
+    {
+        return $this->model->paginate($num);
+    }
+
+    public function searchByName(string $keyword)
+    {
+        return Product::where('name', 'LIKE', '%' . $keyword . '%')->get();
     }
 }

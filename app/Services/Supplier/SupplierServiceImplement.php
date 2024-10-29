@@ -38,4 +38,9 @@ class SupplierServiceImplement extends Service implements SupplierService{
       
       return $this->mainRepository->deleteSupplier($id);
     }
+
+    public function pagSupplier(int $num)
+    {
+      return $this->mainRepository->pagSupplier($num);
+    }
 }

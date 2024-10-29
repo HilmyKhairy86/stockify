@@ -37,6 +37,12 @@ class ProductAttributeRepositoryImplement extends Eloquent implements ProductAtt
 
     public function deleteAttribute($id)
     {
-        return $this->model->delete($id);
+        $attribute = $this->model->find($id);
+        return $attribute->delete();
+    }
+
+    public function pagAtrribute(int $num)
+    {
+        return $this->model->paginate($num);
     }
 }

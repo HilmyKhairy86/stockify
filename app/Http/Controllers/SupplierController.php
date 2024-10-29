@@ -22,7 +22,7 @@ class SupplierController extends Controller
 
     public function viewSupplier()
     {
-        $data = $this->supplierService->all();
+        $data = $this->supplierService->pagSupplier(10);
         return view('suppliers.suppliers',[
             'data' => $data,
             'title' => 'Suppliers',

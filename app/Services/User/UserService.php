@@ -7,9 +7,13 @@ use LaravelEasyRepository\BaseService;
 
 interface UserService extends BaseService{
 
-    public function getAllUsers();
+    public function viewUsers();
 
-    public function store($data);
+    public function addUser(array $data);
 
-    public function editUser(array $data);
+    public function editUser($id, array $data);
+
+    public function findUserById($id);
+
+    public function deleteUser($id);
 }

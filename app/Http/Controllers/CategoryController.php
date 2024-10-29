@@ -25,7 +25,7 @@ class CategoryController extends Controller
 
     public function viewCategories()
     {
-        $data = $this->categoryService->viewCategory();
+        $data = $this->categoryService->pagCategory(10);
         return view('products.categories', [
             'data' => $data,
             'title' => 'Categories',

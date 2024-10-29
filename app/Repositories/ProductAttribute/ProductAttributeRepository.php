@@ -10,4 +10,5 @@ interface ProductAttributeRepository extends Repository{
     public function viewAttribute();
     public function updateAttribute($id, array $data);
     public function deleteAttribute($id);
+    public function pagAtrribute(int $num);
 }

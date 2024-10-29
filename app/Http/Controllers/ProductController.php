@@ -23,7 +23,6 @@ class ProductController extends Controller
     public function addProduct(Request $request)
     {
         $data = $request->all();
-        // dd($data);
         $this->productService->addProduct($data);
         return redirect()->back()->with('success');
     }
@@ -34,18 +33,11 @@ class ProductController extends Controller
         return view('testing', compact('data'));
     }
 
-    // public function formAdd()
-    // {
-    //     $cat = $this->categoryService->viewCategory();
-    //     $sup = $this->supplierService->viewSupplier();
-    //     return view('addProduct', compact('cat','sup'));
-    // }
-
     public function allProduct()
     {
         $cat = $this->categoryService->viewCategory();
         $supplier = $this->supplierService->viewSupplier();
-        $data = $this->productService->viewProduct();
+        $data = $this->productService->viewProduct(10);
         return view('Products.products', [
             'data' => $data,
             'sup' => $supplier,
@@ -65,6 +57,13 @@ class ProductController extends Controller
     {
         $this->productService->deleteProduct($id);
         return redirect()->back()->with('success');
+    }
+
+    public function searchProduct(Request $request){
+        if($request->keyword != ''){
+            $product = $this->productService->searchByName($request);
+        }
+        return response()->json($product);
     }
 
 }

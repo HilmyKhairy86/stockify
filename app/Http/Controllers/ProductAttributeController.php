@@ -25,7 +25,7 @@ class ProductAttributeController extends Controller
 
     public function viewAttribute()
     {
-        $data = $this->attributeService->viewAttribute();
+        $data = $this->attributeService->pagAtrribute(10);
         $prod = $this->productService->viewProduct();
         return view('Products.attributes', [
             'data' => $data,
@@ -42,7 +42,7 @@ class ProductAttributeController extends Controller
 
     public function deleteAttribute($id)
     {
-        dd($this->attributeService->deleteAttribute($id));
+        $this->attributeService->deleteAttribute($id);
         return redirect()->back();
     }
 }

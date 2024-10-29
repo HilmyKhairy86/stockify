@@ -60,4 +60,9 @@ class AttributeServiceImplement extends ServiceApi implements AttributeService{
     {
       return $this->mainRepository->deleteAttribute($id);
     }
+
+    public function pagAtrribute(int $num)
+    {
+        return $this->mainRepository->pagAtrribute($num);
+    }
 }

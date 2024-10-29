@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\UserController;
 use App\Models\ProductAttribute;
 
 Route::get('/', function () {
@@ -27,16 +28,17 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('Products',[ProductController::class, 'allProduct'])->name('Products')->middleware(['auth', 'verified']);
-Route::post('addProduct', [ProductController::class, 'addProduct'])->name('addProduct')->middleware(['auth', 'verified']);
+Route::post('Products/addproduct', [ProductController::class, 'addProduct'])->name('addProduct')->middleware(['auth', 'verified']);
 Route::post('Products/delete/{id}',[ProductController::class, 'deleteProduct'])->name('deleteProduct')->middleware(['auth', 'verified']);
 Route::post('Products/update/{id}',[ProductController::class, 'updateProduct'])->name('updateProduct')->middleware(['auth', 'verified']);
+Route::get('Products/search', [ProductController::class, 'searchProduct'])->name('searchProduct')->middleware(['auth', 'verified']);
 
 Route::get('Products/Categories', [CategoryController::class, 'viewCategories'])->name('Categories')->middleware(['auth', 'verified']);
 Route::post('Products/Categories/addCategory', [CategoryController::class, 'addCategory'])->name('addCategory')->middleware(['auth', 'verified']);
 Route::post('Products/Categories/editCategory/{id}', [CategoryController::class, 'updateCategory'])->name('updateCategory')->middleware(['auth', 'verified']);
 Route::post('Products/Categories/deleteCategory/{id}', [CategoryController::class, 'deleteCategory'])->name('deleteCategory')->middleware(['auth', 'verified']);
 
-Route::get('Prodcuts/Attributes',[ProductAttributeController::class, 'viewAttribute'])->name('viewAttribute')->middleware(['auth', 'verified']);
+Route::get('Products/Attributes',[ProductAttributeController::class, 'viewAttribute'])->name('viewAttribute')->middleware(['auth', 'verified']);
 Route::post('Products/Attributes/add', [ProductAttributeController::class, 'addAttribute'])->name('addAttribute')->middleware(['auth', 'verified']);
 Route::post('Products/Attributes/update/{id}', [ProductAttributeController::class, 'updateAttribute'])->name('updateAttribute')->middleware(['auth', 'verified']);
 Route::post('Products/Attributes/delete/{id}', [ProductAttributeController::class, 'deleteAttribute'])->name('deleteAttribute')->middleware(['auth', 'verified']);
@@ -45,4 +47,7 @@ Route::get('Suppliers',[SupplierController::class, 'viewSupplier'])->name('suppl
 Route::post('Suppliers/add', [SupplierController::class, 'addSupplier'])->name('addSupplier')->middleware(['auth', 'verified']);
 Route::post('Suppliers/update/{id}',[SupplierController::class, 'updateSupplier'])->name('updateSupplier')->middleware(['auth', 'verified']);
 Route::post('Suppliers/delete/{id}',[SupplierController::class, 'deleteSupplier'])->name('deleteSupplier')->middleware(['auth', 'verified']);
+
+Route::get('Users/Management', [UserController::class, 'viewUsers'])->name('viewUsers')->middleware(['auth', 'verified']);
+Route::post('Users/Management/update/{id}',[UserController::class, 'updateUser'])->name('updateUser')->middleware(['auth', 'verified']);
 require __DIR__.'/auth.php';

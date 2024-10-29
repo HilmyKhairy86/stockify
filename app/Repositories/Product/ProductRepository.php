@@ -6,7 +6,7 @@ use LaravelEasyRepository\Repository;
 
 interface ProductRepository extends Repository{
 
-    public function viewProduct();
+    public function viewProduct(?int $page = null);
 
     public function getProdbyId($id);
 
@@ -15,4 +15,8 @@ interface ProductRepository extends Repository{
     public function updateProduct($id, array $data);
 
     public function deleteProduct($id);
+
+    public function pagProduct(int $num);
+    
+    public function searchByName(string $keyword);
 }
