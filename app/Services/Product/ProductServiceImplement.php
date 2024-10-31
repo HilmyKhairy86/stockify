@@ -63,8 +63,8 @@ class ProductServiceImplement extends Service implements ProductService{
       return $this->mainRepository->pagProduct($num);
     }
 
-    public function searchByName(string $keyword)
+    public function searchByName(string $name)
     {
-      return $this->mainRepository->searchByName($keyword);
+      return $this->mainRepository->searchByName($name);
     }
 }

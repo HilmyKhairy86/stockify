@@ -50,8 +50,8 @@ class ProductRepositoryImplement extends Eloquent implements ProductRepository{
         return $this->model->paginate($num);
     }
 
-    public function searchByName(string $keyword)
+    public function searchByName(string $name)
     {
-        return Product::where('name', 'LIKE', '%' . $keyword . '%')->get();
+        return Product::where('name', 'LIKE', '%'.$name . '%');
     }
 }

@@ -18,5 +18,7 @@ interface ProductRepository extends Repository{
 
     public function pagProduct(int $num);
     
-    public function searchByName(string $keyword);
+    public function searchByName(string $name);
+
+    
 }

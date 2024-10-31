@@ -50,4 +50,9 @@ class CategoryRepositoryImplement extends Eloquent implements CategoryRepository
     {
         return $this->model->paginate($num);
     }
+
+    public function searchByName(string $name)
+    {
+        return Category::where('name', 'LIKE', '%' . $name . '%')->get();
+    }
 }

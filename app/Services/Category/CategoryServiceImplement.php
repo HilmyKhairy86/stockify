@@ -52,4 +52,9 @@ class CategoryServiceImplement extends Service implements CategoryService{
     {
       return $this->mainRepository->pagCategory($num);
     }
+
+    public function searchByName(string $name)
+    {
+        return $this->mainRepository->searchByName($name);
+    }
 }

@@ -18,4 +18,6 @@ interface CategoryRepository extends Repository{
 
     public function pagCategory(int $num);
 
+    public function searchByName(string $name);
+
 }

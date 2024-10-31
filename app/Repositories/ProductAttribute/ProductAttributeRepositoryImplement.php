@@ -45,4 +45,6 @@ class ProductAttributeRepositoryImplement extends Eloquent implements ProductAtt
     {
         return $this->model->paginate($num);
     }
+
+
 }
