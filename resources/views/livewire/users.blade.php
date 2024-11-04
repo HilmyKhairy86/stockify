@@ -85,6 +85,7 @@
                     <th scope="col" class="px-4 py-3"></th>
                                     <th scope="col" class="px-4 py-3">Name</th>
                                     <th scope="col" class="px-4 py-3">Email</th>
+                                    <th scope="col" class="px-4 py-3">Role</th>
                                     <th scope="col" class="px-4 py-3">
                                         <span class="sr-only">Actions</span>
                                     </th>
@@ -96,6 +97,7 @@
                     <td class="px-4 py-3"></td>
                     <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $d->name }}</th>
                     <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $d->email }}</th>
+                    <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $d->role }}</th>
                     <td class="px-4 py-3 flex items-center">
                     <div class="flex justify-end space-x-2" x-data="{ showUpdateModal: false, showDeleteModal: false }" x-init="
                         // Prevent background scroll when modal is open
@@ -157,6 +159,15 @@
                                             <div>
                                                 <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
                                                 <input value="{{ $d->email }}" type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type supplier email" required="">
+                                            </div>
+                                            <div>
+                                                <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Role</label>
+                                                <select id="role" name="role" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                                    <option value="admin">admin</option>
+                                                    <option value="manager_gudang">manager</option>
+                                                    <option value="staff_gudang">staff</option>
+                                                </select>
+
                                             </div>
                                         </div>
                                         <div class="flex items-center space-x-4">
