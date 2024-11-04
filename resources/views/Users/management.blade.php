@@ -86,7 +86,7 @@
                                 </div>
                             </div>
                         </div>
-    
+
                         {{-- table --}}
                         <div class="overflow-x-auto">
                             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -123,9 +123,9 @@
                                             <button id="deleteButton-{{ $d->id }}" data-modal-target="deleteModal-{{ $d->id }}" data-modal-toggle="deleteModal-{{ $d->id }}" class="block text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800" type="button">
                                                 <i class="fa-solid fa-trash"></i>
                                             </button>
-    
+
                                             <!--Update Main modal -->
-                                            
+
                                             <div id="updateProductModal-{{ $d->id }}" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
                                                 <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
                                                     <!-- Modal content -->
@@ -141,7 +141,7 @@
                                                             </button>
                                                         </div>
                                                         <!-- Modal body -->
-                                                        <form action="{{ route('updateSupplier', $d->id) }}" method="post">
+                                                        <form action="" method="post">
                                                             @csrf
                                                             <div class="grid gap-4 mb-4 sm:grid-cols-2">
                                                                 <div>
@@ -150,7 +150,7 @@
                                                                 </div>
                                                                 <div class="sm:col-span-2">
                                                                     <label for="address" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Address</label>
-                                                                    <textarea id="address" name="address" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Write supplier address here">{{ $d->address }}</textarea>                    
+                                                                    <textarea id="address" name="address" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Write supplier address here">{{ $d->address }}</textarea>
                                                                 </div>
                                                                 <div>
                                                                     <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone</label>
@@ -170,7 +170,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-    
+
                                             <!--delete Main modal -->
                                             <div id="deleteModal-{{ $d->id }}" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
                                                 <div class="relative p-4 w-full max-w-md h-full md:h-auto">
@@ -196,8 +196,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            
-                                        
+
+
                                         </td>
                                     </tr>
                                     @endforeach
@@ -248,7 +248,7 @@
                     </div>
                 </div>
                 </section>
-    
+
                 {{-- addproduct --}}
                 <!-- Main modal -->
                 <div id="defaultModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
@@ -275,7 +275,7 @@
                                     </div>
                                     <div class="sm:col-span-2">
                                         <label for="address" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Address</label>
-                                        <textarea id="address" name="address" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Write product description here"></textarea>                    
+                                        <textarea id="address" name="address" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Write product description here"></textarea>
                                     </div>
                                     <div>
                                         <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone</label>

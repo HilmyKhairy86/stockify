@@ -38,5 +38,8 @@ class UserRepositoryImplement extends Eloquent implements UserRepository{
         $user->delete();
     }
 
-    // Write something awesome :)
+    public function searchByName(string $name)
+    {
+        return User::where('name', 'LIKE', '%' . $name . '%');
+    }
 }

@@ -16,7 +16,7 @@ class UserServiceImplement extends ServiceApi implements UserService{
      * don't change $this->mainRepository variable name
      * because used in extends service class
      */
-    
+
      protected $mainRepository;
 
     public function __construct(UserRepository $mainRepository)
@@ -64,5 +64,10 @@ class UserServiceImplement extends ServiceApi implements UserService{
     public function deleteUser($id)
     {
       $this->mainRepository->deleteUser($id);
+    }
+
+    public function searchByName(string $name)
+    {
+        $this->mainRepository->searchByName($name);
     }
 }

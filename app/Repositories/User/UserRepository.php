@@ -13,4 +13,6 @@ interface UserRepository extends Repository
 
     public function deleteuser($id);
 
+    public function searchByName(string $name);
+
 }

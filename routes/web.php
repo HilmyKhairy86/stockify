@@ -50,4 +50,5 @@ Route::post('Suppliers/delete/{id}',[SupplierController::class, 'deleteSupplier'
 
 Route::get('Users/Management', [UserController::class, 'viewUsers'])->name('viewUsers')->middleware(['auth', 'verified']);
 Route::post('Users/Management/update/{id}',[UserController::class, 'updateUser'])->name('updateUser')->middleware(['auth', 'verified']);
+
 require __DIR__.'/auth.php';
