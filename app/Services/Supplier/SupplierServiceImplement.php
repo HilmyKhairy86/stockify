@@ -43,4 +43,9 @@ class SupplierServiceImplement extends Service implements SupplierService{
     {
       return $this->mainRepository->pagSupplier($num);
     }
+
+    public function searchByName(string $name)
+    {
+      return $this->mainRepository->searchByName($name);
+    }
 }

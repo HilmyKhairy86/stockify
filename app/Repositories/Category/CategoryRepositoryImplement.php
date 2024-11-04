@@ -53,6 +53,6 @@ class CategoryRepositoryImplement extends Eloquent implements CategoryRepository
 
     public function searchByName(string $name)
     {
-        return Category::where('name', 'LIKE', '%' . $name . '%')->get();
+        return Category::where('name', 'LIKE', '%' . $name . '%');
     }
 }

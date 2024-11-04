@@ -11,4 +11,5 @@ interface SupplierRepository extends Repository{
     public function updateSupplier($id, array $data);
     public function deleteSupplier($id);
     public function pagSupplier(int $num);
+    public function searchByName(string $name);
 }

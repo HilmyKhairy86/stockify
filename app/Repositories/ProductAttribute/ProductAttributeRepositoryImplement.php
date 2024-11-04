@@ -46,5 +46,10 @@ class ProductAttributeRepositoryImplement extends Eloquent implements ProductAtt
         return $this->model->paginate($num);
     }
 
+    public function searchByName(string $name)
+    {
+        return ProductAttribute::where('name', 'LIKE', '%'.$name . '%');
+    }
+
 
 }

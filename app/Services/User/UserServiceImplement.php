@@ -60,4 +60,9 @@ class UserServiceImplement extends ServiceApi implements UserService{
     {
       $this->mainRepository->find($id);
     }
+
+    public function deleteUser($id)
+    {
+      $this->mainRepository->deleteUser($id);
+    }
 }

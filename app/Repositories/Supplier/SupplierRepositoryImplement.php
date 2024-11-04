@@ -45,4 +45,9 @@ class SupplierRepositoryImplement extends Eloquent implements SupplierRepository
     {
         return $this->model->paginate($num);
     }
+
+    public function searchByName(string $name)
+    {
+        return Supplier::where('name', 'LIKE', '%' . $name . '%');
+    }
 }

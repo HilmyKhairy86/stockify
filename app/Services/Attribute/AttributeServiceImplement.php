@@ -65,4 +65,9 @@ class AttributeServiceImplement extends ServiceApi implements AttributeService{
     {
         return $this->mainRepository->pagAtrribute($num);
     }
+
+    public function searchByName(string $name)
+    {
+      return $this->mainRepository->searchByName($name);
+    }
 }

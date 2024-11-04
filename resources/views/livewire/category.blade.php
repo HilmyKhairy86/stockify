@@ -15,21 +15,14 @@
                     
                 </div>
         </div>
+
         {{-- addproduct --}}
         <div class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
             <button id="defaultModalButton" data-modal-target="defaultModal" data-modal-toggle="defaultModal" type="button" class="flex items-center justify-center dark:bg-blue-600 text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
                 <svg class="h-3.5 w-3.5 mr-2" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <path clip-rule="evenodd" fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" />
                 </svg>
-                Add product
-            </button>
-            <button id="importModalbutton" data-modal-target="importModal" data-modal-toggle="importModal" type="button" class="py-2 px-3 text-sm font-medium text-gray-500 bg-blue-500 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-900 focus:z-10 dark:bg-blue-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
-                <i class="fa-solid fa-file-import"></i>
-                Import
-            </button>
-            <button type="button" class="py-2 px-3 text-sm font-medium text-gray-500 bg-blue-500 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-900 focus:z-10 dark:bg-blue-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
-                <i class="fa-solid fa-download mr-2"></i>
-                Export
+                Add Category
             </button>
             {{-- <div class="flex items-center space-x-3 w-full md:w-auto">
                 <button id="actionsDropdownButton" data-dropdown-toggle="actionsDropdown" class="w-full md:w-auto flex items-center justify-center py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" type="button">
@@ -90,12 +83,7 @@
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" class="px-4 py-3"></th>
-                    <th scope="col" class="px-4 py-3">Product name</th>
-                    <th scope="col" class="px-4 py-3">Category</th>
-                    <th scope="col" class="px-4 py-3">Suplier</th>
-                    <th scope="col" class="px-4 py-3">SKU</th>
-                    <th scope="col" class="px-4 py-3">Purchase Price</th>
-                    <th scope="col" class="px-4 py-3">Selling Price</th>
+                    <th scope="col" class="px-4 py-3">Category name</th>
                     <th scope="col" class="px-4 py-3">Description</th>
                     <th scope="col" class="px-4 py-3">
                         <span class="sr-only">Actions</span>
@@ -103,18 +91,13 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($products as $d)
+                @foreach ($cat as $d)
                 <tr class="border-b dark:border-gray-700">
                     <td class="px-4 py-3"></td>
-                    <td scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $d->name }}</td>
-                    <td class="px-4 py-3">{{ optional($d->category)->name }}</td>
-                    <td class="px-4 py-3">{{ $d->supplier->name }}</td>
-                    <td class="px-4 py-3">{{ $d->sku }}</td>
-                    <td class="px-4 py-3">{{ $d->purchase_price }}</td>
-                    <td class="px-4 py-3">{{ $d->selling_price }}</td>
+                    <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $d->name }}</th>
                     <td class="px-4 py-3">{{ $d->description }}</td>
                     <td class="px-4 py-3 flex items-center">
-                        <div class="flex justify-end space-x-2" x-data="{ showUpdateModal: false, showDeleteModal: false }" x-init="
+                    <div class="flex justify-end space-x-2" x-data="{ showUpdateModal: false, showDeleteModal: false }" x-init="
                         // Prevent background scroll when modal is open
                         () => {
                             $watch('showUpdateModal', value => {
@@ -164,58 +147,29 @@
                                     </div>
                         
                                     <!-- Modal Body with Smaller Fields -->
-                                    <form action="{{ route('updateProduct', $d->id) }}" method="POST">
+                                    <form action="{{ route('updateCategory', $d->id)}}" method="POST">
                                         @csrf
                                         <div class="grid gap-4 mb-4 sm:grid-cols-2">
                                             <div>
                                                 <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
                                                 <input type="text" name="name" id="name" value="{{ $d->name }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
                                             </div>
-                                            <div>
-                                                <label for="brand" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Brand</label>
-                                                <select id="category" name="supplier_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                                    <option value="{{$d->supplier_id}}" disabled hidden selected>{{$d->supplier->name}}</option>
-                                                    @foreach ($sup as $s)
-                                                    <option value="{{ $s->id }}">{{ $s->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <div>
-                                                <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Purchase Price</label>
-                                                <input type="number" value="{{ $d->purchase_price }}" name="price" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
-                                            </div>
-                                            <div>
-                                                <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Selling Price</label>
-                                                <input type="number" value="{{ $d->selling_price }}" name="price" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
-                                            </div>
-                                            <div>
-                                                <label for="sku" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">SKU</label>
-                                                <input type="number" value="{{ $d->sku }}" name="sku" id="sku" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
-                                            </div>
-                                            <div>
-                                                <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
-                                                <select id="category" name="category_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                                    <option value="" hidden disabled {{ is_null($d->category) ? 'selected' : '' }}>Select a category</option>
-                                                    @foreach ($cat as $c)
-                                                    <option value="{{ $c->id }}">{{ $c->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
                                             <div class="sm:col-span-2">
-                                                <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Image</label>
-                                                <input type="file" name="image" id="" value="{{$d->image}}" class="block  w-full text-sm text-gray-400 bg-gray-700 rounded-lg cursor-pointer border border-gray-600 focus:outline-none focus:border-blue-500">
-                                            </div>
-                                            <div class="sm:col-span-2">
-                                                <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-                                                <textarea name="description" id="description" rows="5" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Write a description...">{{ $d->description }}</textarea>                    
+                                                <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" >Description</label>
+                                                <textarea id="description" name="description" rows="5" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Write a description...">{{$d->description}}</textarea>                    
                                             </div>
                                         </div>
                                         <div class="flex items-center space-x-4">
-                                            <button type="submit" class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                                                Update product
+                                            <button type="submit" class="py-2 px-3 text-sm font-medium text-gray-500 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
+                                                Update Category
                                             </button>
+                                            {{-- <button type="button" class="text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
+                                                <svg class="mr-1 -ml-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path></svg>
+                                                Delete
+                                            </button> --}}
                                         </div>
                                     </form>
+
                                 </div>
                             </div>
                             <!-- Delete Modal -->
@@ -238,9 +192,9 @@
                                             <button @click="showDeleteModal = false" class="py-2 px-4 text-sm font-medium text-gray-500 bg-white border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600">
                                                 No, cancel
                                             </button>
-                                            <form action="{{ route('deleteProduct', $d->id) }}" method="post">
+                                            <form action="{{ route('deleteCategory',$d->id) }}" method="post">
                                                 @csrf
-                                                <button type="submit" class="py-2 px-4 text-sm font-medium text-white bg-red-600 rounded hover:bg-red-700">
+                                                <button type="submit" class="py-2 px-3 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-900">
                                                     Yes, I'm sure
                                                 </button>
                                             </form>
@@ -256,8 +210,9 @@
             </tbody>
         </table>
     </div>
-    @empty ($products->links())
+    @empty ($cat->links())
     @else
-    {{$products->links('pagination::tailwind')}}
+    {{$cat->links('pagination::tailwind')}}
     @endempty
 </div>
+

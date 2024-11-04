@@ -4,6 +4,7 @@ namespace App\Repositories\Product;
 
 use LaravelEasyRepository\Implementations\Eloquent;
 use App\Models\Product;
+use App\Models\ProductAttribute;
 
 class ProductRepositoryImplement extends Eloquent implements ProductRepository{
 
