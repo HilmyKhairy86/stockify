@@ -20,4 +20,12 @@ class UserController extends Controller
             'data' => $data,
         ]);
     }
+
+    public function updateUser($id, Request $request)
+    {
+        $data = $request->all();
+        $this->userService->updateUser($id, $data);
+        return redirect()->back();
+
+    }
 }

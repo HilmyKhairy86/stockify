@@ -11,7 +11,7 @@ interface UserService extends BaseService{
 
     public function addUser(array $data);
 
-    public function editUser($id, array $data);
+    public function updateUser($id, array $data);
 
     public function findUserById($id);
 

@@ -25,6 +25,11 @@ class UserRepositoryImplement extends Eloquent implements UserRepository{
         return $this->model->create($data);
     }
 
+    public function viewUsers()
+    {
+        $this->model->all();
+    }
+
     public function updateUser($id, array $data)
     {
         $user = $this->model->where('id', $id)->first();

@@ -91,7 +91,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($sup as $d)
+                @foreach ($usr as $d)
                 <tr class="border-b dark:border-gray-700">
                     <td class="px-4 py-3"></td>
                     <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $d->name }}</th>
@@ -206,10 +206,10 @@
             </tbody>
         </table>
     </div>
-    @empty ($sup->links())
+    {{-- @empty ($sup->links())
     @else
     {{$sup->links('pagination::tailwind')}}
-    @endempty
+    @endempty --}}
 </div>
 
 

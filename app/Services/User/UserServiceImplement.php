@@ -26,7 +26,7 @@ class UserServiceImplement extends ServiceApi implements UserService{
 
     public function viewUsers()
     {
-        return $this->mainRepository->all();
+        return $this->mainRepository->viewUsers();
     }
 
     public function addUser($data)
@@ -51,7 +51,7 @@ class UserServiceImplement extends ServiceApi implements UserService{
 
     }
 
-    public function editUser($id, array $data)
+    public function updateUser($id, array $data)
     {
         $this->mainRepository->update($id, $data);
     }
@@ -68,6 +68,6 @@ class UserServiceImplement extends ServiceApi implements UserService{
 
     public function searchByName(string $name)
     {
-        $this->mainRepository->searchByName($name);
+        return $this->mainRepository->searchByName($name);
     }
 }

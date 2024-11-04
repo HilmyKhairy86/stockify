@@ -3,7 +3,7 @@
     <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
         <div class="w-full md:w-1/2">
             {{-- search --}}
-            
+
                 <label for="simple-search" class="sr-only">Search</label>
                 <div class="relative w-full">
                     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -12,7 +12,7 @@
                         </svg>
                     </div>
                     <input type="seacrh" wire:model.live="search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Search">
-                    
+
                 </div>
         </div>
         {{-- addproduct --}}
@@ -108,7 +108,7 @@
                     <td class="px-4 py-3"></td>
                     <td scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $d->name }}</td>
                     <td class="px-4 py-3">{{ optional($d->category)->name }}</td>
-                    <td class="px-4 py-3">{{ $d->supplier->name }}</td>
+                    <td class="px-4 py-3">{{ optional($d->supplier)->name }}</td>
                     <td class="px-4 py-3">{{ $d->sku }}</td>
                     <td class="px-4 py-3">{{ $d->purchase_price }}</td>
                     <td class="px-4 py-3">{{ $d->selling_price }}</td>
@@ -140,9 +140,9 @@
                             {{-- modal --}}
                             <!-- Update Modal -->
                             <div
-                                id="{{$d->id}}" 
+                                id="{{$d->id}}"
                                 x-show="showUpdateModal"
-                                @keydown.escape.window="showUpdateModal = false" 
+                                @keydown.escape.window="showUpdateModal = false"
                                 x-transition:enter="transition ease-out duration-200"
                                 x-transition:enter-start="opacity-0"
                                 x-transition:enter-end="opacity-100"
@@ -162,7 +162,7 @@
                                             </svg>
                                         </button>
                                     </div>
-                        
+
                                     <!-- Modal Body with Smaller Fields -->
                                     <form action="{{ route('updateProduct', $d->id) }}" method="POST">
                                         @csrf
@@ -174,7 +174,7 @@
                                             <div>
                                                 <label for="brand" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Brand</label>
                                                 <select id="category" name="supplier_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                                    <option value="{{$d->supplier_id}}" disabled hidden selected>{{$d->supplier->name}}</option>
+                                                    <option value="{{is_null($d->supplier) ? 'selected' : '' }}">Select a Supplier</option>
                                                     @foreach ($sup as $s)
                                                     <option value="{{ $s->id }}">{{ $s->name }}</option>
                                                     @endforeach
@@ -207,7 +207,7 @@
                                             </div>
                                             <div class="sm:col-span-2">
                                                 <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-                                                <textarea name="description" id="description" rows="5" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Write a description...">{{ $d->description }}</textarea>                    
+                                                <textarea name="description" id="description" rows="5" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Write a description...">{{ $d->description }}</textarea>
                                             </div>
                                         </div>
                                         <div class="flex items-center space-x-4">
@@ -221,7 +221,7 @@
                             <!-- Delete Modal -->
                             <div
                                 x-show="showDeleteModal"
-                                @keydown.escape.window="showDeleteModal = false" 
+                                @keydown.escape.window="showDeleteModal = false"
                                 x-transition:enter="transition ease-out duration-200"
                                 x-transition:enter-start="opacity-0"
                                 x-transition:enter-end="opacity-100"
