@@ -123,6 +123,7 @@
 
                     {{-- table --}}
                     @livewire('search')
+                    
                 </div>
             </div>
             </section>

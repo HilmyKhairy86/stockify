@@ -52,4 +52,9 @@ Route::get('Users/Management', [UserController::class, 'viewUsers'])->name('view
 Route::post('Users/Management/update/{id}',[UserController::class, 'updateUser'])->name('updateUser')->middleware(['auth', 'verified']);
 Route::post('Users/Management/delete/{id}',[UserController::class, 'deleteUser'])->name('deleteUser')->middleware(['auth', 'verified']);
 
+
+Route::get('Stock/History',function(){
+    return view('Stock.History');
+})->name('sHistory');
+
 require __DIR__.'/auth.php';

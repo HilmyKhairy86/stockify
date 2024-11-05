@@ -224,9 +224,9 @@
             </tbody>
         </table>
     </div>
-    {{-- @empty ($att->links())
+    @empty ($att->links())
     @else
     {{$att->links('pagination::tailwind')}}
-    @endempty --}}
+    @endempty
 </div>
 

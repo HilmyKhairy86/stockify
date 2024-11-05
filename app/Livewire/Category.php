@@ -16,6 +16,17 @@ class Category extends Component
     }
 
     public $search = '';
+
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+
+    public function updatedSearch()
+    {
+        $this->resetPage();
+    }
+    
     public function render()
     {
         $cat = $this->categoryService->searchByName($this->search)->paginate(10);

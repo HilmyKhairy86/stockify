@@ -8,6 +8,7 @@ use App\Services\Supplier\SupplierService;
 use Livewire\WithPagination;
 use Livewire\WithoutUrlPagination;
 use Livewire\Component;
+use Livewire\Livewire;
 
 class Search extends Component
 {
@@ -29,19 +30,24 @@ class Search extends Component
 
     public function search()
     {
-        $this->resetPage('Products');
+        $this->resetPage();
     }
 
     public function updatingSearch()
     {
-        $this->resetPage('Products');
+        $this->resetPage();
+    }
+
+    public function updatedSearch()
+    {
+        $this->resetPage();
     }
     
     public function render()
     {   
-        $products = $this->productService->searchByName($this->search)->paginate(10);
+        $products = $this->productService->searchByName($this->search);
         return view('livewire.search', [
-            'products' => $products,
+            'products' => $products->paginate(10),
             'sup' => $this->supplierService->viewSupplier(),
             'cat' => $this->categoryService->viewCategory(),
         ]);
