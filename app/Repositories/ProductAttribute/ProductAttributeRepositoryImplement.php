@@ -2,8 +2,9 @@
 
 namespace App\Repositories\ProductAttribute;
 
-use LaravelEasyRepository\Implementations\Eloquent;
 use App\Models\ProductAttribute;
+use Illuminate\Support\Facades\DB;
+use LaravelEasyRepository\Implementations\Eloquent;
 
 class ProductAttributeRepositoryImplement extends Eloquent implements ProductAttributeRepository{
 
@@ -48,7 +49,11 @@ class ProductAttributeRepositoryImplement extends Eloquent implements ProductAtt
 
     public function searchByName(string $name)
     {
-        return ProductAttribute::where('name', 'LIKE', '%'.$name . '%');
+        return DB::table('product_attributes')
+        ->join('products', 'product_attributes.product_id', '=', 'products.id')
+        ->where('products.name', 'like', '%' . $name . '%')
+        ->select('product_attributes.*', 'products.name as product_name')
+        ->orderBy('product_attributes.id', 'desc');
     }
 
 

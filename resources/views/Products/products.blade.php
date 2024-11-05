@@ -1,7 +1,7 @@
 @section('title', 'Products')
 <x-app-layout>
         <section class="bg-gray-50 dark:bg-gray-900 mb-10">
-            <div class="mx-auto lg:px-12">
+            <div class="mx-auto md:px-5 sm:px-5 lg:px-5">
                 <!-- Start coding here -->
                 <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
                     {{-- <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">

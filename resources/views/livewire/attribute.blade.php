@@ -96,9 +96,10 @@
                 @foreach ($att as $d)
                 <tr class="border-b dark:border-gray-700">
                     <td class="px-4 py-3"></td>
-                    <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $d->id }}</th>
+                    <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $d->product_id }}</th>
+                    <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $d->product_name }}</th>
                     <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $d->name }}</th>
-                    <td class="px-4 py-3">{{ $d->attribute }}</td>
+                    <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $d->value }}</th>
                     {{-- <td class="px-4 py-3">{{ $d->attribute->value }}</td> --}}
                     <td class="px-4 py-3 flex items-center">
                         <div class="flex justify-end space-x-2" x-data="{ showUpdateModal: false, showDeleteModal: false }" x-init="

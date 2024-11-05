@@ -17,17 +17,17 @@
         </div>
         {{-- addproduct --}}
         <div class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
-            <button id="defaultModalButton" data-modal-target="defaultModal" data-modal-toggle="defaultModal" type="button" class="flex items-center justify-center dark:bg-blue-600 text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
+            <button id="defaultModalButton" data-modal-target="defaultModal" data-modal-toggle="defaultModal" type="button" class="flex items-center justify-center dark:bg-blue-600 bg-blue-600 text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
                 <svg class="h-3.5 w-3.5 mr-2" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <path clip-rule="evenodd" fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" />
                 </svg>
                 Add product
             </button>
-            <button id="importModalbutton" data-modal-target="importModal" data-modal-toggle="importModal" type="button" class="py-2 px-3 text-sm font-medium text-gray-500 bg-blue-500 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-900 focus:z-10 dark:bg-blue-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
+            <button id="importModalbutton" data-modal-target="importModal" data-modal-toggle="importModal" type="button" class="flex items-center justify-center dark:bg-blue-600 bg-blue-600 text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
                 <i class="fa-solid fa-file-import"></i>
                 Import
             </button>
-            <button type="button" class="py-2 px-3 text-sm font-medium text-gray-500 bg-blue-500 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-900 focus:z-10 dark:bg-blue-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
+            <button type="button" class="flex items-center justify-center dark:bg-blue-600 bg-blue-600 text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
                 <i class="fa-solid fa-download mr-2"></i>
                 Export
             </button>
@@ -164,7 +164,7 @@
                                     </div>
 
                                     <!-- Modal Body with Smaller Fields -->
-                                    <form action="{{ route('updateProduct', $d->id) }}" method="POST">
+                                    <form action="{{ route('updateProduct', $d->id) }}" method="POST" enctype="multipart/form-data">
                                         @csrf
                                         <div class="grid gap-4 mb-4 sm:grid-cols-2">
                                             <div>
@@ -174,7 +174,7 @@
                                             <div>
                                                 <label for="brand" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Brand</label>
                                                 <select id="category" name="supplier_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                                    <option value="{{is_null($d->supplier) ? 'selected' : '' }}">Select a Supplier</option>
+                                                    <option value="" hidden disabled {{ is_null($d->supplier) ? 'selected' : '' }}>Select a Supplier</option>
                                                     @foreach ($sup as $s)
                                                     <option value="{{ $s->id }}">{{ $s->name }}</option>
                                                     @endforeach
@@ -203,15 +203,20 @@
                                             </div>
                                             <div class="sm:col-span-2">
                                                 <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Image</label>
-                                                <input type="file" name="image" id="" value="{{$d->image}}" class="block  w-full text-sm text-gray-400 bg-gray-700 rounded-lg cursor-pointer border border-gray-600 focus:outline-none focus:border-blue-500">
+                                                <input type="file" name="image" accept="image/jpeg,image/png" id="image" class="block  w-full text-sm text-gray-400 bg-gray-700 rounded-lg cursor-pointer border border-gray-600 focus:outline-none focus:border-blue-500">
                                             </div>
+                                            @if ($d->image)
+                                            <div class="sm:col-span-2">
+                                                <img for="image" src="{{ asset('storage/'.$d->image ) }}" class="block w-full h-full object-cover rounded-lg border border-gray-600" />
+                                            </div>
+                                            @endif
                                             <div class="sm:col-span-2">
                                                 <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
                                                 <textarea name="description" id="description" rows="5" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Write a description...">{{ $d->description }}</textarea>
                                             </div>
                                         </div>
                                         <div class="flex items-center space-x-4">
-                                            <button type="submit" class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                                            <button type="submit" class="py-2 px-3 text-sm font-medium text-gray-500 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
                                                 Update product
                                             </button>
                                         </div>

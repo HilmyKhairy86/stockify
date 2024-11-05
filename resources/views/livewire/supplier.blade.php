@@ -142,7 +142,7 @@
                                 <div class="relative w-full sm:max-w-md mx-auto bg-white dark:bg-gray-800 rounded-lg sm:rounded-lg shadow-lg p-4 sm:p-6 max-h-screen sm:max-h-[85vh] overflow-y-auto h-full sm:h-auto">
                                     <!-- Modal Header -->
                                     <div class="flex justify-between items-center pb-2 sm:pb-4 mb-2 sm:mb-4 border-b dark:border-gray-600">
-                                        <h3 class="text-md sm:text-lg font-semibold text-gray-900 dark:text-white">Update Product</h3>
+                                        <h3 class="text-md sm:text-lg font-semibold text-gray-900 dark:text-white">Update Supplier</h3>
                                         <button @click="showUpdateModal = false" class="text-gray-400 hover:bg-gray-200 hover:text-gray-900 p-1 rounded dark:hover:bg-gray-600 dark:hover:text-white">
                                             <svg aria-hidden="true" class="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 20 20">
                                                 <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
@@ -172,7 +172,7 @@
                                             </div>
                                         </div>
                                         <div class="flex items-center space-x-4">
-                                            <button type="submit" class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                                            <button type="submit" class="py-2 px-3 text-sm font-medium text-gray-500 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
                                                 Update Supplier
                                             </button>
                                         </div>

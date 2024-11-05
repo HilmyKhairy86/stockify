@@ -26,7 +26,6 @@ class ProductServiceImplement extends Service implements ProductService{
         'supplier_id' => 'required|exists:suppliers,id',
         'category_id' => 'required|exists:categories,id',
         'sku' => 'required|string|max:255',
-        'description' => 'required|string|max:255',
         'purchase_price' => 'required|numeric|min:0',
         'selling_price' => 'required|numeric|min:0',
       ]);
@@ -34,7 +33,13 @@ class ProductServiceImplement extends Service implements ProductService{
       if ($validator->fails()) {
         throw new \Illuminate\Validation\ValidationException($validator);
       } else {
-        return $this->mainRepository->createProduct($data);
+        if (isset($data['image'])){
+          $path = $data['image']->store('images');
+          $data['image'] = $path;
+          return $this->mainRepository->createProduct($data);
+        } else {
+          return $this->mainRepository->createProduct($data);
+        }
       }
     }
 
@@ -50,7 +55,15 @@ class ProductServiceImplement extends Service implements ProductService{
 
     public function updateProduct($id, array $data)
     {
-      return $this->mainRepository->updateProduct($id,$data);
+      // dd($data);
+      if (isset($data['image'])){
+        $path = $data['image']->store('images');
+        $data['image'] = $path;
+        return $this->mainRepository->updateProduct($id, $data);
+      } else {
+        return $this->mainRepository->updateProduct($id, $data);
+      }
+      
     }
 
     public function deleteProduct($id)

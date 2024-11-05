@@ -5,9 +5,11 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Services\Product\ProductService;
 use App\Services\Attribute\AttributeService;
+use Livewire\WithPagination;
 
 class Attribute extends Component
 {
+    use WithPagination;
     protected $productService;
     protected $attributeService;
     public function boot(ProductService $productService, AttributeService $attributeService)
@@ -30,7 +32,7 @@ class Attribute extends Component
 
     public function render()
     {
-        $att = $this->productService->searchByName($this->search)->paginate(10);
+        $att = $this->attributeService->searchByName($this->search)->paginate(10);
         return view('livewire.attribute', [
             'att' => $att,
         ]);

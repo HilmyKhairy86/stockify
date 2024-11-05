@@ -20,7 +20,7 @@ class CategorySelect extends Component
 
     public function updatedSearch()
     {
-        // Fetch categories based on search term
+        $this->resetPage();
     }
     
     public function render()

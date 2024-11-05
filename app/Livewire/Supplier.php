@@ -18,6 +18,16 @@ class Supplier extends Component
 
     public $search = '';
 
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+
+    public function updatedSearch()
+    {
+        $this->resetPage();
+    }
+
     public function render()
     {
         $sup = $this->supplierService->searchByName($this->search)->paginate(10);
