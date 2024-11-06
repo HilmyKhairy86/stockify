@@ -103,7 +103,35 @@
                     <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $d->type }}</th>
                     <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $d->quantity }}</th>
                     <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $d->date }}</th>
-                    <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $d->status }}</th>
+                    <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        @switch($d->status)
+                            @case('pending')
+                                <span class="inline-flex items-center bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-yellow-600 dark:text-yellow-200">
+                                    <span class="w-2 h-2 me-1 bg-yellow-500 rounded-full"></span>
+                                    Pending
+                                </span>
+                                @break
+                            @case('diterima')
+                                <span class="inline-flex items-center bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
+                                    <span class="w-2 h-2 me-1 bg-green-500 rounded-full"></span>
+                                    Diterima
+                                </span>
+                                @break
+                            @case('ditolak')
+                                <span class="inline-flex items-center bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-red-900 dark:text-red-300">
+                                    <span class="w-2 h-2 me-1 bg-red-500 rounded-full"></span>
+                                    Ditolak
+                                </span>
+                                @break
+                            @case('dikeluarkan')
+                                <span class="inline-flex items-center bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-red-900 dark:text-red-300">
+                                    <span class="w-2 h-2 me-1 bg-red-500 rounded-full"></span>
+                                    Dikeluarkan
+                                </span>
+                                @break
+                            @default
+                        @endswitch
+                    </th>
                     <td class="px-4 py-3 flex items-center">
                     <div class="flex justify-end space-x-2" x-data="{ showUpdateModal: false, showDeleteModal: false }" x-init="
                         // Prevent background scroll when modal is open
