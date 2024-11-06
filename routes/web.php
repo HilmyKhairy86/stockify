@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StockTransactionController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserController;
 use App\Models\ProductAttribute;
@@ -56,5 +57,8 @@ Route::post('Users/Management/delete/{id}',[UserController::class, 'deleteUser']
 Route::get('Stock/History',function(){
     return view('Stock.History');
 })->name('sHistory');
+
+Route::post('Stock/History/create',[StockTransactionController::class, 'addTransaction'])->name('addTransaction')->middleware(['auth', 'verified']);
+Route::post('Stock/History/delete/{id}',[StockTransactionController::class, 'deleteTransaction'])->name('deleteTransaction')->middleware(['auth', 'verified']);
 
 require __DIR__.'/auth.php';

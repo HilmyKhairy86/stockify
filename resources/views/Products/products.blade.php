@@ -183,9 +183,9 @@
                                     </select>
                                 </div>
                             </div>
-                            <div>
-                                <label for="image" class="block mb-2 text-sm font-medium text-white dark:text-white">Image</label>
-                                <input type="file" name="image" id="" class="block  w-full text-sm text-gray-400 bg-gray-700 rounded-lg cursor-pointer border border-gray-600 focus:outline-none focus:border-blue-500">
+                            <div class="mb-3">
+                                <label for="image" class="block mb-2 text-sm font-medium text-black dark:text-white">Image</label>
+                                <input type="file" name="image" id="" class="block  w-full text-sm text-gray-400 bg-slate-100 dark:bg-gray-700 rounded-lg cursor-pointer border border-gray-600 focus:outline-none focus:border-blue-500">
                             </div>
                             <div class="sm:col-span-2">
                                 <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>

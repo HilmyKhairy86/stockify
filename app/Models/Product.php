@@ -23,6 +23,11 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function StockTransaction()
+    {
+        return $this->hasMany(StockTransaction::class);
+    }
+
     protected $fillable = [
         'category_id',
         'supplier_id',

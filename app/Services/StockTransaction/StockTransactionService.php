@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Repositories\StockTransaction;
+namespace App\Services\StockTransaction;
 
-use LaravelEasyRepository\Repository;
+use LaravelEasyRepository\BaseService;
 
-interface StockTransactionRepository extends Repository{
+interface StockTransactionService extends BaseService{
 
     public function addTransaction(array $data);
     public function viewTransaction();

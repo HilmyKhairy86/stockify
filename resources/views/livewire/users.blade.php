@@ -80,7 +80,7 @@
     </div>
     <div class="overflow-x-auto">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-300 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" class="px-4 py-3"></th>
                                     <th scope="col" class="px-4 py-3">Name</th>
@@ -93,7 +93,7 @@
             </thead>
             <tbody>
                 @foreach ($usr as $d)
-                <tr class="border-b dark:border-gray-700">
+                <tr class="border-b dark:border-gray-700 odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800">
                     <td class="px-4 py-3"></td>
                     <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $d->name }}</th>
                     <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $d->email }}</th>
@@ -111,14 +111,14 @@
                         }">
                             {{-- update btn --}}
                             <div id="-{{$d->id}}" class="mx-2">
-                                <button @click="showUpdateModal = true" class="py-2 px-3 text-sm font-medium text-gray-500 bg-blue-500 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-900 focus:z-10 dark:bg-blue-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600" type="button">
-                                    <i class="fa-solid fa-pen-to-square"></i>
+                                <button @click="showUpdateModal = true" class="py-2 px-3 text-sm font-medium text-gray-500 bg-blue-500 rounded-lg hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-900 focus:z-10 dark:bg-blue-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-blue-700 dark:focus:ring-gray-600" type="button">
+                                    <i class="fa-solid fa-pen-to-square text-white"></i>
                                 </button>
                             </div>
                             {{-- delete btn --}}
                             <div>
-                                <button @click="showDeleteModal = true" class="py-2 px-3 text-sm font-medium text-gray-500 bg-red-600 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-red-900 focus:z-10 dark:red-blue-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-red-900 dark:focus:ring-gray-600" type="button">
-                                    <i class="fa-solid fa-trash"></i>
+                                <button @click="showDeleteModal = true" class="py-2 px-3 text-sm font-medium text-gray-500 bg-red-600 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-red-900 focus:z-10 dark:red-blue-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-red-900 dark:focus:ring-gray-600" type="button">
+                                    <i class="fa-solid fa-trash text-white"></i>
                                 </button>
                             </div>
 
@@ -218,10 +218,10 @@
             </tbody>
         </table>
     </div>
-    {{-- @empty ($sup->links())
+    @empty ($usr->links())
     @else
-    {{$sup->links('pagination::tailwind')}}
-    @endempty --}}
+    {{$usr->links('pagination::tailwind')}}
+    @endempty
 </div>
 
 

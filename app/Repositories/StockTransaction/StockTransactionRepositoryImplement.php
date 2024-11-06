@@ -16,8 +16,31 @@ class StockTransactionRepositoryImplement extends Eloquent implements StockTrans
 
     public function __construct(StockTransaction $model)
     {
-        $this->model = $model;
+        return $this->model = $model;
     }
 
-    // Write something awesome :)
+    public function addTransaction(array $data)
+    {
+        return $this->model->create($data);
+    }
+
+    public function viewTransaction()
+    {
+        return $this->model->all();
+    }
+
+    public function updateTransaction($id, array $data)
+    {
+        return $this->model->update($id,$data);
+    }
+
+    public function deleteTransaction($id)
+    {
+        return $this->model->delete($id);
+    }
+
+    public function searchByName(string $name)
+    {
+        return StockTransaction::where('type', 'LIKE', '%' . $name . '%');
+    }
 }
