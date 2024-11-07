@@ -55,4 +55,9 @@ class ProductRepositoryImplement extends Eloquent implements ProductRepository{
     {
         return Product::where('name', 'LIKE', '%'.$name . '%');
     }
+
+    public function filterCategory(int $id)
+    {
+        return Product::where('category_id', $id);
+    }
 }

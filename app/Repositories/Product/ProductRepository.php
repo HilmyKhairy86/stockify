@@ -20,5 +20,5 @@ interface ProductRepository extends Repository{
     
     public function searchByName(string $name);
 
-    
+    public function filterCategory(int $id);
 }

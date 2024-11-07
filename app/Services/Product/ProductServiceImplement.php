@@ -80,4 +80,9 @@ class ProductServiceImplement extends Service implements ProductService{
     {
       return $this->mainRepository->searchByName($name);
     }
+
+    public function filterCategory(int $id)
+    {
+      return $this->mainRepository->filterCategory($id);
+    }
 }

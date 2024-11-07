@@ -56,5 +56,9 @@ class ProductAttributeRepositoryImplement extends Eloquent implements ProductAtt
         ->orderBy('product_attributes.id', 'desc');
     }
 
+    public function getAttByProdId($id)
+    {
+        $this->model->where('product_id', $id);
+    }
 
 }

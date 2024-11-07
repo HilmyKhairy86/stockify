@@ -70,4 +70,9 @@ class AttributeServiceImplement extends ServiceApi implements AttributeService{
     {
       return $this->mainRepository->searchByName($name);
     }
+
+    public function getAttByProdId($id)
+    {
+      return $this->mainRepository->getAttByProdId($id);
+    }
 }

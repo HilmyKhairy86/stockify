@@ -12,5 +12,5 @@ interface ProductAttributeRepository extends Repository{
     public function deleteAttribute($id);
     public function pagAtrribute(int $num);
     public function searchByName(string $name);
-    
+    public function getAttByProdId($id);
 }

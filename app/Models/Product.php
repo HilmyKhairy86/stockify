@@ -38,4 +38,14 @@ class Product extends Model
         'selling_price',
         'image',
     ];
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($product) {
+            // Automatically delete related attributes when a product is deleted
+            $product->ProductAttribute()->delete();
+        });
+    }
 }
+

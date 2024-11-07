@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\Attribute\AttributeService;
 use App\Services\Category\CategoryService;
 use App\Services\Product\ProductService;
 use App\Services\Supplier\SupplierService;
@@ -12,12 +13,14 @@ class ProductController extends Controller
     protected $productService;
     protected $categoryService;
     protected $supplierService;
+    protected $attributeService;
 
-    public function __construct(ProductService $productService, CategoryService $categoryService, SupplierService $supplierService)
+    public function __construct(ProductService $productService, CategoryService $categoryService, SupplierService $supplierService, AttributeService $attributeService)
     {
         $this->productService = $productService;
         $this->categoryService = $categoryService;
         $this->supplierService = $supplierService;
+        $this->attributeService = $attributeService;
     }
 
     public function addProduct(Request $request)
@@ -55,6 +58,8 @@ class ProductController extends Controller
 
     public function deleteProduct($id)
     {
+        // $a_id = $this->attributeService->getAttByProdId($id);
+        // $this->attributeService->deleteAttribute($a_id);
         $this->productService->deleteProduct($id);
         return redirect()->back()->with('success');
     }
