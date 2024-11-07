@@ -104,7 +104,6 @@
                     <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $d->type }}</th>
                     <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $d->quantity }}</th>
                     <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $d->date }}</th>
-                    <th scope="row" class="px-4 py-3 font-medium text-gray-900 dark:text-white">{{ $d->notes }}</th>
                     <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         @switch($d->status)
                             @case('pending')
@@ -134,6 +133,7 @@
                             @default
                         @endswitch
                     </th>
+                    <th scope="row" class="px-4 py-3 font-medium text-gray-900 dark:text-white">{{ $d->notes }}</th>
                     <td class="px-4 py-3 flex items-center">
                     <div class="flex justify-end space-x-2" x-data="{ showUpdateModal: false, showDeleteModal: false }" x-init="
                         // Prevent background scroll when modal is open
