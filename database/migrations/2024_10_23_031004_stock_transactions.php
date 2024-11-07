@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('quantity');
             $table->date('date');
             $table->enum('status',['pending','diterima','ditolak','dikeluarkan']);
+            $table->text('notes')->nullable();
             $table->timestamps();
         });
     }

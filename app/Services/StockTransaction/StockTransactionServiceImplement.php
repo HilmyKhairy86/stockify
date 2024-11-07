@@ -33,21 +33,21 @@ class StockTransactionServiceImplement extends ServiceApi implements StockTransa
 
     public function addTransaction(array $data)
     {
-      $validator = Validator::make($data, [
-        'product_id' => 'required|exists:products,id',
-        'user_id' => 'required|exists:users,id',
-        'type' => 'required|string|max:255',
-        'quantity' => 'required|numeric|min:0',
-        'date' => 'required|string|max:255',
-        'status' => 'required|string|max:255',
-        'notes' => 'required|string|max:255',
-      ]);
+      // $validator = Validator::make($data, [
+      //   'product_id' => 'required|exists:products,id',
+      //   'user_id' => 'required|exists:users,id',
+      //   'type' => 'required|string|max:255',
+      //   'quantity' => 'required|numeric|min:0',
+      //   'date' => 'required|string|max:255',
+      //   'status' => 'required|string|max:255',
+      //   'notes' => 'required|string|max:255',
+      // ]);
 
-      if ($validator->fails()) {
-        throw new \Illuminate\Validation\ValidationException($validator);
-      } else {
-        $this->mainRepository->addTransaction($data);
-      }
+      // if ($validator->fails()) {
+      //   throw new \Illuminate\Validation\ValidationException($validator);
+      // } else {
+        return $this->mainRepository->addTransaction($data);
+      // }
     }
 
     public function viewTransaction()
