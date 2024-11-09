@@ -51,9 +51,25 @@ class ProductRepositoryImplement extends Eloquent implements ProductRepository{
         return $this->model->paginate($num);
     }
 
-    public function searchByName(string $name)
+    // public function searchByName(string $name)
+    // {
+    //     return Product::where('name', 'LIKE', '%'.$name . '%');
+    // }
+    public function searchByName(string $name, array $categories = [])
     {
-        return Product::where('name', 'LIKE', '%'.$name . '%');
+        $query = Product::query();
+    
+        // Filter by name
+        if (!empty($name)) {
+            $query->where('name', 'LIKE', '%' . $name . '%');
+        }
+
+        // Filter by category
+        if (!empty($categories)) {
+            $query->where('category_id', $categories); // Assuming 'category_id' is a column in your Product model
+        }
+
+        return $query;
     }
 
     public function filterCategory(int $id)

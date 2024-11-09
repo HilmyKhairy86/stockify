@@ -27,7 +27,7 @@ class Search extends Component
     }
 
     public $search = '';
-    public $category = [];
+    public $categories = [];
 
     public function search()
     {
@@ -43,11 +43,16 @@ class Search extends Component
     {
         $this->resetPage();
     }
+
+    public function updatedCategories()
+    {
+        $this->resetPage();
+    }
     
     public function render()
     {   
         
-            $result = $this->productService->searchByName($this->search);
+            $result = $this->productService->searchByName($this->search, $this->categories);
             return view('livewire.search', [
                 'products' => $result->paginate(10),
                 'sup' => $this->supplierService->viewSupplier(),

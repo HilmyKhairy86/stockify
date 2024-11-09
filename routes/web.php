@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ImportControlller;
 use App\Http\Controllers\ProductAttributeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -33,6 +34,9 @@ Route::post('Products/addproduct', [ProductController::class, 'addProduct'])->na
 Route::post('Products/delete/{id}',[ProductController::class, 'deleteProduct'])->name('deleteProduct')->middleware(['auth', 'verified']);
 Route::post('Products/update/{id}',[ProductController::class, 'updateProduct'])->name('updateProduct')->middleware(['auth', 'verified']);
 Route::get('Products/search', [ProductController::class, 'searchProduct'])->name('searchProduct')->middleware(['auth', 'verified']);
+Route::post('Products/import',[ImportControlller::class, 'import'])->name('import')->middleware(['auth', 'verified']);
+Route::post('Products/export',[ImportControlller::class, 'export'])->name('export')->middleware(['auth', 'verified']);
+
 
 Route::get('Products/Categories', [CategoryController::class, 'viewCategories'])->name('Categories')->middleware(['auth', 'verified']);
 Route::post('Products/Categories/addCategory', [CategoryController::class, 'addCategory'])->name('addCategory')->middleware(['auth', 'verified']);

@@ -2,8 +2,9 @@
 
 namespace App\Repositories\StockTransaction;
 
-use LaravelEasyRepository\Implementations\Eloquent;
 use App\Models\StockTransaction;
+use Illuminate\Support\Facades\DB;
+use LaravelEasyRepository\Implementations\Eloquent;
 
 class StockTransactionRepositoryImplement extends Eloquent implements StockTransactionRepository{
 
@@ -39,8 +40,22 @@ class StockTransactionRepositoryImplement extends Eloquent implements StockTrans
         return $this->model->delete($id);
     }
 
-    public function searchByName(string $name)
+    public function searchByName(string $name, array $types = [], array $status = [])
     {
-        return StockTransaction::where('type', 'LIKE', '%' . $name . '%');
+        $query = StockTransaction::join('products', 'stock_transactions.product_id', '=', 'products.id')
+        ->join('users', 'stock_transactions.user_id', '=', 'users.id') // Join the users table
+        ->where('products.name', 'like', '%' . $name . '%')
+        ->select('stock_transactions.*', 'products.name as product_name', 'users.name as user_name') // Select user information
+        ->orderBy('stock_transactions.id', 'desc');
+
+        if (!empty($types)) {
+            $query->whereIn('type', $types);
+        }
+
+        if (!empty($status)) {
+            $query->whereIn('status', $status);
+        }
+
+        return $query;
     }
 }

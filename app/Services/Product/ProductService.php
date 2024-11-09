@@ -12,6 +12,7 @@ interface ProductService extends BaseService{
     public function updateProduct($id, array $data);
     public function deleteProduct($id);
     public function pagProduct(int $num);
-    public function searchByName(string $name);
+    public function searchByName(string $name, array $categories = []);
     public function filterCategory(int $id);
+    public function importProduct($data);
 }

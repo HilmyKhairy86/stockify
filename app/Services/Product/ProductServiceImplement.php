@@ -5,6 +5,7 @@ namespace App\Services\Product;
 use LaravelEasyRepository\Service;
 use Illuminate\Support\Facades\Validator;
 use App\Repositories\Product\ProductRepository;
+use League\Csv\Reader;
 
 class ProductServiceImplement extends Service implements ProductService{
 
@@ -76,13 +77,38 @@ class ProductServiceImplement extends Service implements ProductService{
       return $this->mainRepository->pagProduct($num);
     }
 
-    public function searchByName(string $name)
+    public function searchByName(string $name, array $categories = [])
     {
-      return $this->mainRepository->searchByName($name);
+      return $this->mainRepository->searchByName($name, $categories);
     }
 
     public function filterCategory(int $id)
     {
       return $this->mainRepository->filterCategory($id);
+    }
+
+    public function importProduct($file)
+    {
+      // Load the CSV file
+      $csv = Reader::createFromPath($file->getRealPath(), 'r');
+      $csv->setHeaderOffset(0); // Treat the first row as header
+
+      // Loop through CSV rows
+      foreach ($csv as $row) {
+          // Insert each row using the repository
+          $data = [
+            'category_id'   => $row['category_id'],  // Assuming you have a 'category_id' column in CSV
+            'supplier_id'   => $row['supplier_id'],  // Assuming you have a 'supplier_id' column in CSV
+            'name'          => $row['name'],         // Assuming your CSV has a 'name' column
+            'sku'           => $row['sku'],          // Assuming your CSV has a 'sku' column
+            'description'   => $row['description'] ?? null, // Nullable field, default to null if not provided
+            'purchase_price'=> $row['purchase_price'],  // Assuming a 'purchase_price' column
+            'selling_price' => $row['selling_price'],   // Assuming a 'selling_price' column
+            'image'         => $row['image'] ?? null, // Nullable field for image path, default to null if not provided
+        ];
+
+        // Insert data using the repository
+        $this->mainRepository->createProduct($data);
+      }
     }
 }

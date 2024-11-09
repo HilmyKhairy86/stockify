@@ -28,4 +28,10 @@ class UserController extends Controller
         return redirect()->back();
 
     }
+
+    public function deleteUser($id)
+    {
+        $this->userService->deleteUser($id);
+        return redirect()->back();
+    }
 }
