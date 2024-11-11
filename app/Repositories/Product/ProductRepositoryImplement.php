@@ -76,4 +76,9 @@ class ProductRepositoryImplement extends Eloquent implements ProductRepository{
     {
         return Product::where('category_id', $id);
     }
+
+    public function findProductBySku($sku)
+    {
+        return Product::where('sku', $sku);
+    }
 }

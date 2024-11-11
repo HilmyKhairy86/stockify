@@ -21,4 +21,6 @@ interface ProductRepository extends Repository{
     public function searchByName(string $name, array $categories = []);
 
     public function filterCategory(int $id);
+
+    public function findProductBySku($sku);
 }

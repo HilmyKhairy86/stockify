@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services\Product\ProductService;
 use Illuminate\Support\Facades\Response;
-use League\Csv\Reader;
 
 class ImportControlller extends Controller
 {
@@ -18,12 +17,10 @@ class ImportControlller extends Controller
 
     public function import(Request $request)
     {
-        // Validate that the file is a CSV
         $request->validate([
-            'file' => 'required|mimes:csv,txt|max:2048', // Validate the file type
+            'file' => 'required|mimes:csv,xls,xlsx|max:2048',
         ]);
 
-        // Call the service method to import the CSV
         $this->productService->importProduct($request->file('file'));
 
         // Redirect with a success message

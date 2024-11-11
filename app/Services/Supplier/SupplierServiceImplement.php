@@ -3,6 +3,7 @@
 namespace App\Services\Supplier;
 
 use LaravelEasyRepository\Service;
+use Illuminate\Support\Facades\Validator;
 use App\Repositories\Supplier\SupplierRepository;
 
 class SupplierServiceImplement extends Service implements SupplierService{
@@ -20,7 +21,18 @@ class SupplierServiceImplement extends Service implements SupplierService{
 
     public function addSupplier(array $data)
     {
-      return $this->mainRepository->addSupplier($data);
+      $validator = Validator::make($data, [
+        'name' => 'required|string|max:255',
+        'address' => 'required|string|max:255',
+        'phone' => 'required|string|max:255',
+        'email' => 'required|string|max:255',
+      ]);
+
+      if ($validator->fails()) {
+        throw new \Illuminate\Validation\ValidationException($validator);
+      } else {
+        return $this->mainRepository->addSupplier($data);
+      }
     }
 
     public function viewSupplier()

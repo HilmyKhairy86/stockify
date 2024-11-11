@@ -22,7 +22,7 @@ class ProductFactory extends Factory
             'category_id' => Category::Factory(),
             'supplier_id' => Supplier::Factory(),
             'name' => fake()->unique()->word(),
-            'sku' => fake()->numberBetween(1, 40),
+            'sku' => fake()->unique()->numberBetween(1, 40),
             'description' => fake()->text(100),
             'purchase_price' => fake()->numberBetween(50,1000),
             'selling_price' => fake()->numberBetween(100, 2000),

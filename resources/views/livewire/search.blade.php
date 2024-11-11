@@ -93,7 +93,7 @@
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-300 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                    <th scope="col" class="px-4 py-3"></th>
+                    <th scope="col" class="px-4 py-3"><input type="checkbox" id="select-all"></th>
                     <th scope="col" class="px-4 py-3">Product name</th>
                     <th scope="col" class="px-4 py-3">Category</th>
                     <th scope="col" class="px-4 py-3">Suplier</th>
@@ -109,7 +109,15 @@
             <tbody>
                 @foreach ($products as $d)
                 <tr class="border-b dark:border-gray-700 odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800">
-                    <td class="px-4 py-3"></td>
+                    <td class="px-4 py-3">
+                        <input type="checkbox" name="ids[]" value="{{ $d->id }}">
+                        <script>
+                            document.getElementById('select-all').addEventListener('change', function () {
+                                const checkboxes = document.querySelectorAll('input[name="ids[]"]');
+                                checkboxes.forEach(checkbox => checkbox.checked = this.checked);
+                            });
+                        </script>
+                    </td>
                     <td scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $d->name }}</td>
                     <td class="px-4 py-3">{{ optional($d->category)->name }}</td>
                     <td class="px-4 py-3">{{ optional($d->supplier)->name }}</td>
@@ -180,7 +188,7 @@
                                                 <select id="category" name="supplier_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                                     <option value="" hidden disabled {{ is_null($d->supplier_id) ? 'selected' : '' }}>Select a Supplier</option>
                                                     @foreach ($sup as $s)
-                                                    <option value="{{ $s->id }}">{{ $s->name }}</option>
+                                                    <option value="{{ $s->id }}" {{ $d->supplier_id === $s->id ? 'selected' : '' }} >{{ $s->name }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>

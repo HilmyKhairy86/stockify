@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('supplier_id')->nullable();
             $table->foreign('supplier_id')->references('id')->on('suppliers')->nullOnDelete();
             $table->string('name');
-            $table->string('sku');
+            $table->string('sku')->unique();
             $table->text('description')->nullable();
             $table->decimal('purchase_price');
             $table->decimal('selling_price');
