@@ -59,17 +59,17 @@
             </button>
             <ul id="dropdown-pages" class="{{ request()->routeIs('Products', 'Categories', 'viewAttribute') ? '' : 'hidden' }} py-2 space-y-2">
               <li>
-                <x-nav-link :active="request()->is('Products')" href="{{ route('Products') }}">Products</x-nav-link>
+                <x-nav-link :active="request()->is('*/Products')" href="{{ route('Products') }}">Products</x-nav-link>
               </li>
               <li>
-                <x-nav-link :active="request()->is('Products/Categories')" href="{{ route('Categories') }}">Categories</x-nav-link>
+                <x-nav-link :active="request()->is('*/Products/Categories')" href="{{ route('Categories') }}">Categories</x-nav-link>
               </li>
               <li>
-                <x-nav-link :active="request()->is('Products/Attributes')" href="{{ route('viewAttribute') }}">Attributes</x-nav-link>
+                <x-nav-link :active="request()->is('*/Products/Attributes')" href="{{ route('viewAttribute') }}">Attributes</x-nav-link>
               </li>
             </ul>
             <li>
-              <x-nav-link-parent :active="request()->is('Suppliers')" href="{{route('suppliers')}}">
+              <x-nav-link-parent :active="request()->is('*/Suppliers')" href="{{route('suppliers')}}">
                 <svg class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 512 512"
                   xmlns="http://www.w3.org/2000/svg">
                   <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512l388.6 0c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304l-91.4 0z"/>
@@ -78,7 +78,7 @@
               </x-nav-link-parent>
             </li>
             <li>
-              <x-nav-link-parent :active="request()->is('Users/Management')" href="{{route('viewUsers')}}">
+              <x-nav-link-parent :active="request()->is('*/Users/Management')" href="{{route('viewUsers')}}">
                 <svg class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 512 512"
                   xmlns="http://www.w3.org/2000/svg">
                   <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512l388.6 0c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304l-91.4 0z"/>
@@ -124,7 +124,7 @@
             <ul id="dropdown-stock" class="{{ request()->routeIs('sHistory',) ? '' : 'hidden' }} py-2 space-y-2">
             {{-- <ul id="dropdown-stock" class="hidden' py-2 space-y-2"> --}}
               <li>
-                <x-nav-link :active="request()->is('Stock/History')" href="{{route('sHistory')}}">Riwayat transaksi barang</x-nav-link>
+                <x-nav-link :active="request()->is('*/Stock/History')" href="{{route('sHistory')}}">Riwayat transaksi barang</x-nav-link>
               </li>
               <li>
                 <x-nav-link href="">Stock opname</x-nav-link>
@@ -326,13 +326,13 @@
             </button>
             <ul id="dropdown-pages" class="{{ request()->routeIs('Products', 'Categories', 'viewAttribute') ? '' : 'hidden' }} py-2 space-y-2">
               <li>
-                <x-nav-link :active="request()->is('Products')" href="{{ route('Products') }}">Products</x-nav-link>
+                <x-nav-link :active="request()->is('*/Products')" href="{{ route('Products') }}">Products</x-nav-link>
               </li>
               <li>
-                <x-nav-link :active="request()->is('Products/Categories')" href="{{ route('Categories') }}">Categories</x-nav-link>
+                <x-nav-link :active="request()->is('*/Products/Categories')" href="{{ route('Categories') }}">Categories</x-nav-link>
               </li>
               <li>
-                <x-nav-link :active="request()->is('Products/Attributes')" href="{{ route('viewAttribute') }}">Attributes</x-nav-link>
+                <x-nav-link :active="request()->is('*/Products/Attributes')" href="{{ route('viewAttribute') }}">Attributes</x-nav-link>
               </li>
             </ul>
           </li>
@@ -372,7 +372,7 @@
             <ul id="dropdown-stock" class="{{ request()->routeIs('sHistory',) ? '' : 'hidden' }} py-2 space-y-2">
             {{-- <ul id="dropdown-stock" class="hidden' py-2 space-y-2"> --}}
               <li>
-                <x-nav-link :active="request()->is('Stock/History')" href="{{route('sHistory')}}">Riwayat transaksi barang</x-nav-link>
+                <x-nav-link :active="request()->is('*/Stock/History')" href="{{route('sHistory')}}">Riwayat transaksi barang</x-nav-link>
               </li>
               <li>
                 <x-nav-link href="">Stock opname</x-nav-link>

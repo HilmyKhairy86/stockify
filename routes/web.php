@@ -23,7 +23,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth', 'role:admin,manajer_gudang')->group(function () {
+Route::middleware('auth', 'role:admin')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -111,38 +111,38 @@ Route::middleware('auth', 'role:admin,manajer_gudang')->group(function () {
 
 // });
 
-Route::middleware('auth', 'role:manajer_gudang')->group(function (){
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+// Route::middleware('auth', 'role:manajer_gudang')->group(function (){
+//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     
-    Route::get('/Manager/Products',[ProductController::class, 'allProduct'])->name('Products')->middleware(['auth', 'verified']);
-    Route::post('/Manager/Products/addproduct', [ProductController::class, 'addProduct'])->name('addProduct')->middleware(['auth', 'verified']);
-    Route::post('/Manager/Products/delete/{id}',[ProductController::class, 'deleteProduct'])->name('deleteProduct')->middleware(['auth', 'verified']);
-    Route::post('/Manager/Products/update/{id}',[ProductController::class, 'updateProduct'])->name('updateProduct')->middleware(['auth', 'verified']);
-    Route::get('/Manager/Products/search', [ProductController::class, 'searchProduct'])->name('searchProduct')->middleware(['auth', 'verified']);
-    Route::post('/Manager/Products/import',[ImportControlller::class, 'import'])->name('import')->middleware(['auth', 'verified']);
-    Route::post('/Manager/Products/export',[ImportControlller::class, 'export'])->name('export')->middleware(['auth', 'verified']);
-    Route::post('/Manager/Products/exportxls',[ImportControlller::class, 'exportxls'])->name('exportxls')->middleware(['auth', 'verified']);
+//     Route::get('/Manager/Products',[ProductController::class, 'allProduct'])->name('Products')->middleware(['auth', 'verified']);
+//     Route::post('/Manager/Products/addproduct', [ProductController::class, 'addProduct'])->name('addProduct')->middleware(['auth', 'verified']);
+//     Route::post('/Manager/Products/delete/{id}',[ProductController::class, 'deleteProduct'])->name('deleteProduct')->middleware(['auth', 'verified']);
+//     Route::post('/Manager/Products/update/{id}',[ProductController::class, 'updateProduct'])->name('updateProduct')->middleware(['auth', 'verified']);
+//     Route::get('/Manager/Products/search', [ProductController::class, 'searchProduct'])->name('searchProduct')->middleware(['auth', 'verified']);
+//     Route::post('/Manager/Products/import',[ImportControlller::class, 'import'])->name('import')->middleware(['auth', 'verified']);
+//     Route::post('/Manager/Products/export',[ImportControlller::class, 'export'])->name('export')->middleware(['auth', 'verified']);
+//     Route::post('/Manager/Products/exportxls',[ImportControlller::class, 'exportxls'])->name('exportxls')->middleware(['auth', 'verified']);
     
     
-    Route::get('/Manager/Products/Categories', [CategoryController::class, 'viewCategories'])->name('Categories')->middleware(['auth', 'verified']);
-    Route::post('/Manager/Products/Categories/addCategory', [CategoryController::class, 'addCategory'])->name('addCategory')->middleware(['auth', 'verified']);
-    Route::post('/Manager/Products/Categories/editCategory/{id}', [CategoryController::class, 'updateCategory'])->name('updateCategory')->middleware(['auth', 'verified']);
-    Route::post('/Manager/Products/Categories/deleteCategory/{id}', [CategoryController::class, 'deleteCategory'])->name('deleteCategory')->middleware(['auth', 'verified']);
+//     Route::get('/Manager/Products/Categories', [CategoryController::class, 'viewCategories'])->name('Categories')->middleware(['auth', 'verified']);
+//     Route::post('/Manager/Products/Categories/addCategory', [CategoryController::class, 'addCategory'])->name('addCategory')->middleware(['auth', 'verified']);
+//     Route::post('/Manager/Products/Categories/editCategory/{id}', [CategoryController::class, 'updateCategory'])->name('updateCategory')->middleware(['auth', 'verified']);
+//     Route::post('/Manager/Products/Categories/deleteCategory/{id}', [CategoryController::class, 'deleteCategory'])->name('deleteCategory')->middleware(['auth', 'verified']);
     
-    Route::get('/Manager/Products/Attributes',[ProductAttributeController::class, 'viewAttribute'])->name('viewAttribute')->middleware(['auth', 'verified']);
-    Route::post('/Manager/Products/Attributes/add', [ProductAttributeController::class, 'addAttribute'])->name('addAttribute')->middleware(['auth', 'verified']);
-    Route::post('Products/Attributes/update/{id}', [ProductAttributeController::class, 'updateAttribute'])->name('updateAttribute')->middleware(['auth', 'verified']);
-    Route::post('/Manager/Products/Attributes/delete/{id}', [ProductAttributeController::class, 'deleteAttribute'])->name('deleteAttribute')->middleware(['auth', 'verified']);
+//     Route::get('/Manager/Products/Attributes',[ProductAttributeController::class, 'viewAttribute'])->name('viewAttribute')->middleware(['auth', 'verified']);
+//     Route::post('/Manager/Products/Attributes/add', [ProductAttributeController::class, 'addAttribute'])->name('addAttribute')->middleware(['auth', 'verified']);
+//     Route::post('Products/Attributes/update/{id}', [ProductAttributeController::class, 'updateAttribute'])->name('updateAttribute')->middleware(['auth', 'verified']);
+//     Route::post('/Manager/Products/Attributes/delete/{id}', [ProductAttributeController::class, 'deleteAttribute'])->name('deleteAttribute')->middleware(['auth', 'verified']);
     
-    Route::get('/Manager/Stock/History',function(){
-        return view('Stock.History');
-    })->name('sHistory');
+//     Route::get('/Manager/Stock/History',function(){
+//         return view('Stock.History');
+//     })->name('sHistory');
     
-    Route::post('/Manager/Stock/History/create',[StockTransactionController::class, 'addTransaction'])->name('addTransaction')->middleware(['auth', 'verified']);
-    Route::post('/Manager/Stock/History/delete/{id}',[StockTransactionController::class, 'deleteTransaction'])->name('deleteTransaction')->middleware(['auth', 'verified']);
-});
+//     Route::post('/Manager/Stock/History/create',[StockTransactionController::class, 'addTransaction'])->name('addTransaction')->middleware(['auth', 'verified']);
+//     Route::post('/Manager/Stock/History/delete/{id}',[StockTransactionController::class, 'deleteTransaction'])->name('deleteTransaction')->middleware(['auth', 'verified']);
+// });
 
 
 require __DIR__.'/auth.php';
