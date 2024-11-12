@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services\Product\ProductService;
 use Illuminate\Support\Facades\Response;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class ImportControlller extends Controller
 {
@@ -46,5 +48,51 @@ class ImportControlller extends Controller
         fclose($handle);
 
         return Response::make('', 200, $headers);
+    }
+
+    public function exportxls()
+    {
+        // Fetch products data
+        $products = $this->productService->viewProduct();
+
+        // Create new Spreadsheet object
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+
+        // Set header row
+        $headers = ['Category ID', 'Supplier ID', 'Name', 'SKU', 'Purchase Price', 'Selling Price', 'Description'];
+        $columnIndex = 'A'; // Start with column 'A'
+        foreach ($headers as $header) {
+            $sheet->setCellValue($columnIndex . '1', $header);
+            $columnIndex++;
+        }
+
+        // Add data rows
+        $rowNumber = 2; // Start from the second row
+        foreach ($products as $product) {
+            $sheet->setCellValue('A' . $rowNumber, $product->category_id);
+            $sheet->setCellValue('B' . $rowNumber, $product->supplier_id);
+            $sheet->setCellValue('C' . $rowNumber, $product->name);
+            $sheet->setCellValue('D' . $rowNumber, $product->sku);
+            $sheet->setCellValue('E' . $rowNumber, $product->purchase_price);
+            $sheet->setCellValue('F' . $rowNumber, $product->selling_price);
+            $sheet->setCellValue('G' . $rowNumber, $product->description);
+            $rowNumber++;
+        }
+
+        // Set headers for download
+        $fileName = 'Product-' . now()->format('Y-m-d_H-i-s') . '.xlsx';
+        $response = new Response();
+
+        // Create writer and stream output
+        $writer = new Xlsx($spreadsheet);
+        ob_start();
+        $writer->save('php://output');
+        $excelOutput = ob_get_clean();
+
+        return response($excelOutput)
+        ->header('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+        ->header('Content-Disposition', 'attachment; filename="Product-' . now()->format('Y-m-d_H-i-s') . '.xlsx"')
+        ->header('Cache-Control', 'max-age=0');
     }
 }

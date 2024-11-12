@@ -14,14 +14,12 @@ class RoleCheck
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next, ...$roles): Response
+    public function handle(Request $request, Closure $next, $role)
     {
-        foreach ($roles as $role) {
-            if (Auth::check() && Auth::user()->role == $role) {
-                return $next($request);
-            }
+        if ($request->user()->role != $role) {
+            return redirect()->route('dashboard');
         }
-        Auth::logout();
-        return redirect()->route('login')->with('status','You are not authorized to access this page.');
+
+        return $next($request);
     }
 }
