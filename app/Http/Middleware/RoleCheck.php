@@ -17,7 +17,7 @@ class RoleCheck
     public function handle(Request $request, Closure $next, $role)
     {
         if ($request->user()->role != $role) {
-            return redirect()->route('dashboard');
+            abort(403, 'no');
         }
 
         return $next($request);

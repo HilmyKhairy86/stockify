@@ -1,5 +1,5 @@
 <aside
-    class="fixed top-0 left-0 z-40 w-64 h-screen pt-14 transition-transform-translate-x-full bg-white border-r border-gray-200 md:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
+    class="fixed top-0 left-0 z-20 w-64 h-screen pt-14 transition-transform-translate-x-full bg-white border-r border-gray-200 md:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
     aria-label="Sidenav"
     id="drawer-navigation"
     >
@@ -326,13 +326,13 @@
             </button>
             <ul id="dropdown-pages" class="{{ request()->routeIs('Products', 'Categories', 'viewAttribute') ? '' : 'hidden' }} py-2 space-y-2">
               <li>
-                <x-nav-link :active="request()->is('*/Products')" href="{{ route('Products') }}">Products</x-nav-link>
+                <x-nav-link :active="request()->is('*/Products')" href="{{ route('manager.Products') }}">Products</x-nav-link>
               </li>
               <li>
-                <x-nav-link :active="request()->is('*/Products/Categories')" href="{{ route('Categories') }}">Categories</x-nav-link>
+                <x-nav-link :active="request()->is('*/Products/Categories')" href="{{ route('manager.Categories') }}">Categories</x-nav-link>
               </li>
               <li>
-                <x-nav-link :active="request()->is('*/Products/Attributes')" href="{{ route('viewAttribute') }}">Attributes</x-nav-link>
+                <x-nav-link :active="request()->is('*/Products/Attributes')" href="{{ route('manager.viewAttribute') }}">Attributes</x-nav-link>
               </li>
             </ul>
           </li>
@@ -369,10 +369,10 @@
                 ></path>
               </svg>
             </button>
-            <ul id="dropdown-stock" class="{{ request()->routeIs('sHistory',) ? '' : 'hidden' }} py-2 space-y-2">
+            <ul id="dropdown-stock" class="{{ request()->routeIs('*/sHistory',) ? '' : 'hidden' }} py-2 space-y-2">
             {{-- <ul id="dropdown-stock" class="hidden' py-2 space-y-2"> --}}
               <li>
-                <x-nav-link :active="request()->is('*/Stock/History')" href="{{route('sHistory')}}">Riwayat transaksi barang</x-nav-link>
+                <x-nav-link :active="request()->is('*/Stock/History')" href="{{route('manager.sHistory')}}">Riwayat transaksi barang</x-nav-link>
               </li>
               <li>
                 <x-nav-link href="">Stock opname</x-nav-link>

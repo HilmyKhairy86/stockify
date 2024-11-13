@@ -18,11 +18,29 @@ class Transaksi extends Component
     public $search = '';
     public $types = [];
     public $status = [];
+
+    public function updatingTypes()
+    {
+        $this->resetPage();
+    }
+
     public function render()
     {
-        $stock = $this->stocktransactionService->searchByName($this->search, $this->types, $this->status)->paginate(10);
-        return view('livewire.transaksi',[
-            'stock' => $stock,
-        ]);
+            $types = is_array($this->types) ? $this->types : [$this->types];
+
+            if (in_array('all', $types)) {
+                $types = []; // Clear the types filter to show all data
+            }
+            
+            $status = is_array($this->status) ? $this->status : [$this->status];
+            if (in_array('all', $status)) {
+                $status = []; // Clear the types filter to show all data
+            }
+
+
+            $stock = $this->stocktransactionService->searchByName($this->search, $types, $status)->paginate(10);
+            return view('livewire.transaksi',[
+                'stock' => $stock,
+            ]);  
     }
 }

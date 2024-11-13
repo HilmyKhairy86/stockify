@@ -41,11 +41,15 @@
                     <ul class="space-y-2 text-sm mb-3" aria-labelledby="filterDropdownButton">
                         {{-- @foreach ($cat as $p) --}}
                         <li class="flex items-center">
-                            <input wire:model.live="types" id="" type="checkbox" name="type" value="masuk" class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                            <input wire:model.live="types" id="masuk" type="radio" name="radio" value="all" class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                            <label for="" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">All Type</label>
+                        </li>
+                        <li class="flex items-center">
+                            <input wire:model.live="types" id="masuk" type="radio" name="radio" value="masuk" class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                             <label for="" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">Masuk</label>
                         </li>
                         <li class="flex items-center">
-                            <input wire:model.live="types" id="cat-" type="checkbox" name="type" value="keluar" class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                            <input wire:model.live="types" id="keluar" type="radio" name="radio" value="keluar" class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                             <label for="" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">Keluar</label>
                         </li>
                         {{-- @endforeach --}}
@@ -53,22 +57,27 @@
                     <h6 class="mb-3 text-sm font-medium text-gray-900 dark:text-white">Status</h6>
                     <ul class="space-y-2 text-sm" aria-labelledby="filterDropdownButton">
                         <li class="flex items-center">
-                            <input wire:model.live="status" id="" type="checkbox" name="status" value="diterima" class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                            <input wire:model.live="status" id="" type="radio" name="status" value="all" class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                            <label for="" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">All</label>
+                        </li>
+                        <li class="flex items-center">
+                            <input wire:model.live="status" id="" type="radio" name="status" value="diterima" class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                             <label for="" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">Diterima</label>
                         </li>
                         <li class="flex items-center">
-                            <input wire:model.live="status" id="" type="checkbox" name="status" value="pending" class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                            <input wire:model.live="status" id="" type="radio" name="status" value="pending" class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                             <label for="" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">Pending</label>
                         </li>
                         <li class="flex items-center">
-                            <input wire:model.live="status" id="" type="checkbox" name="status" value="ditolak" class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                            <input wire:model.live="status" id="" type="radio" name="status" value="ditolak" class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                             <label for="" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">Ditolak</label>
                         </li>
                         <li class="flex items-center">
-                            <input wire:model.live="status" id="" type="checkbox" name="status" value="dikeluarkan" class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                            <input wire:model.live="status" id="" type="radio" name="status" value="dikeluarkan" class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                             <label for="" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">Dikeluarkan</label>
                         </li>
                     </ul>
+                        
                 </div>
             </div>
         </div>
