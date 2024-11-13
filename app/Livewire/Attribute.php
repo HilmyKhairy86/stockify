@@ -33,8 +33,10 @@ class Attribute extends Component
     public function render()
     {
         $att = $this->attributeService->searchByName($this->search)->paginate(10);
+        $prod = $this->productService->viewProduct();
         return view('livewire.attribute', [
             'att' => $att,
+            'prod' => $prod,
         ]);
     }
 }
