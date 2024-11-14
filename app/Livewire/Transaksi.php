@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\Auth;
 use App\Services\StockTransaction\StockTransactionService;
 
 class Transaksi extends Component
@@ -37,10 +38,11 @@ class Transaksi extends Component
                 $status = []; // Clear the types filter to show all data
             }
 
-
+            $routeName = Auth::user()->role == 'manager' ? 'admin.addTransaction' : 'manager.addTransaction';
             $stock = $this->stocktransactionService->searchByName($this->search, $types, $status)->paginate(10);
             return view('livewire.transaksi',[
                 'stock' => $stock,
+                'routeName' => $routeName,
             ]);  
     }
 }

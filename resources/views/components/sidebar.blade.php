@@ -320,9 +320,10 @@
                 ></path>
               </svg>
             </button>
-            <ul id="dropdown-pages" class="{{ request()->routeIs('Products', 'Categories', 'viewAttribute') ? '' : 'hidden' }} py-2 space-y-2">
+            <ul id="dropdown-pages" class="{{ request()->routeIs('manager.Products') ? '' : 'hidden' }} py-2 space-y-2">
               <li>
-                <x-nav-link :active="request()->is('*/Products')" href="{{ route('manager.Products') }}">Products</x-nav-link>
+                <x-nav-link :active="request()->is('*/Products')" href="{{ route('manager.Products') }}">
+                  <i class="fa-solid fa-box mx-1"></i>Products</x-nav-link>
               </li>
               {{-- <li>
                 <x-nav-link :active="request()->is('*/Products/Categories')" href="{{ route('manager.Categories') }}">Categories</x-nav-link>
@@ -334,9 +335,9 @@
           </li>
           <li>
             <x-nav-link-parent :active="request()->is('*/Suppliers')" href="{{route('manager.suppliers')}}">
-              <svg class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 512 512"
+              <svg class="justify-between item-center w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 600 600"
                 xmlns="http://www.w3.org/2000/svg">
-                <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512l388.6 0c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304l-91.4 0z"/>
+                <path d="M32 96c0-35.3 28.7-64 64-64l224 0c23.7 0 44.4 12.9 55.4 32l51.8 0c25.3 0 48.2 14.9 58.5 38l52.8 118.8c.5 1.1 .9 2.1 1.3 3.2l4.2 0c35.3 0 64 28.7 64 64l0 32c17.7 0 32 14.3 32 32s-14.3 32-32 32l-32 0c0 53-43 96-96 96s-96-43-96-96l-128 0c0 53-43 96-96 96s-96-43-96-96l-32 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l0-32c-17.7 0-32-14.3-32-32l0-96c0-17.7 14.3-32 32-32l0-32zM384 224l85.9 0-42.7-96L384 128l0 96zM160 432a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm368-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0z"/>
               </svg>
               <span class="ml-3">Supplier</span>
             </x-nav-link-parent>
@@ -377,10 +378,12 @@
             <ul id="dropdown-stock" class="{{ request()->routeIs('manager.transaction',) ? '' : 'hidden' }} py-2 space-y-2">
             {{-- <ul id="dropdown-stock" class="hidden' py-2 space-y-2"> --}}
               <li>
-                <x-nav-link :active="request()->is('*/Stock/Transaction')" href="{{route('manager.transaction')}}">Transaksi barang</x-nav-link>
+                <x-nav-link :active="request()->is('*/Stock/Transaction')" href="{{route('manager.transaction')}}">
+                  <i class="fa-solid fa-arrow-right-arrow-left mx-1"></i></i>Transaksi barang</x-nav-link>
               </li>
               <li>
-                <x-nav-link href="">Stock opname</x-nav-link>
+                <x-nav-link href="">
+                  <i class="fa-solid fa-clock mx-1"></i>Stock opname</x-nav-link>
               </li>
               <li>
                 <x-nav-link href="">Pengaturan stok minimum</x-nav-link>

@@ -39,7 +39,6 @@ class StockTransactionServiceImplement extends ServiceApi implements StockTransa
       //   'type' => 'required|string|max:255',
       //   'quantity' => 'required|numeric|min:0',
       //   'date' => 'required|string|max:255',
-      //   'status' => 'required|string|max:255',
       //   'notes' => 'required|string|max:255',
       // ]);
 

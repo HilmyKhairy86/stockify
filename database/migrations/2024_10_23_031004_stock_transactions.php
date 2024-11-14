@@ -20,7 +20,7 @@ return new class extends Migration
             $table->enum('type',['masuk','keluar']);
             $table->integer('quantity');
             $table->date('date');
-            $table->enum('status',['pending','diterima','ditolak','dikeluarkan']);
+            $table->enum('status',['pending','diterima','ditolak','dikeluarkan'])->default('pending');
             $table->text('notes')->nullable();
             $table->timestamps();
         });
