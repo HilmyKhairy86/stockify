@@ -17,9 +17,11 @@ class RoleCheck
     public function handle(Request $request, Closure $next, $role)
     {
         if ($request->user()->role != $role) {
-            abort(403, 'no');
+            // abort(403, 'no');
+            return redirect('dashboard');
+        } else {
+            return $next($request);
         }
 
-        return $next($request);
     }
 }

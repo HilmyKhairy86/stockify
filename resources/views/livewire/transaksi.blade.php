@@ -140,138 +140,140 @@
                     </th>
                     <th scope="row" class="px-4 py-3 font-medium text-gray-900 dark:text-white">{{ $d->notes }}</th>
                     <td class="px-4 py-3 flex items-center">
-                    <div class="flex justify-end space-x-2" x-data="{ showUpdateModal: false, showDeleteModal: false }" x-init="
-                        // Prevent background scroll when modal is open
-                        () => {
-                            $watch('showUpdateModal', value => {
-                                document.body.style.overflow = value ? 'hidden' : '';
-                            });
-                            $watch('showDeleteModal', value => {
-                                document.body.style.overflow = value ? 'hidden' : '';
-                            });
-                        }">
-                            {{-- update btn --}}
-                            <div id="-{{$d->id}}" class="mx-2">
-                                <button @click="showUpdateModal = true" class="py-2 px-3 text-sm font-medium text-gray-500 bg-blue-500 rounded-lg hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-900 focus:z-10 dark:bg-blue-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-blue-700 dark:focus:ring-gray-600" type="button">
-                                    <i class="fa-solid fa-pen-to-square text-white"></i>
-                                </button>
-                            </div>
-                            {{-- delete btn --}}
-                            <div>
-                                <button @click="showDeleteModal = true" class="py-2 px-3 text-sm font-medium text-gray-500 bg-red-600 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-red-900 focus:z-10 dark:red-blue-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-red-900 dark:focus:ring-gray-600" type="button">
-                                    <i class="fa-solid fa-trash text-white"></i>
-                                </button>
-                            </div>
-
-                            {{-- modal --}}
-                            <!-- Update Modal -->
-                            <div
-                                id="{{$d->id}}"
-                                x-show="showUpdateModal"
-                                @keydown.escape.window="showUpdateModal = false"
-                                x-transition:enter="transition ease-out duration-200"
-                                x-transition:enter-start="opacity-0"
-                                x-transition:enter-end="opacity-100"
-                                x-transition:leave="transition ease-in duration-200"
-                                x-transition:leave-start="opacity-100"
-                                x-transition:leave-end="opacity-0"
-                                class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-20"
-                                style="display: none;"
-                                >
-                                <div class="relative w-full sm:max-w-md mx-auto bg-white dark:bg-gray-800 rounded-lg sm:rounded-lg shadow-lg p-4 sm:p-6 max-h-screen sm:max-h-[85vh] overflow-y-auto h-full sm:h-auto">
-                                    <!-- Modal Header -->
-                                    <div class="flex justify-between items-center pb-2 sm:pb-4 mb-2 sm:mb-4 border-b dark:border-gray-600">
-                                        <h3 class="text-md sm:text-lg font-semibold text-gray-900 dark:text-white">Update User</h3>
-                                        <button @click="showUpdateModal = false" class="text-gray-400 hover:bg-gray-200 hover:text-gray-900 p-1 rounded dark:hover:bg-gray-600 dark:hover:text-white">
-                                            <svg aria-hidden="true" class="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 20 20">
-                                                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                                            </svg>
+                        @if (auth()->user()->role == 'admin')    
+                            <div class="flex justify-end space-x-2" x-data="{ showUpdateModal: false, showDeleteModal: false }" x-init="
+                                // Prevent background scroll when modal is open
+                                () => {
+                                    $watch('showUpdateModal', value => {
+                                        document.body.style.overflow = value ? 'hidden' : '';
+                                    });
+                                    $watch('showDeleteModal', value => {
+                                        document.body.style.overflow = value ? 'hidden' : '';
+                                    });
+                                }">
+                                    {{-- update btn --}}
+                                    <div id="-{{$d->id}}" class="mx-2">
+                                        <button @click="showUpdateModal = true" class="py-2 px-3 text-sm font-medium text-gray-500 bg-blue-500 rounded-lg hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-900 focus:z-10 dark:bg-blue-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-blue-700 dark:focus:ring-gray-600" type="button">
+                                            <i class="fa-solid fa-pen-to-square text-white"></i>
                                         </button>
                                     </div>
-
-                                    <!-- Modal Body with Smaller Fields -->
-                                    <form action="" method="POST">
-                                        @csrf
-                                        <div class="grid gap-4 mb-4 sm:grid-cols-2">
-                                            <div>
-                                                <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product ID</label>
-                                                <input value="{{$d->product_id}}" type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" required="">
-                                            </div>
-                                            <div>
-                                                <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">User ID</label>
-                                                <input value="{{$d->user_id}}" type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" required="">
-                                            </div>
-                                            <div>
-                                                <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Type</label>
-                                                <select id="category" name="category_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required>
-                                                    <option value="" hidden disabled selected>Type</option>
-                                                    <option value="masuk" {{ $d->type === 'masuk' ? 'selected' : '' }}>Masuk</option>
-                                                    <option value="keluar" {{ $d->type === 'keluar' ? 'selected' : '' }}>Keluar</option>
-                                                </select>
-                                            </div>
-                                            <div>
-                                                <label for="sku" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quantity</label>
-                                                <input value="{{$d->quantity}}" type="number" name="quantity" id="sku" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
-                                            </div>
-                                            <div>
-                                                <label for="sku" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date</label>
-                                                <input value="{{$d->date}}" type="date" name="date" id="sku" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
-                                            </div>
-                                            <div>
-                                                <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
-                                                <select id="category" name="category_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required>
-                                                    <option value="" hidden disabled selected>Status</option>
-                                                    <option value="pending" {{ $d->status === 'pending' ? 'selected' : '' }}>Pending</option>
-                                                    <option value="diterima" {{ $d->status === 'diterima' ? 'selected' : '' }}>Diterima</option>
-                                                    <option value="ditolak" {{ $d->status === 'ditolak' ? 'selected' : '' }}>Ditolak</option>
-                                                    <option value="dikeluarkan" {{ $d->status === 'dikeluarkan' ? 'selected' : '' }}>Dikeluarkan</option>
-                                                </select>
-                                            </div>
-                                            <div class="sm:col-span-2">
-                                                <label for="notes" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Notes</label>
-                                                <textarea id="notes" name="notes" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Write Notes here">{{$d->notes}}</textarea>                    
-                                            </div>
-                                        </div>
-                                        <div class="flex items-center space-x-4">
-                                            <button type="submit" class="py-2 px-3 text-sm font-medium text-gray-500 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
-                                                Update Transaction
-                                            </button>
-                                        </div>
-                                    </form>
-
-                                </div>
-                            </div>
-                            <!-- Delete Modal -->
-                            <div
-                                x-show="showDeleteModal"
-                                @keydown.escape.window="showDeleteModal = false"
-                                x-transition:enter="transition ease-out duration-200"
-                                x-transition:enter-start="opacity-0"
-                                x-transition:enter-end="opacity-100"
-                                x-transition:leave="transition ease-in duration-200"
-                                x-transition:leave-start="opacity-100"
-                                x-transition:leave-end="opacity-0"
-                                class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
-                                style="display: none;"
-                            >
-                                <div class="relative w-full max-w-md mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
-                                    <div class="text-center">
-                                        <p class="text-gray-500 dark:text-gray-300">Are you sure you want to delete this item?</p>
-                                        <div class="flex justify-center mt-4 space-x-4">
-                                            <button @click="showDeleteModal = false" class="py-2 px-4 text-sm font-medium text-gray-500 bg-white border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600">
-                                                No, cancel
-                                            </button>
-                                            <form action="{{ route('deleteUser',$d->id) }}" method="post">
-                                                @csrf
-                                                <button type="submit" class="py-2 px-3 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-900">
-                                                    Yes, I'm sure
+                                    {{-- delete btn --}}
+                                    <div>
+                                        <button @click="showDeleteModal = true" class="py-2 px-3 text-sm font-medium text-gray-500 bg-red-600 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-red-900 focus:z-10 dark:red-blue-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-red-900 dark:focus:ring-gray-600" type="button">
+                                            <i class="fa-solid fa-trash text-white"></i>
+                                        </button>
+                                    </div>
+        
+                                    {{-- modal --}}
+                                    <!-- Update Modal -->
+                                    <div
+                                        id="{{$d->id}}"
+                                        x-show="showUpdateModal"
+                                        @keydown.escape.window="showUpdateModal = false"
+                                        x-transition:enter="transition ease-out duration-200"
+                                        x-transition:enter-start="opacity-0"
+                                        x-transition:enter-end="opacity-100"
+                                        x-transition:leave="transition ease-in duration-200"
+                                        x-transition:leave-start="opacity-100"
+                                        x-transition:leave-end="opacity-0"
+                                        class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-20"
+                                        style="display: none;"
+                                        >
+                                        <div class="relative w-full sm:max-w-md mx-auto bg-white dark:bg-gray-800 rounded-lg sm:rounded-lg shadow-lg p-4 sm:p-6 max-h-screen sm:max-h-[85vh] overflow-y-auto h-full sm:h-auto">
+                                            <!-- Modal Header -->
+                                            <div class="flex justify-between items-center pb-2 sm:pb-4 mb-2 sm:mb-4 border-b dark:border-gray-600">
+                                                <h3 class="text-md sm:text-lg font-semibold text-gray-900 dark:text-white">Update User</h3>
+                                                <button @click="showUpdateModal = false" class="text-gray-400 hover:bg-gray-200 hover:text-gray-900 p-1 rounded dark:hover:bg-gray-600 dark:hover:text-white">
+                                                    <svg aria-hidden="true" class="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 20 20">
+                                                        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                                    </svg>
                                                 </button>
+                                            </div>
+        
+                                            <!-- Modal Body with Smaller Fields -->
+                                            <form action="" method="POST">
+                                                @csrf
+                                                <div class="grid gap-4 mb-4 sm:grid-cols-2">
+                                                    <div>
+                                                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product ID</label>
+                                                        <input value="{{$d->product_id}}" type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" required="">
+                                                    </div>
+                                                    <div>
+                                                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">User ID</label>
+                                                        <input value="{{$d->user_id}}" type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" required="">
+                                                    </div>
+                                                    <div>
+                                                        <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Type</label>
+                                                        <select id="category" name="category_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required>
+                                                            <option value="" hidden disabled selected>Type</option>
+                                                            <option value="masuk" {{ $d->type === 'masuk' ? 'selected' : '' }}>Masuk</option>
+                                                            <option value="keluar" {{ $d->type === 'keluar' ? 'selected' : '' }}>Keluar</option>
+                                                        </select>
+                                                    </div>
+                                                    <div>
+                                                        <label for="sku" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quantity</label>
+                                                        <input value="{{$d->quantity}}" type="number" name="quantity" id="sku" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
+                                                    </div>
+                                                    <div>
+                                                        <label for="sku" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date</label>
+                                                        <input value="{{$d->date}}" type="date" name="date" id="sku" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
+                                                    </div>
+                                                    <div>
+                                                        <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
+                                                        <select id="category" name="category_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required>
+                                                            <option value="" hidden disabled selected>Status</option>
+                                                            <option value="pending" {{ $d->status === 'pending' ? 'selected' : '' }}>Pending</option>
+                                                            <option value="diterima" {{ $d->status === 'diterima' ? 'selected' : '' }}>Diterima</option>
+                                                            <option value="ditolak" {{ $d->status === 'ditolak' ? 'selected' : '' }}>Ditolak</option>
+                                                            <option value="dikeluarkan" {{ $d->status === 'dikeluarkan' ? 'selected' : '' }}>Dikeluarkan</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="sm:col-span-2">
+                                                        <label for="notes" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Notes</label>
+                                                        <textarea id="notes" name="notes" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Write Notes here">{{$d->notes}}</textarea>                    
+                                                    </div>
+                                                </div>
+                                                <div class="flex items-center space-x-4">
+                                                    <button type="submit" class="py-2 px-3 text-sm font-medium text-gray-500 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
+                                                        Update Transaction
+                                                    </button>
+                                                </div>
                                             </form>
+        
                                         </div>
                                     </div>
-                                </div>
+                                    <!-- Delete Modal -->
+                                    <div
+                                        x-show="showDeleteModal"
+                                        @keydown.escape.window="showDeleteModal = false"
+                                        x-transition:enter="transition ease-out duration-200"
+                                        x-transition:enter-start="opacity-0"
+                                        x-transition:enter-end="opacity-100"
+                                        x-transition:leave="transition ease-in duration-200"
+                                        x-transition:leave-start="opacity-100"
+                                        x-transition:leave-end="opacity-0"
+                                        class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
+                                        style="display: none;"
+                                    >
+                                        <div class="relative w-full max-w-md mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+                                            <div class="text-center">
+                                                <p class="text-gray-500 dark:text-gray-300">Are you sure you want to delete this item?</p>
+                                                <div class="flex justify-center mt-4 space-x-4">
+                                                    <button @click="showDeleteModal = false" class="py-2 px-4 text-sm font-medium text-gray-500 bg-white border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600">
+                                                        No, cancel
+                                                    </button>
+                                                    <form action="{{ route('deleteUser',$d->id) }}" method="post">
+                                                        @csrf
+                                                        <button type="submit" class="py-2 px-3 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-900">
+                                                            Yes, I'm sure
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                             </div>
-                        </div>
+                        @endif
                     </td>
                 </tr>
                 @endforeach

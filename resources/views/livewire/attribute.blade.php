@@ -28,7 +28,7 @@
                 </button>
                 
                 <div x-show="adddatamodal"
-                class="fixed inset-0 bg-gray-800 bg-opacity-50 z-40" @click="adddatamodal = false"></div>
+                class="fixed inset-0 bg-gray-800 bg-opacity-50 z-50" @click="adddatamodal = false"></div>
                 
                 <!-- Drawer -->
                 <div x-show="adddatamodal" x-transition:enter="transition ease-out duration-300"
@@ -111,7 +111,7 @@
                             </button>
                             
                             <div id="{{$d->id}}" x-show="openupdatemodal"
-                            class="fixed inset-0 bg-gray-800 bg-opacity-50 z-40" @click="openupdatemodal = false"></div>
+                            class="fixed inset-0 bg-gray-800 bg-opacity-50 z-50" @click="openupdatemodal = false"></div>
                             
                             <!-- Drawer -->
                             <div id="{{$d->id}}" x-show="openupdatemodal" x-transition:enter="transition ease-out duration-300"
@@ -182,10 +182,10 @@
                                 x-transition:leave="transition ease-in duration-200"
                                 x-transition:leave-start="opacity-100"
                                 x-transition:leave-end="opacity-0"
-                            class="fixed inset-0 bg-gray-800 bg-opacity-50 z-40" @click="deletemodal = false"></div>
+                            class="fixed inset-0 bg-gray-800 bg-opacity-50 z-50" @click="deletemodal = false"></div>
                             
                             <div id="{{$d->id}}" x-show="deletemodal"
-                                class="fixed inset-0 z-50 flex justify-center items-center w-full h-full bg-gray-900 bg-opacity-50" tabindex="-1" aria-labelledby="drawer-label" aria-hidden="true">
+                                class="fixed inset-0 z-50 flex justify-center items-center w-full h-full bg-gray-900 bg-opacity-50" tabindex="-1" aria-labelledby="drawer-label" aria-hidden="true" @click="deletemodal = false">
                                 <!-- Drawer Header -->
                                 <div class="relative p-4 w-full max-w-md max-h-full">
                                     <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">

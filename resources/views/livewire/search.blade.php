@@ -1,5 +1,6 @@
 <div class="mb-3">
     {{-- search --}}
+    {{-- {{dd(auth()->user())}} --}}
     <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
         <div class="w-full md:w-1/2">
             {{-- search --}}
@@ -27,7 +28,7 @@
                 </button>
                 
                 <div x-show="adddatamodal"
-                class="fixed inset-0 bg-gray-800 bg-opacity-50 z-40" @click="adddatamodal = false"></div>
+                class="fixed inset-0 bg-gray-800 bg-opacity-50 z-50" @click="adddatamodal = false"></div>
                 
                 <!-- Drawer -->
                 <div x-show="adddatamodal" x-transition:enter="transition ease-out duration-300"
@@ -102,6 +103,8 @@
                     </div>
                 </div>
             </div>
+
+            @if (auth()->user()->role == 'admin')    
             <button type="button" id="importModalbutton" data-modal-target="importModal" data-modal-toggle="importModal" type="button" class="flex items-center justify-center dark:bg-blue-600 bg-blue-600 text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
                 <i class="fa-solid fa-file-import"></i>
                 Import
@@ -135,7 +138,7 @@
                     </form>
                 </div>
             </div>
-            <div x-data="{ isOpen: false }" @click.away="isOpen = false" >
+            <div x-data="{ isOpen: false }" x-cloak="{display: none}" @click.away="isOpen = false" >
                 <button @click="isOpen = !isOpen" class="w-full md:w-auto flex items-center justify-center py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
                     <i class="fa-solid fa-download mr-2"></i>
                     Export
@@ -144,7 +147,7 @@
                     </svg>
                 </button>
               
-                <div x-show="isOpen" class="fixed w-48 p-3 bg-white rounded-lg shadow dark:bg-gray-700">
+                <div x-show="isOpen" class="fixed w-48 p-3 bg-white rounded-lg shadow dark:bg-gray-700 z-50">
                     <ul class="space-y-2 text-sm" aria-labelledby="filterDropdownButton">
                         <li class="items-center">
                             <form action="{{route('export')}}" method="post" enctype="multipart/form-data">
@@ -167,6 +170,7 @@
                     </ul>
                 </div>
             </div>
+            @endif
                 
             
     
@@ -189,7 +193,7 @@
                     </svg>
                 </button>
               
-                <div x-show="isOpen" class="fixed w-48 z-50 p-3 bg-white rounded-lg shadow dark:bg-gray-700">
+                <div x-show="isOpen" x-cloak="{display: none}" class="fixed w-48 z-50 p-3 bg-white rounded-lg shadow dark:bg-gray-700">
                     <h6 class="mb-3 text-sm font-medium text-gray-900 dark:text-white">Choose Filter</h6>
                     <ul class="space-y-2 text-sm" aria-labelledby="filterDropdownButton">
                         @foreach ($cat as $p)
@@ -249,7 +253,7 @@
                             </button>
                             
                             <div id="{{$d->id}}" x-show="openupdatemodal"
-                            class="fixed inset-0 bg-gray-800 bg-opacity-50 z-40" @click="openupdatemodal = false"></div>
+                            class="fixed inset-0 bg-gray-800 bg-opacity-50 z-50" @click="openupdatemodal = false"></div>
                             
                             <!-- Drawer -->
                             <div id="{{$d->id}}" x-show="openupdatemodal" x-transition:enter="transition ease-out duration-300"
@@ -259,7 +263,7 @@
                                 class="fixed top-0 right-0 z-50 w-full h-screen max-w-xs p-4 overflow-y-auto transition-transform bg-white dark:bg-gray-800" tabindex="-1" aria-labelledby="drawer-label" aria-hidden="true">
                                 <!-- Drawer Header -->
                                 <div class="flex justify-between items-center">
-                                    <h5 id="drawer-label" class="text-sm font-semibold text-gray-500 uppercase dark:text-gray-400">New Product</h5>
+                                    <h5 id="drawer-label" class="text-sm font-semibold text-gray-500 uppercase dark:text-gray-400">Edit Product</h5>
                                     <button @click="openupdatemodal = false" aria-controls="drawer-create-product-default"
                                         class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5">
                                         <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -346,10 +350,10 @@
                                 x-transition:leave="transition ease-in duration-200"
                                 x-transition:leave-start="opacity-100"
                                 x-transition:leave-end="opacity-0"
-                            class="fixed inset-0 bg-gray-800 bg-opacity-50 z-40" @click="deletemodal = false"></div>
+                            class="fixed inset-0 bg-gray-800 bg-opacity-50 z-50" @click="deletemodal = false"></div>
                             
                             <div id="{{$d->id}}" x-show="deletemodal"
-                                class="fixed inset-0 z-50 flex justify-center items-center w-full h-full bg-gray-900 bg-opacity-50" tabindex="-1" aria-labelledby="drawer-label" aria-hidden="true">
+                                class="fixed inset-0 z-50 flex justify-center items-center w-full h-full bg-gray-900 bg-opacity-50" tabindex="-1" aria-labelledby="drawer-label" aria-hidden="true" @click="deletemodal = false">
                                 <!-- Drawer Header -->
                                 <div class="relative p-4 w-full max-w-md max-h-full">
                                     <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
