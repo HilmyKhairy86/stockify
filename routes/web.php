@@ -9,6 +9,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TestingController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductAttributeController;
 use App\Http\Controllers\StockTransactionController;
 
@@ -113,6 +114,7 @@ Route::middleware('auth', 'verified', 'role:admin')->group(function () {
 
 // });
 Route::middleware('auth', 'verified', 'role:manajer_gudang')->group(function (){
+    Route::get('Manager/Dashboard',[DashboardController::class, 'managerdash'])->name('manager.dashboard');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

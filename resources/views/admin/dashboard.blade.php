@@ -5,5 +5,8 @@
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
-   
+    Jumlah produk
+    Jumlah transaksi masuk dan keluar dalam periode tertentu
+    Grafik stok barang
+    Aktivitas pengguna terbaru    
 </x-app-layout>

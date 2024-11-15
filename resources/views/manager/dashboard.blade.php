@@ -5,7 +5,13 @@
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
-    Stok Menipis
-    barang masuk hari ini
-    barang keluar hari ini
+    <section class="bg-gray-50 dark:bg-gray-900 p-3 sm:p-5">
+        <div>
+            <div>
+                Stok Menipis
+            </div>
+        </div>
+        barang masuk hari ini
+        barang keluar hari ini
+    </section>
 </x-app-layout>
