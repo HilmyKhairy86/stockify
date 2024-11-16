@@ -20,4 +20,12 @@ class DashboardController extends Controller
     {   
         return view('manager.dashboard');
     }
+
+    public function admindash()
+    {
+        $prod = $this->productService->viewProduct()->count();
+        return view('admin.dashboard',[
+            'prod' => $prod,
+        ]);
+    }
 }

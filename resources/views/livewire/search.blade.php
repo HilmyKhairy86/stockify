@@ -18,6 +18,7 @@
         </div>
         {{-- addproduct --}}
         <div class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
+
             <div x-data="{ adddatamodal: false }" x-cloak="{display: none}" x-init="open = false" @keydown.escape.window="open = false" x-bind:class="{ 'overflow-hidden': open }"  class="relative">
                 <!-- Button to open drawer -->
                 <button @click="adddatamodal = true" class="flex items-center justify-center dark:bg-blue-600 bg-blue-600 text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800" type="button">
@@ -231,20 +232,11 @@
                     </ul>
                 </div>
             </div>
-            @endif
-                
+            @endif   
             
-    
-            
-            {{-- <form action="{{route('export')}}" method="post" enctype="multipart/form-data">
-                @csrf
-                <button type="submit" class="flex items-center justify-center dark:bg-blue-600 bg-blue-600 text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
-                    <i class="fa-solid fa-download mr-2"></i>
-                    Export
-                </button>
-            </form> --}}
-            {{-- <div x-data="{ isOpen: false }" @click.away="isOpen = false" >
-                <button @click="isOpen = !isOpen" class="w-full hover:text-gray-900 md:w-auto flex items-center justify-center py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+            <div x-data="{ filtermodal: false }" x-cloak="{display: none}" x-init="open = false" @keydown.escape.window="open = false" x-bind:class="{ 'overflow-hidden': open }"  class="relative">
+                <!-- Button to open drawer -->
+                <button @click="filtermodal = true" class="w-full hover:text-gray-900 md:w-auto flex items-center justify-center py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" type="button">
                     <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="h-4 w-4 mr-2 text-gray-400" viewbox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z" clip-rule="evenodd" />
                     </svg>
@@ -253,67 +245,40 @@
                         <path clip-rule="evenodd" fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
                     </svg>
                 </button>
-              
-                <div x-show="isOpen" x-cloak="{display: none}" class="absolute overflow-y-auto w-48 z-50 p-3 bg-white rounded-lg shadow dark:bg-gray-700">
-                    <h6 class="mb-3 text-sm font-medium text-gray-900 dark:text-white">Choose Filter</h6>
-                    <ul class="space-y-2 text-sm" aria-labelledby="filterDropdownButton">
-                        @foreach ($cat as $p)
-                        <li class="flex items-center">
-                            <input wire:model.live="categories" id="cat-{{$p->id}}" type="checkbox" name="category" value="{{$p->id}}" class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                            <label for="cat-{{$p->id}}" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">{{ $p->name }}</label>
-                        </li>
-                        @endforeach
-                    </ul>
-                </div>
-            </div> --}}
-            <button id="dropdownCheckboxButton" data-dropdown-toggle="dropdownDefaultCheckbox" class="w-full hover:text-gray-900 md:w-auto flex items-center justify-center py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" type="button">
-                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="h-4 w-4 mr-2 text-gray-400" viewbox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z" clip-rule="evenodd" />
-                </svg>
-                Filter
-                <svg class="-mr-1 ml-1.5 w-5 h-5" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path clip-rule="evenodd" fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
-                </svg>
-            </button>
                 
-            <!-- Dropdown menu -->
-            <div id="dropdownDefaultCheckbox" class="z-10 hidden w-48 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600">
-                <ul class="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownCheckboxButton">
-                    @foreach ($cat as $p)
-                        <li class="flex items-center">
-                            <input wire:model.live="categories" id="cat-{{$p->id}}" type="checkbox" name="category" value="{{$p->id}}" class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                            <label for="cat-{{$p->id}}" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">{{ $p->name }}</label>
-                        </li>
-                    @endforeach
-                </ul>
+                <div x-show="filtermodal"
+                class="fixed inset-0 bg-gray-800 bg-opacity-50 z-50 over" @click="filtermodal = false"></div>
+                
+                <!-- Drawer -->
+                <div x-show="filtermodal" x-transition:enter="transition ease-out duration-300"
+                    x-transition:enter-start="transform translate-x-full" x-transition:enter-end="transform translate-x-0"
+                    x-transition:leave="transition ease-in duration-200" x-transition:leave-start="transform translate-x-0"
+                    x-transition:leave-end="transform translate-x-full"
+                    class="fixed top-0 right-0 z-50 w-full h-screen max-w-xs p-4 overflow-y-auto transition-transform bg-white dark:bg-gray-800" tabindex="-1" aria-labelledby="drawer-label" aria-hidden="true">
+                    <!-- Drawer Header -->
+                    <div class="flex justify-between items-center mb-5">
+                        <h5 id="drawer-label" class="text-sm font-semibold text-gray-500 uppercase dark:text-gray-400">Select Category</h5>
+                        <button @click="filtermodal = false" aria-controls="drawer-create-product-default"
+                            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5">
+                            <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span class="sr-only">Close menu</span>
+                        </button>
+                    </div>
+                    <div class="h-full overflow-y-auto">
+                        <div class="grid gap-4 p-4 mb-5 sm:grid-cols-2 justify-items">
+                            @foreach ($cat as $p)
+                            <div class=" flex items-center">
+                                <input wire:model.live="categories" id="cat-{{$p->id}}" type="checkbox" name="category" value="{{$p->id}}" class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                <label for="cat-{{$p->id}}" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">{{ $p->name }}</label>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            
-    
-    
-              
         </div>
-        <div x-data="{ open: false }">
-            <!-- Button to toggle dropdown -->
-            <button @click="open = !open" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
-              Dropdown checkbox
-              <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
-              </svg>
-            </button>
-          
-            <!-- Dropdown menu -->
-            <div x-show="open" @click.away="open = false" class="absolute overflow-y-auto z-40 w-48 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600">
-              <ul class="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownCheckboxButton">
-                @foreach ($cat as $p)
-                        <li class="flex items-center">
-                            <input wire:model.live="categories" id="cat-{{$p->id}}" type="checkbox" name="category" value="{{$p->id}}" class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                            <label for="cat-{{$p->id}}" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">{{ $p->name }}</label>
-                        </li>
-                @endforeach
-              </ul>
-            </div>
-          </div>
           
     </div>
     <div class="overflow-x-auto">

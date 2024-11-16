@@ -79,4 +79,14 @@ class StockTransactionServiceImplement extends ServiceApi implements StockTransa
       $day = today();
       return $this->mainRepository->findKeluarByDay($day);
     }
+
+    public function FilterDateMasuk(string $input)
+    {
+      return $this->mainRepository->FilterDateMasuk($input);
+    }
+    
+    public function FilterDateKeluar(string $input)
+    {
+      return $this->mainRepository->FilterDateKeluar($input);
+    }
 }

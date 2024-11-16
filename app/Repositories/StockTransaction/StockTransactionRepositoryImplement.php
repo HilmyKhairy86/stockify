@@ -40,6 +40,63 @@ class StockTransactionRepositoryImplement extends Eloquent implements StockTrans
         return $this->model->delete($id);
     }
 
+    public function FilterDateMasuk(string $input)
+    {
+        $query = StockTransaction::query()->where('type','masuk');
+        switch ($input) {
+            case 'day':
+                $query->whereDate('date', today());
+                break;
+
+            case 'week':
+                $query->whereBetween('date', [now()->startOfWeek(), now()->endOfWeek()]);
+                break;
+
+            case 'month':
+                $query->whereMonth('date', now()->month);
+                break;
+
+            case 'year':
+                $query->whereYear('date', now()->year);
+                break;
+            case 'all':
+            default:
+                // No filter applied; get all records
+                break;
+        }
+
+        return $query->get();
+    }
+
+    public function FilterDateKeluar(string $input)
+    {
+        $query = StockTransaction::query()->where('type','keluar');
+        switch ($input) {
+            case 'day':
+                $query->whereDate('date', today());
+                break;
+
+            case 'week':
+                $query->whereBetween('date', [now()->startOfWeek(), now()->endOfWeek()]);
+                break;
+
+            case 'month':
+                $query->whereMonth('date', now()->month);
+                break;
+
+            case 'year':
+                $query->whereYear('date', now()->year);
+                break;
+            case 'all':
+
+            default:
+                // No filter applied; get all records
+                break;
+        }
+
+        return $query->get();
+    }
+
     public function searchByName(string $name, string $date, array $types = [], array $status = [])
     {
         $query = StockTransaction::join('products', 'stock_transactions.product_id', '=', 'products.id')
