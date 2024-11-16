@@ -23,4 +23,6 @@ interface ProductRepository extends Repository{
     public function filterCategory(int $id);
 
     public function findProductBySku($sku);
+
+    public function stockfilter();
 }

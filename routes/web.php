@@ -13,14 +13,13 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductAttributeController;
 use App\Http\Controllers\StockTransactionController;
 
+Route::get('/testing', [TestingController::class, 'index']);
 Route::get('/', function () {
     if (Auth::check()) {
         return redirect()->route('dashboard');
     }
     return view('auth.login');
 });
-
-Route::get('/testing', [TestingController::class, 'index']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -32,9 +31,9 @@ Route::middleware('auth', 'verified', 'role:admin')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     
     Route::get('/Admin/Products',[ProductController::class, 'allProduct'])->name('Products');
-    Route::post('/Admin/Products/addproduct', [ProductController::class, 'addProduct'])->name('addProduct');
-    Route::post('/Admin/Products/delete/{id}',[ProductController::class, 'deleteProduct'])->name('deleteProduct');
-    Route::post('/Admin/Products/update/{id}',[ProductController::class, 'updateProduct'])->name('updateProduct');
+    Route::post('/Admin/Products/addproduct', [ProductController::class, 'addProduct'])->name('admin.addProduct');
+    Route::post('/Admin/Products/delete/{id}',[ProductController::class, 'deleteProduct'])->name('admin.deleteProduct');
+    Route::post('/Admin/Products/update/{id}',[ProductController::class, 'updateProduct'])->name('admin.updateProduct');
     Route::get('/Admin/Products/search', [ProductController::class, 'searchProduct'])->name('searchProduct');
     Route::post('/Admin/Products/import',[ImportControlller::class, 'import'])->name('import');
     Route::post('/Admin/Products/export',[ImportControlller::class, 'export'])->name('export');

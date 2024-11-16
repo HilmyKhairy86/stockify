@@ -81,4 +81,11 @@ class ProductRepositoryImplement extends Eloquent implements ProductRepository{
     {
         return Product::where('sku', $sku);
     }
+
+    public function stockfilter()
+    {
+        return Product::where('stock', '<', 15);
+    }
+
+
 }

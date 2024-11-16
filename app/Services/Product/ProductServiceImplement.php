@@ -172,4 +172,11 @@ class ProductServiceImplement extends Service implements ProductService{
         }
     }
 
+    public function stockfilter()
+    {
+      return $this->mainRepository->stockfilter();
+    }
+
+    
+
 }

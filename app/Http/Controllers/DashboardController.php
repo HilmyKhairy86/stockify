@@ -17,7 +17,7 @@ class DashboardController extends Controller
     }
 
     public function managerdash()
-    {
+    {   
         return view('manager.dashboard');
     }
 }

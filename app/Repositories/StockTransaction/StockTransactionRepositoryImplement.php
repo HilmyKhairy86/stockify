@@ -40,7 +40,7 @@ class StockTransactionRepositoryImplement extends Eloquent implements StockTrans
         return $this->model->delete($id);
     }
 
-    public function searchByName(string $name, array $types = [], array $status = [])
+    public function searchByName(string $name, string $date, array $types = [], array $status = [])
     {
         $query = StockTransaction::join('products', 'stock_transactions.product_id', '=', 'products.id')
         ->join('users', 'stock_transactions.user_id', '=', 'users.id') // Join the users table
@@ -55,7 +55,19 @@ class StockTransactionRepositoryImplement extends Eloquent implements StockTrans
         if (!empty($status)) {
             $query->whereIn('status', $status);
         }
+        if (!empty($date)) {
+            $query->whereDate('stock_transactions.date', $date);
+        }
 
         return $query;
+    }
+
+    public function findMasukByDay($day)
+    {
+        return StockTransaction::where('date', $day)->where('type', 'masuk');
+    }
+    public function findKeluarByDay($day)
+    {
+        return StockTransaction::where('date', $day)->where('type', 'keluar');
     }
 }

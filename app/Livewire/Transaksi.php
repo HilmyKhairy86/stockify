@@ -17,10 +17,19 @@ class Transaksi extends Component
     }
 
     public $search = '';
+    public $date = '';
     public $types = [];
     public $status = [];
 
     public function updatingTypes()
+    {
+        $this->resetPage();
+    }
+    public function updatingdate()
+    {
+        $this->resetPage();
+    }
+    public function updatingstatus()
     {
         $this->resetPage();
     }
@@ -39,7 +48,7 @@ class Transaksi extends Component
             }
 
             $routeName = Auth::user()->role == 'manager' ? 'admin.addTransaction' : 'manager.addTransaction';
-            $stock = $this->stocktransactionService->searchByName($this->search, $types, $status)->paginate(10);
+            $stock = $this->stocktransactionService->searchByName($this->search, $this->date, $types, $status,)->paginate(10);
             return view('livewire.transaksi',[
                 'stock' => $stock,
                 'routeName' => $routeName,

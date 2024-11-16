@@ -22,6 +22,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->decimal('purchase_price');
             $table->decimal('selling_price');
+            $table->integer('stock');
             $table->string('image')->nullable();
             $table->timestamps();
         });

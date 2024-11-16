@@ -15,4 +15,5 @@ interface ProductService extends BaseService{
     public function searchByName(string $name, array $categories = []);
     public function filterCategory(int $id);
     public function importProduct($data);
+    public function stockfilter();
 }

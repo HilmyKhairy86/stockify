@@ -16,8 +16,42 @@ class SupplierFactory extends Factory
      */
     public function definition(): array
     {
+
+        $suppliers = [
+            'Nike',
+            'Adidas',
+            'Apple',
+            'Samsung',
+            'Sony',
+            'LG',
+            'Bose',
+            'Canon',
+            'Dell',
+            'HP',
+            'Lenovo',
+            'Microsoft',
+            'Asus',
+            'Philips',
+            'Panasonic',
+            'Bose',
+            'Fitbit',
+            'Xiaomi',
+            'Anker',
+            'GoPro',
+            'Seiko',
+            'Casio',
+            'Razer',
+            'Fossil',
+            'Tommy Hilfiger',
+            'KitchenAid',
+            'Cuisinart',
+            'Breville',
+            'Hamilton Beach',
+            'Dyson'
+        ];
+        
         return [
-            'name' => fake()->unique()->name(),
+            'name' => fake()->randomElement($suppliers),
             'address' => fake()->unique()->address(),
             'phone' => fake()->unique()->phoneNumber(),
             'email' => fake()->unique()->email(),

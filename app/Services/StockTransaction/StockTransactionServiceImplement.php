@@ -64,8 +64,19 @@ class StockTransactionServiceImplement extends ServiceApi implements StockTransa
       return $this->mainRepository->deleteTransaction($id);
     }
 
-    public function searchByName(string $name, array $types = [], array $status = [])
+    public function searchByName(string $name, string $date, array $types = [], array $status = [])
     {
-      return $this->mainRepository->searchByName($name, $types, $status);
+      return $this->mainRepository->searchByName($name, $date, $types, $status);
+    }
+    
+    public function masuk()
+    {
+      $day = today();
+      return $this->mainRepository->findMasukByDay($day);
+    }
+    public function keluar()
+    {
+      $day = today();
+      return $this->mainRepository->findKeluarByDay($day);
     }
 }

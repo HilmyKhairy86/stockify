@@ -36,6 +36,7 @@ class Product extends Model
         'description',
         'purchase_price',
         'selling_price',
+        'stock',
         'image',
     ];
     protected static function boot()
