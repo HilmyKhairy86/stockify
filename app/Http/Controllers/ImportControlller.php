@@ -39,10 +39,10 @@ class ImportControlller extends Controller
         ];
 
         $handle = fopen('php://output', 'w');
-        fputcsv($handle, ['category_id', 'supplier_id', 'name', 'sku', 'purchase_price', 'selling_price', 'description']); // Add more headers as needed
+        fputcsv($handle, ['category_id', 'supplier_id', 'name', 'sku', 'stock', 'purchase_price', 'selling_price', 'description']); // Add more headers as needed
 
         foreach ($products as $product) {
-            fputcsv($handle, [$product->category_id, $product->supplier_id, $product->name, $product->sku, $product->purchase_price, $product->selling_price, $product->description]); // Add more fields as needed
+            fputcsv($handle, [$product->category_id, $product->supplier_id, $product->name, $product->sku, $product->stock, $product->purchase_price, $product->selling_price, $product->description]); // Add more fields as needed
         }
 
         fclose($handle);
@@ -60,7 +60,7 @@ class ImportControlller extends Controller
         $sheet = $spreadsheet->getActiveSheet();
 
         // Set header row
-        $headers = ['Category ID', 'Supplier ID', 'Name', 'SKU', 'Purchase Price', 'Selling Price', 'Description'];
+        $headers = ['Category ID', 'Supplier ID', 'Name', 'SKU', 'Stock', 'Purchase Price', 'Selling Price', 'Description'];
         $columnIndex = 'A'; // Start with column 'A'
         foreach ($headers as $header) {
             $sheet->setCellValue($columnIndex . '1', $header);
@@ -74,9 +74,10 @@ class ImportControlller extends Controller
             $sheet->setCellValue('B' . $rowNumber, $product->supplier_id);
             $sheet->setCellValue('C' . $rowNumber, $product->name);
             $sheet->setCellValue('D' . $rowNumber, $product->sku);
-            $sheet->setCellValue('E' . $rowNumber, $product->purchase_price);
-            $sheet->setCellValue('F' . $rowNumber, $product->selling_price);
-            $sheet->setCellValue('G' . $rowNumber, $product->description);
+            $sheet->setCellValue('E' . $rowNumber, $product->stock);
+            $sheet->setCellValue('F' . $rowNumber, $product->purchase_price);
+            $sheet->setCellValue('G' . $rowNumber, $product->selling_price);
+            $sheet->setCellValue('H' . $rowNumber, $product->description);
             $rowNumber++;
         }
 
