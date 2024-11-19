@@ -106,95 +106,95 @@
         {{-- @livewire('MasukKeluar') --}}
     </div> 
     <script>
+      const options = {
+        chart: {
+          height: "100%",
+          maxWidth: "100%",
+          type: "line",
+          fontFamily: "Inter, sans-serif",
+          dropShadow: {
+            enabled: false,
+          },
+          toolbar: {
+            show: false,
+          },
+        },
+        tooltip: {
+          enabled: true,
+          x: {
+            show: false,
+          },
+        },
+        dataLabels: {
+          enabled: false,
+        },
+        stroke: {
+          width: 6,
+        },
+        grid: {
+          show: true,
+          strokeDashArray: 4,
+          padding: {
+            left: 2,
+            right: 2,
+            top: -26
+          },
+        },
         
-const options = {
-  chart: {
-    height: "100%",
-    maxWidth: "100%",
-    type: "line",
-    fontFamily: "Inter, sans-serif",
-    dropShadow: {
-      enabled: false,
-    },
-    toolbar: {
-      show: false,
-    },
-  },
-  tooltip: {
-    enabled: true,
-    x: {
-      show: false,
-    },
-  },
-  dataLabels: {
-    enabled: false,
-  },
-  stroke: {
-    width: 6,
-  },
-  grid: {
-    show: true,
-    strokeDashArray: 4,
-    padding: {
-      left: 2,
-      right: 2,
-      top: -26
-    },
-  },
-  
-  series: [
-    {
-      name: "Product 1",
-      data: [6500, 6418, 6456, 6526, 6356, 6456],
-      color: "#1A56DB",
-    },
-    {
-      name: "Product 2",
-      data: [6456, 6356, 6526, 6332, 6418, 6500],
-      color: "#7E3AF2",
-    },
-    {
-      name: "Product 3",
-      data: [7000, 6200, 6010, 6100, 6700, 6200],
-      color: "#7E3AB2",
-    },
-    {
-      name: "Product 4",
-      data: [5900, 6000, 6300, 6600, 6100, 6100],
-      color: "#8E3AF2",
-    },
-  ],
-  legend: {
-    show: false
-  },
-  stroke: {
-    curve: 'smooth'
-  },
-  xaxis: {
-    categories: ['01 Feb', '02 Feb', '03 Feb', '04 Feb', '05 Feb', '06 Feb', '07 Feb'],
-    labels: {
-      show: true,
-      style: {
-        fontFamily: "Inter, sans-serif",
-        cssClass: 'text-xs font-normal fill-gray-500 dark:fill-gray-400'
+        series: [
+          {
+            name: "Product 1",
+            data: [6500, 6418, 6456, 6526, 6356, 6456],
+            color: "#1A56DB",
+          },
+          {
+            name: "Product 2",
+            data: [6456, 6356, 6526, 6332, 6418, 6500],
+            color: "#7E3AF2",
+          },
+          {
+            name: "Product 3",
+            data: [7000, 6200, 6010, 6100, 6700, 6200],
+            color: "#7E3AB2",
+          },
+          {
+            name: "Product 4",
+            data: [5900, 6000, 6300, 6600, 6100, 6100],
+            color: "#8E3AF2",
+          },
+        ],
+        legend: {
+          show: false
+        },
+        stroke: {
+          curve: 'smooth'
+        },
+        xaxis: {
+          categories: ['01 Feb', '02 Feb', '03 Feb', '04 Feb', '05 Feb', '06 Feb', '07 Feb'],
+          labels: {
+            show: true,
+            style: {
+              fontFamily: "Inter, sans-serif",
+              cssClass: 'text-xs font-normal fill-gray-500 dark:fill-gray-400'
+            }
+          },
+          axisBorder: {
+            show: false,
+          },
+          axisTicks: {
+            show: false,
+          },
+        },
+        yaxis: {
+          show: false,
+        },
       }
-    },
-    axisBorder: {
-      show: false,
-    },
-    axisTicks: {
-      show: false,
-    },
-  },
-  yaxis: {
-    show: false,
-  },
-}
 
-if (document.getElementById("line-chart") && typeof ApexCharts !== 'undefined') {
-  const chart = new ApexCharts(document.getElementById("line-chart"), options);
-  chart.render();
-}
+      if (document.getElementById("line-chart") && typeof ApexCharts !== 'undefined') {
+        const chart = new ApexCharts(document.getElementById("line-chart"), options);
+        chart.render();
+      }
+        
 
     
     </script> 

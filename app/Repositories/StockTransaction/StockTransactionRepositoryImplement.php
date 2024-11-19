@@ -123,8 +123,21 @@ class StockTransactionRepositoryImplement extends Eloquent implements StockTrans
     {
         return StockTransaction::where('date', $day)->where('type', 'masuk');
     }
+
     public function findKeluarByDay($day)
     {
         return StockTransaction::where('date', $day)->where('type', 'keluar');
+    }
+
+    public function TaskMasuk()
+    {
+        $today = today();
+        return StockTransaction::where('date',$today)->where('type','masuk')->where('status','pending');
+    }
+
+    public function TaskKeluar()
+    {
+        $today = today();
+        return StockTransaction::where('date',$today)->where('type','keluar')->where('status','pending');
     }
 }

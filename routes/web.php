@@ -13,13 +13,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductAttributeController;
 use App\Http\Controllers\StockTransactionController;
 
-Route::get('/testing', [TestingController::class, 'index']);
-Route::get('/', function () {
-    if (Auth::check()) {
-        return redirect()->route('dashboard');
-    }
-    return view('auth.login');
-});
+// Route::get('/testing', [TestingController::class, 'index']);
 
 Route::middleware('auth', 'verified', 'role:admin')->group(function () {
     Route::get('/', function () {
@@ -72,50 +66,13 @@ Route::middleware('auth', 'verified', 'role:admin')->group(function () {
 
 });
 
-// Route::middleware('auth', 'role:admin,manajer_gudang')->group(function () {
-//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    
-//     Route::get('/Admin/Products',[ProductController::class, 'allProduct'])->name('Products')->middleware(['auth', 'verified']);
-//     Route::post('/Admin/Products/addproduct', [ProductController::class, 'addProduct'])->name('addProduct')->middleware(['auth', 'verified']);
-//     Route::post('/Admin/Products/delete/{id}',[ProductController::class, 'deleteProduct'])->name('deleteProduct')->middleware(['auth', 'verified']);
-//     Route::post('/Admin/Products/update/{id}',[ProductController::class, 'updateProduct'])->name('updateProduct')->middleware(['auth', 'verified']);
-//     Route::get('/Admin/Products/search', [ProductController::class, 'searchProduct'])->name('searchProduct')->middleware(['auth', 'verified']);
-//     Route::post('/Admin/Products/import',[ImportControlller::class, 'import'])->name('import')->middleware(['auth', 'verified']);
-//     Route::post('/Admin/Products/export',[ImportControlller::class, 'export'])->name('export')->middleware(['auth', 'verified']);
-//     Route::post('/Admin/Products/exportxls',[ImportControlller::class, 'exportxls'])->name('exportxls')->middleware(['auth', 'verified']);
-    
-    
-//     Route::get('/Admin/Products/Categories', [CategoryController::class, 'viewCategories'])->name('Categories')->middleware(['auth', 'verified']);
-//     Route::post('/Admin/Products/Categories/addCategory', [CategoryController::class, 'addCategory'])->name('addCategory')->middleware(['auth', 'verified']);
-//     Route::post('Products/Categories/editCategory/{id}', [CategoryController::class, 'updateCategory'])->name('updateCategory')->middleware(['auth', 'verified']);
-//     Route::post('Products/Categories/deleteCategory/{id}', [CategoryController::class, 'deleteCategory'])->name('deleteCategory')->middleware(['auth', 'verified']);
-    
-//     Route::get('Products/Attributes',[ProductAttributeController::class, 'viewAttribute'])->name('viewAttribute')->middleware(['auth', 'verified']);
-//     Route::post('Products/Attributes/add', [ProductAttributeController::class, 'addAttribute'])->name('addAttribute')->middleware(['auth', 'verified']);
-//     Route::post('Products/Attributes/update/{id}', [ProductAttributeController::class, 'updateAttribute'])->name('updateAttribute')->middleware(['auth', 'verified']);
-//     Route::post('Products/Attributes/delete/{id}', [ProductAttributeController::class, 'deleteAttribute'])->name('deleteAttribute')->middleware(['auth', 'verified']);
-    
-//     Route::get('Suppliers',[SupplierController::class, 'viewSupplier'])->name('suppliers')->middleware(['auth', 'verified']);
-//     Route::post('Suppliers/add', [SupplierController::class, 'addSupplier'])->name('addSupplier')->middleware(['auth', 'verified']);
-//     Route::post('Suppliers/update/{id}',[SupplierController::class, 'updateSupplier'])->name('updateSupplier')->middleware(['auth', 'verified']);
-//     Route::post('Suppliers/delete/{id}',[SupplierController::class, 'deleteSupplier'])->name('deleteSupplier')->middleware(['auth', 'verified']);
-    
-//     Route::get('Users/Management', [UserController::class, 'viewUsers'])->name('viewUsers')->middleware(['auth', 'verified']);
-//     Route::post('Users/Management/update/{id}',[UserController::class, 'updateUser'])->name('updateUser')->middleware(['auth', 'verified']);
-//     Route::post('Users/Management/delete/{id}',[UserController::class, 'deleteUser'])->name('deleteUser')->middleware(['auth', 'verified']);
-    
-    
-//     Route::get('Stock/History',function(){
-//         return view('Stock.History');
-//     })->name('sHistory')->middleware(['auth', 'role:admin,staff_gudang']);
-    
-//     Route::post('Stock/History/create',[StockTransactionController::class, 'addTransaction'])->name('addTransaction')->middleware(['auth', 'verified']);
-//     Route::post('Stock/History/delete/{id}',[StockTransactionController::class, 'deleteTransaction'])->name('deleteTransaction')->middleware(['auth', 'verified']);
-
-// });
 Route::middleware('auth', 'verified', 'role:manajer_gudang')->group(function (){
+    Route::get('/', function () {
+        if (Auth::check()) {
+            return redirect()->route('manager.dashboard');
+        }
+        return view('auth.login');
+    });
     Route::get('Manager/Dashboard',[DashboardController::class, 'managerdash'])->name('manager.dashboard');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -153,11 +110,18 @@ Route::middleware('auth', 'verified', 'role:manajer_gudang')->group(function (){
 
 
 Route::middleware('auth', 'verified', 'role:staff_gudang')->group(function (){
+    Route::get('/', function () {
+        if (Auth::check()) {
+            return redirect()->route('staff.dashboard');
+        }
+        return view('auth.login');
+    });
+    Route::get('Staff/Dashboard',[DashboardController::class, 'staffdash'])->name('staff.dashboard');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/Manager/Stock/History',function(){
+    Route::get('/Staff/Stock/History',function(){
         return view('Stock.History');
     })->name('staff.sHistory');
 });

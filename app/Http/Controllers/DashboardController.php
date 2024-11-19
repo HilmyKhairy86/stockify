@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Services\Product\ProductService;
 use App\Services\StockTransaction\StockTransactionService;
-use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
@@ -19,6 +18,11 @@ class DashboardController extends Controller
     public function managerdash()
     {   
         return view('manager.dashboard');
+    }
+    
+    public function staffdash()
+    {   
+        return view('staff.dashboard');
     }
 
     public function admindash()

@@ -15,4 +15,6 @@ interface StockTransactionRepository extends Repository{
     public function findKeluarByDay($day);
     public function FilterDateMasuk(string $input);
     public function FilterDateKeluar(string $input);
+    public function TaskMasuk();
+    public function TaskKeluar();
 }

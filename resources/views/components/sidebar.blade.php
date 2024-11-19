@@ -529,7 +529,7 @@
   @elseif (Auth()->user()->role === 'staff_gudang')
   <div class="overflow-y-auto py-5 px-3 h-full bg-white dark:bg-gray-800">
     <ul class="space-y-2">
-        <x-li :url="route('dashboard')">
+        <x-li :url="route('staff.dashboard')">
             <svg
             aria-hidden="true"
             class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -578,13 +578,7 @@
         <ul id="dropdown-stock" class="{{ request()->routeIs('*/sHistory',) ? '' : 'hidden' }} py-2 space-y-2">
         {{-- <ul id="dropdown-stock" class="hidden' py-2 space-y-2"> --}}
           <li>
-            <x-nav-link :active="request()->is('*/Stock/History')" href="{{route('manager.sHistory')}}">Riwayat transaksi barang</x-nav-link>
-          </li>
-          <li>
-            <x-nav-link href="">Stock opname</x-nav-link>
-          </li>
-          <li>
-            <x-nav-link href="">Pengaturan stok minimum</x-nav-link>
+            <x-nav-link :active="request()->is('*/Stock/History')" href="{{route('staff.sHistory')}}">Transaksi barang</x-nav-link>
           </li>
         </ul>
       </li>
