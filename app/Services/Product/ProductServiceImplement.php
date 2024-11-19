@@ -57,7 +57,7 @@ class ProductServiceImplement extends Service implements ProductService{
 
     public function updateProduct($id, array $data)
     {
-      // dd($data);
+      // dd($data); 
       if (isset($data['image'])){
         $path = $data['image']->store('images');
         $data['image'] = $path;

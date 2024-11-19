@@ -413,7 +413,7 @@
                                 </div>
                             </div>
 
-                            {{-- detail modal --}}
+                            {{-- update modal --}}
                             <div x-data="{ openupdatemodal: false }" x-cloak="{display: none}" x-init="open = false" @keydown.escape.window="open = false" x-bind:class="{ 'overflow-hidden': open }"  class="relative">
                                 <!-- Button to open drawer -->
                                 <button id="{{$d->id}}" @click="openupdatemodal = true" class="py-2 px-3 text-sm font-medium text-gray-500 bg-blue-500 rounded-lg hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-900 focus:z-10 dark:bg-blue-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-blue-700 dark:focus:ring-gray-600" type="button">
@@ -441,7 +441,7 @@
                                         </button>
                                     </div>
                                     <div class="h-full overflow-y-auto">
-                                        <form action="" method="POST" enctype="multipart/form-data">
+                                        <form action="{{route('admin.updateProduct',$d->id)}}" method="POST" enctype="multipart/form-data">
                                             @csrf
                                             <div class="grid gap-4 mb-4 sm:grid-cols-2">
                                                 <div class="sm:col-span-2">
@@ -623,7 +623,7 @@
                             </div>
 
                         @elseif (auth()->user()->role == 'manajer_gudang')
-                            {{-- update modal --}}
+                            {{-- detail modal --}}
                             <div x-data="{ detailmodal: false }" x-cloak="{display: none}" x-init="open = false" @keydown.escape.window="open = false" x-bind:class="{ 'overflow-hidden': open }"  class="relative">
                                 <!-- Button to open drawer -->
                                 <button id="{{$d->id}}" @click="detailmodal = true" class="py-2 px-3 text-sm font-medium text-gray-500 bg-blue-500 rounded-lg hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-900 focus:z-10 dark:bg-blue-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-blue-700 dark:focus:ring-gray-600" type="button">
@@ -714,7 +714,7 @@
                                 </div>
                             </div>
 
-                            {{-- detail modal --}}
+                            {{-- update modal --}}
                             <div x-data="{ openupdatemodal: false }" x-cloak="{display: none}" x-init="open = false" @keydown.escape.window="open = false" x-bind:class="{ 'overflow-hidden': open }"  class="relative">
                                 <!-- Button to open drawer -->
                                 <button id="{{$d->id}}" @click="openupdatemodal = true" class="py-2 px-3 text-sm font-medium text-gray-500 bg-blue-500 rounded-lg hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-900 focus:z-10 dark:bg-blue-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-blue-700 dark:focus:ring-gray-600" type="button">
@@ -742,7 +742,7 @@
                                         </button>
                                     </div>
                                     <div class="h-full overflow-y-auto">
-                                        <form action="" method="POST" enctype="multipart/form-data">
+                                        <form action="{{route('manager.updateProduct',$d->id)}}" method="POST" enctype="multipart/form-data">
                                             @csrf
                                             <div class="grid gap-4 mb-4 sm:grid-cols-2">
                                                 <div class="sm:col-span-2">

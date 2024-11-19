@@ -51,7 +51,8 @@
                         </div>
                         <div class="h-full overflow-y-auto">
                             {{-- form --}}
-                            <form action="{{route($routeName)}}" method="POST">
+                            @if (auth()->user()->role == 'admin')
+                            <form action="{{route('admin.addTransaction')}}" method="POST">
                                 @csrf
                                 <div class="grid gap-4 mb-4 sm:grid-cols-2">
                                     <div>
@@ -73,7 +74,7 @@
                                     </div>
                                     <div>
                                         <label for="quantity" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quantity</label>
-                                        <input type="number" name="quantity" id="sku" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
+                                        <input type="number" required name="quantity" id="sku" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
                                     </div>
                                     <div class="sm:col-span-2">
                                         <label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date</label>
@@ -99,6 +100,58 @@
                                     Add new Transaction
                                 </button>
                             </form>
+
+                            @elseif (auth()->user()->role == 'manajer_gudang')
+                            <form action="{{route('manager.addTransaction')}}" method="POST">
+                                @csrf
+                                <div class="grid gap-4 mb-4 sm:grid-cols-2">
+                                    <div>
+                                        <label for="product_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product ID</label>
+                                        <input type="text" name="product_id" id="product_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type Product name" required="">
+                                    </div>
+                                    {{-- @livewire('proddropdown') --}}
+                                    <div>
+                                        <label for="user_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">User ID</label>
+                                        <input type="text" name="user_id" id="user_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{ auth()->user()->id }}" readonly required="">
+                                    </div>
+                                    <div>
+                                        <label for="type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Type</label>
+                                        <select id="type" name="type" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required>
+                                            <option value="" hidden disabled selected>Type</option>
+                                            <option value="masuk" >Masuk</option>
+                                            <option value="keluar" >Keluar</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label for="quantity" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quantity</label>
+                                        <input type="number" required name="quantity" id="sku" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
+                                    </div>
+                                    <div class="sm:col-span-2">
+                                        <label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date</label>
+                                        <input type="date" name="date" id="date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="" required>
+                                    </div>
+                                    {{-- <div>
+                                        <label for="status" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
+                                        <select id="status" name="status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required>
+                                            <option value="" hidden disabled selected>Status</option>
+                                            <option value="pending" >Pending</option>
+                                            <option value="diterima" >Diterima</option>
+                                            <option value="ditolak" >Ditolak</option>
+                                            <option value="dikeluarkan" >Dikeluarkan</option>
+                                        </select>
+                                    </div> --}}
+                                    <div class="sm:col-span-2">
+                                        <label for="notes" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Notes</label>
+                                        <textarea id="notes" name="notes" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Write Notes here"></textarea>                    
+                                    </div>
+                                </div>
+                                <button type="submit" class=" text-white dark:text-white inline-flex items-center bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                                    <svg class="mr-1 -ml-1 w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg>
+                                    Add new Transaction
+                                </button>
+                            </form>
+                                
+                            @endif
                         </div>
                     </div>
                 </div>

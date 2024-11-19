@@ -23,7 +23,7 @@
               <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
                 {{$p->sku}}
               </td>
-              <td class="p-4 text-sm font-semibold text-red-700 whitespace-nowrap dark:text-white">
+              <td class="p-4 text-sm font-semibold text-red-700 dark:text-red-700 whitespace-nowrap ">
                 @if ($p->stock < 10)
                 <i class="fa-solid fa-triangle-exclamation mx-3"></i>{{$p->stock}}
                 @else

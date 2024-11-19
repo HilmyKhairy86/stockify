@@ -140,4 +140,33 @@ class StockTransactionRepositoryImplement extends Eloquent implements StockTrans
         $today = today();
         return StockTransaction::where('date',$today)->where('type','keluar')->where('status','pending');
     }
+
+    public function FilterStock(string $day){
+        $query = StockTransaction::query();
+        // $query = StockTransaction::query();
+        switch ($day) {
+            case 'day':
+                $query->whereDate('date', today());
+                break;
+
+            case 'week':
+                $query->whereBetween('date', [now()->startOfWeek(), now()->endOfWeek()]);
+                break;
+
+            case 'month':
+                $query->whereMonth('date', now()->month);
+                break;
+
+            case 'year':
+                $query->whereYear('date', now()->year);
+                break;
+            case 'all':
+
+            default:
+                // No filter applied; get all records
+                break;
+        }
+
+        return $query->get();
+    }
 }

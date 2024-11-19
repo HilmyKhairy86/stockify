@@ -17,4 +17,5 @@ interface StockTransactionService extends BaseService{
     public function FilterDateKeluar(string $input);
     public function TaskMasuk();
     public function TaskKeluar();
+    public function FilterStock(string $day);
 }

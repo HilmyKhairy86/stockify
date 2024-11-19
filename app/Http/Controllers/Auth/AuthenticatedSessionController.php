@@ -35,7 +35,7 @@ class AuthenticatedSessionController extends Controller
 
             } elseif(Auth::user()->role == 'manajer_gudang')
             {
-                return redirect('/');
+                return redirect()->intended(route('manager.dashboard', absolute: false));
 
             } elseif(Auth::user()->role == 'staff_gudang')
             {

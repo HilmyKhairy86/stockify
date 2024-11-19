@@ -121,7 +121,7 @@
                                 class="fixed top-0 right-0 z-50 w-full h-screen max-w-xs p-4 overflow-y-auto transition-transform bg-white dark:bg-gray-800" tabindex="-1" aria-labelledby="drawer-label" aria-hidden="true">
                                 <!-- Drawer Header -->
                                 <div class="flex justify-between items-center">
-                                    <h5 id="drawer-label" class="text-sm font-semibold text-gray-500 uppercase dark:text-gray-400">New Product</h5>
+                                    <h5 id="drawer-label" class="text-sm font-semibold text-gray-500 uppercase dark:text-gray-400">Edit Attribute</h5>
                                     <button @click="openupdatemodal = false" aria-controls="drawer-create-product-default"
                                         class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5">
                                         <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -136,11 +136,10 @@
                                         <div class="grid gap-4 mb-4 sm:grid-cols-2">
                                             <div>
                                                 <label for="product_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product ID</label>
-                                                <select id="product_id" name="product_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"> 
-                                                    <option value="" selected disabled hidden>Pilih Produk</option>              
-                                                    {{-- @foreach ($prod as $p)
-                                                    <option value="{{ $p->id }}">{{$p->id}} - {{ $p->name }}</option>
-                                                    @endforeach --}}
+                                                <select id="product_id" name="product_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">             
+                                                    @foreach ($prod as $p)
+                                                    <option value="{{ $p->id }} {{ $d->product_id === $p->id ? 'selected' : '' }} ">{{$p->id}} - {{ $p->name }}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                             <div>

@@ -18,7 +18,9 @@ use App\Http\Controllers\StockTransactionController;
 Route::middleware('auth', 'verified', 'role:admin')->group(function () {
     Route::get('/', function () {
         if (Auth::check()) {
-            return redirect()->route('admin.dashboard');
+            if (Auth::user()->role == 'admin'){
+                return redirect()->route('admin.dashboard');
+            }
         }
         return view('auth.login');
     });
@@ -44,8 +46,8 @@ Route::middleware('auth', 'verified', 'role:admin')->group(function () {
     
     Route::get('/Admin/Products/Attributes',[ProductAttributeController::class, 'viewAttribute'])->name('viewAttribute');
     Route::post('/Admin/Products/Attributes/add', [ProductAttributeController::class, 'addAttribute'])->name('addAttribute');
-    Route::post('Products/Attributes/update/{id}', [ProductAttributeController::class, 'updateAttribute'])->name('updateAttribute');
-    Route::post('/Admin/Products/Attributes/delete/{id}', [ProductAttributeController::class, 'deleteAttribute']);
+    Route::post('/Admin/Products/Attributes/update/{id}', [ProductAttributeController::class, 'updateAttribute'])->name('updateAttribute');
+    Route::post('/Admin/Products/Attributes/delete/{id}', [ProductAttributeController::class, 'deleteAttribute'])->name('deleteAttribute');
     
     Route::get('/Admin/Suppliers',[SupplierController::class, 'viewSupplier'])->name('suppliers');
     Route::post('/Admin/Suppliers/add', [SupplierController::class, 'addSupplier'])->name('addSupplier');
@@ -61,15 +63,17 @@ Route::middleware('auth', 'verified', 'role:admin')->group(function () {
         return view('Stock.History');
     })->name('admin.sHistory');
     
-    Route::post('/Admin/Stock/History/create',[StockTransactionController::class, 'addTransaction'])->name('addTransaction');
-    Route::post('/Admin/Stock/History/delete/{id}',[StockTransactionController::class, 'deleteTransaction'])->name('deleteTransaction');
+    Route::post('/Admin/Stock/History/create',[StockTransactionController::class, 'addTransaction'])->name('admin.addTransaction');
+    Route::post('/Admin/Stock/History/delete/{id}',[StockTransactionController::class, 'deleteTransaction'])->name('admin.deleteTransaction');
 
 });
 
 Route::middleware('auth', 'verified', 'role:manajer_gudang')->group(function (){
     Route::get('/', function () {
         if (Auth::check()) {
-            return redirect()->route('manager.dashboard');
+            if (Auth::user()->role == 'manajer_gudang'){
+                return redirect()->route('manager.dashboard');
+            }
         }
         return view('auth.login');
     });
@@ -112,7 +116,9 @@ Route::middleware('auth', 'verified', 'role:manajer_gudang')->group(function (){
 Route::middleware('auth', 'verified', 'role:staff_gudang')->group(function (){
     Route::get('/', function () {
         if (Auth::check()) {
-            return redirect()->route('staff.dashboard');
+            if (Auth::user()->role == 'staff_gudang'){
+                return redirect()->route('staff.dashboard');
+            }
         }
         return view('auth.login');
     });
