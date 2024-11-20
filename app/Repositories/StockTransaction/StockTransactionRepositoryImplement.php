@@ -169,4 +169,9 @@ class StockTransactionRepositoryImplement extends Eloquent implements StockTrans
 
         return $query->get();
     }
+
+    public function ShowProductAndStock()
+    {
+        
+    }
 }

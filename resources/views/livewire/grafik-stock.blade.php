@@ -6,12 +6,12 @@
               <div class="grid gap-4 grid-cols-9">
                 {{-- item 1 --}}
                 {{-- foreach --}}
-                @foreach ($prod as $p)  
+                {{-- @foreach ($prod as $p)  
                 <div>
                   <h5 class="inline-flex items-center text-gray-500 dark:text-gray-400 leading-none font-normal mb-2">{{$p->product->name}}</h5>
                   <p class="text-gray-900 dark:text-white text-2xl leading-none font-bold">{{$p->product->stock}}</p>
                 </div>
-                @endforeach
+                @endforeach --}}
               </div>
 
               {{-- select --}}

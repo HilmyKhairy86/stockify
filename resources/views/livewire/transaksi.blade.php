@@ -436,10 +436,10 @@
             </tbody>
         </table>
     </div>
-    {{-- @empty ($sup->links())
+    @empty ($stock->links())
     @else
-    {{$sup->links('pagination::tailwind')}}
-    @endempty --}}
+    {{$stock->links('pagination::tailwind')}}
+    @endempty
 </div>
 
 

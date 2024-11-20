@@ -325,12 +325,6 @@
                 <x-nav-link :active="request()->is('*/Products')" href="{{ route('manager.Products') }}">
                   <i class="fa-solid fa-box mx-1 text-gray-400"></i>Products</x-nav-link>
               </li>
-              {{-- <li>
-                <x-nav-link :active="request()->is('*/Products/Categories')" href="{{ route('manager.Categories') }}">Categories</x-nav-link>
-              </li>
-              <li>
-                <x-nav-link :active="request()->is('*/Products/Attributes')" href="{{ route('manager.viewAttribute') }}">Attributes</x-nav-link>
-              </li> --}}
             </ul>
           </li>
           <li>
