@@ -67,6 +67,10 @@ Route::middleware('auth', 'verified', 'role:admin')->group(function () {
     Route::get('/Admin/Stock/Stock-minimum', function(){
         return view('Stock.Setting');
     })->name('stockminimum');
+
+    Route::get('/Admin/Report',function(){
+        return view('Reports.adminreport');
+    })->name('admin.report');
     
     Route::post('/Admin/Stock/History/create',[StockTransactionController::class, 'addTransaction'])->name('admin.addTransaction');
     Route::post('/Admin/Stock/History/delete/{id}',[StockTransactionController::class, 'deleteTransaction'])->name('admin.deleteTransaction');

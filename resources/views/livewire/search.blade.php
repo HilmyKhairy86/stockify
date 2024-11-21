@@ -362,7 +362,7 @@
                                                 <div class="sm:col-span-2">
                                                     <label for="brand" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Supplier</label>
                                                     <p class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                                        {{ $d->supplier->name }}
+                                                        {{ $d->supplier_id }} - {{$d->supplier->name}}
                                                     </p>
                                                 </div>
                                                 <div>
@@ -385,12 +385,12 @@
                                                 </div>
                                                 <div>
                                                     <label for="stock" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Stock</label>
-                                                    <input type="number" name="stock" id="stock" value="{{$d->stock}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
+                                                    <p class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">{{$d->stock}}</p>
                                                 </div>
                                                 <div class="sm:col-span-2">
                                                     <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
                                                     <p class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                                        {{$d->category_id}}
+                                                        {{$d->category_id}} - {{$d->category->name}}
                                                     </p>
                                                 </div>
                                                 <div class="sm:col-span-2">

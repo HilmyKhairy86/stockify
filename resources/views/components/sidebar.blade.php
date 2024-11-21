@@ -165,13 +165,7 @@
             </button>
             <ul id="dropdown-report" class="hidden py-2 space-y-2">
               <li>
-                <x-nav-link href="">Riwayat transaksi barang</x-nav-link>
-              </li>
-              <li>
-                <x-nav-link href="">Stock opname</x-nav-link>
-              </li>
-              <li>
-                <x-nav-link href="">Pengaturan stok minimum</x-nav-link>
+                <x-nav-link href="{{route('admin.report')}}">Laporan Stock Barang</x-nav-link>
               </li>
             </ul>
           </li>
