@@ -393,10 +393,6 @@
                                                         {{$d->category_id}} - {{$d->category->name}}
                                                     </p>
                                                 </div>
-                                                <div class="sm:col-span-2">
-                                                    <label for="image" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Image</label>
-                                                    <input type="file" name="image" accept="image/jpeg,image/png" id="image" class="block w-full text-sm text-gray-400 bg-white dark:bg-gray-700 rounded-lg cursor-pointer border border-gray-600 focus:outline-none focus:border-blue-500">
-                                                </div>
                                                 @if ($d->image)
                                                 <div class="sm:col-span-2">
                                                     <img for="image" src="{{ asset('storage/'.$d->image ) }}" class="block w-full h-full object-cover rounded-lg border border-gray-600" />
