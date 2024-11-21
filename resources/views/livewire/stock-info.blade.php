@@ -24,7 +24,7 @@
                 {{$p->sku}}
               </td>
               <td class="p-4 text-sm font-semibold text-red-700 dark:text-red-700 whitespace-nowrap ">
-                @if ($p->stock < 10)
+                @if ($p->stock <= $p->stock_minimum / 2)
                 <i class="fa-solid fa-triangle-exclamation mx-3"></i>{{$p->stock}}
                 @else
                 <i class="fa-solid fa-caret-down mx-3"></i>{{$p->stock}}

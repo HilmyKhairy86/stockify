@@ -12,6 +12,7 @@ use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductAttributeController;
 use App\Http\Controllers\StockTransactionController;
+use App\Models\Product;
 
 // Route::get('/testing', [TestingController::class, 'index']);
 
@@ -62,6 +63,10 @@ Route::middleware('auth', 'verified', 'role:admin')->group(function () {
     Route::get('/Admin/Stock/History',function(){
         return view('Stock.History');
     })->name('admin.sHistory');
+
+    Route::get('/Admin/Stock/Stock-minimum', function(){
+        return view('Stock.Setting');
+    })->name('stockminimum');
     
     Route::post('/Admin/Stock/History/create',[StockTransactionController::class, 'addTransaction'])->name('admin.addTransaction');
     Route::post('/Admin/Stock/History/delete/{id}',[StockTransactionController::class, 'deleteTransaction'])->name('admin.deleteTransaction');

@@ -84,7 +84,7 @@ class ProductRepositoryImplement extends Eloquent implements ProductRepository{
 
     public function stockfilter()
     {
-        return Product::where('stock', '<', 15);
+        return Product::wherecolumn('stock', '<', 'stock_minimum');
     }
 
 

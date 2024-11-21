@@ -117,7 +117,7 @@
                 ></path>
               </svg>
             </button>
-            <ul id="dropdown-stock" class="{{ request()->routeIs('admin.sHistory',) ? '' : 'hidden' }} py-2 space-y-2">
+            <ul id="dropdown-stock" class="{{ request()->routeIs('admin.sHistory','stockminimum') ? '' : 'hidden' }} py-2 space-y-2">
             {{-- <ul id="dropdown-stock" class="hidden' py-2 space-y-2"> --}}
               <li>
                 <x-nav-link :active="request()->is('*/Stock/History')" href="{{route('admin.sHistory')}}">Riwayat transaksi barang</x-nav-link>
@@ -126,7 +126,7 @@
                 <x-nav-link href="">Stock opname</x-nav-link>
               </li>
               <li>
-                <x-nav-link href="">Pengaturan stok minimum</x-nav-link>
+                <x-nav-link :active="request()->is('*/Stock/Stock-minimum')" href="{{route('stockminimum')}}">Pengaturan stok minimum</x-nav-link>
               </li>
             </ul>
           </li>
