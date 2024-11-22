@@ -18,6 +18,7 @@
                 @livewire('AdminReport')
             </div>
         </div>
+        @livewire('KeluarMasukReport')
         {{-- @livewire('ProdKeluarMasuk') --}}
         @livewire('GrafikStock')
         

@@ -11,8 +11,9 @@ class AttributeServiceImplement extends ServiceApi implements AttributeService{
     /**
      * set title message api for CRUD
      * @param string $title
+     * protected $title = "";
      */
-     protected $title = "";
+     
      /**
      * uncomment this to override the default message
      * protected $create_message = "";

@@ -64,6 +64,10 @@ Route::middleware('auth', 'verified', 'role:admin')->group(function () {
         return view('Stock.History');
     })->name('admin.sHistory');
 
+    Route::get('/Admin/Stock/Opname', function(){
+        return view('Stock.Opname');
+    })->name('admin.opname');
+
     Route::get('/Admin/Stock/Stock-minimum', function(){
         return view('Stock.Setting');
     })->name('stockminimum');
