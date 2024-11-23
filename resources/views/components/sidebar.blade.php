@@ -352,49 +352,50 @@
             </svg>
             <span class="ml-3">Dashboard</span>
           </x-li>
-        <li>
-          <button
-            type="button"
-            class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-gray-900 dark:hover:bg-gray-700"
-            aria-controls="dropdown-stock"
-            data-collapse-toggle="dropdown-stock"
-          >
-            <svg
-              aria-hidden="true"
-              class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-900 dark:group-hover:text-white"
-              fill="currentColor"
-              viewBox="0 0 600 600"
-              xmlns="http://www.w3.org/2000/svg"
+          <li>
+            <button
+              type="button"
+              class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+              aria-controls="dropdown-stock"
+              data-collapse-toggle="dropdown-stock"
             >
-            <path d="M248 0L208 0c-26.5 0-48 21.5-48 48l0 112c0 35.3 28.7 64 64 64l128 0c35.3 0 64-28.7 64-64l0-112c0-26.5-21.5-48-48-48L328 0l0 80c0 8.8-7.2 16-16 16l-48 0c-8.8 0-16-7.2-16-16l0-80zM64 256c-35.3 0-64 28.7-64 64L0 448c0 35.3 28.7 64 64 64l160 0c35.3 0 64-28.7 64-64l0-128c0-35.3-28.7-64-64-64l-40 0 0 80c0 8.8-7.2 16-16 16l-48 0c-8.8 0-16-7.2-16-16l0-80-40 0zM352 512l160 0c35.3 0 64-28.7 64-64l0-128c0-35.3-28.7-64-64-64l-40 0 0 80c0 8.8-7.2 16-16 16l-48 0c-8.8 0-16-7.2-16-16l0-80-40 0c-15 0-28.8 5.1-39.7 13.8c4.9 10.4 7.7 22 7.7 34.2l0 160c0 12.2-2.8 23.8-7.7 34.2C323.2 506.9 337 512 352 512z"/>
-            </svg>
-            <span class="flex-1 ml-3 text-left whitespace-nowrap"
-              >Stock</span
-            >
-            <svg
-              aria-hidden="true"
-              class="w-6 h-6"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                clip-rule="evenodd"
-              ></path>
-            </svg>
-          </button>
-          <ul id="dropdown-stock" class="{{ request()->routeIs('*/sHistory',) ? '' : 'hidden' }} py-2 space-y-2">
-          {{-- <ul id="dropdown-stock" class="hidden' py-2 space-y-2"> --}}
-            <li>
-              <x-nav-link :active="request()->is('*/Stock/History')" href="{{route('staff.sHistory')}}">Transaksi barang</x-nav-link>
-            </li>
-          </ul>
-        </li>
+              <svg
+                aria-hidden="true"
+                class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+                fill="currentColor"
+                viewBox="0 0 600 600"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+              <path d="M248 0L208 0c-26.5 0-48 21.5-48 48l0 112c0 35.3 28.7 64 64 64l128 0c35.3 0 64-28.7 64-64l0-112c0-26.5-21.5-48-48-48L328 0l0 80c0 8.8-7.2 16-16 16l-48 0c-8.8 0-16-7.2-16-16l0-80zM64 256c-35.3 0-64 28.7-64 64L0 448c0 35.3 28.7 64 64 64l160 0c35.3 0 64-28.7 64-64l0-128c0-35.3-28.7-64-64-64l-40 0 0 80c0 8.8-7.2 16-16 16l-48 0c-8.8 0-16-7.2-16-16l0-80-40 0zM352 512l160 0c35.3 0 64-28.7 64-64l0-128c0-35.3-28.7-64-64-64l-40 0 0 80c0 8.8-7.2 16-16 16l-48 0c-8.8 0-16-7.2-16-16l0-80-40 0c-15 0-28.8 5.1-39.7 13.8c4.9 10.4 7.7 22 7.7 34.2l0 160c0 12.2-2.8 23.8-7.7 34.2C323.2 506.9 337 512 352 512z"/>
+              </svg>
+              <span class="flex-1 ml-3 text-left whitespace-nowrap"
+                >Stock</span
+              >
+              <svg
+                aria-hidden="true"
+                class="w-6 h-6"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </button>
+            <ul id="dropdown-stock" class="{{ request()->routeIs('staff.sHistory') ? '' : 'hidden' }} py-2 space-y-2">
+            {{-- <ul id="dropdown-stock" class="hidden' py-2 space-y-2"> --}}
+              <li>
+                <x-nav-link :active="request()->is('*/Stock/History')" href="{{route('staff.sHistory')}}">
+                  <i class="fa-solid fa-arrow-right-arrow-left mx-1"></i>Transaksi barang
+                </x-nav-link>
+              </li>
+            </ul>
+          </li>
       </ul>
     </div>
   @else
-
-    @endif
+  @endif
 </aside>

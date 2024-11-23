@@ -19,8 +19,19 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'admin@admin.com',
+            'name' => 'Admin',
+            'email' => 'admin@stockify.com',
+            'role' => 'admin'
+        ]);
+        User::factory()->create([
+            'name' => 'Manager',
+            'email' => 'manager@stockify.com',
+            'role' => 'manajer_gudang'
+        ]);
+        User::factory()->create([
+            'name' => 'Staff',
+            'email' => 'staff@stockify.com',
+            'role' => 'staff_gudang'
         ]);
 
         Product::factory()->count(50)->create();

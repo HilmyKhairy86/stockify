@@ -134,7 +134,7 @@ class ProductFactory extends Factory
             'description' => fake()->text(100),
             'purchase_price' => fake()->numberBetween(50,500),
             'selling_price' => fake()->numberBetween(500, 1000),
-            'stock' => fake()->numberBetween(1, 100),
+            // 'stock' => fake()->numberBetween(1, 100),
             'stock_minimum' => fake()->numberBetween(1, 50),
         ];
     }

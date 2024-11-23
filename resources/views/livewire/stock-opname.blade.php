@@ -29,6 +29,7 @@
                     <th scope="col" class="px-4 py-3">SKU</th>
                     <th scope="col" class="px-4 py-3">Stock Sistem</th>
                     <th scope="col" class="px-4 py-3">Stock Fisik</th>
+                    <th scope="col" class="px-4 py-3">Selisih Stock</th>
                     <th scope="col" class="px-4 py-3">
                         <span class="sr-only">Actions</span>
                     </th>
@@ -42,7 +43,8 @@
                     <td class="px-4 py-3">{{ optional($d->supplier)->name }}</td>
                     <td class="px-4 py-3">{{ $d->sku }}</td>
                     <td class="px-4 py-3">{{ $d->stock }}</td>
-                    <td class="px-4 py-3">{{ $d->stock }}</td>
+                    <td class="px-4 py-3">{{ $d->stock_fisik }}</td>
+                    <td class="px-4 py-3">{{ $d->stock - $d->stock_fisik }}</td>
                     <td class="px-4 py-3 justify-end space-x-2 flex items-center">
 
                         @if (auth()->user()->role == 'admin')
@@ -78,8 +80,8 @@
                                             @csrf
                                             <div class="grid gap-4 mb-4 sm:grid-cols-2">
                                                 <div>
-                                                    <label for="stock" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Stock</label>
-                                                    <input type="number" name="stock" id="stock" value="{{$d->stock}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
+                                                    <label for="stock_fisik" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Stock</label>
+                                                    <input type="number" name="stock_fisik" id="stock" value="{{$d->stock_fisik}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
                                                 </div>
                                             </div>
                                             <div class="flex items-center space-x-4">
