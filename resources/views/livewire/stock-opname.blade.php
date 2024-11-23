@@ -44,7 +44,13 @@
                     <td class="px-4 py-3">{{ $d->sku }}</td>
                     <td class="px-4 py-3">{{ $d->stock }}</td>
                     <td class="px-4 py-3">{{ $d->stock_fisik }}</td>
-                    <td class="px-4 py-3">{{ $d->stock - $d->stock_fisik }}</td>
+                    <td class="px-4 py-3">
+                        @if ($d->stock < $d->stock_fisik)
+                            {{ $d->stock_fisik - $d->stock }}
+                        @elseif ($d->stock_fisik < $d->stock)
+                            {{ $d->stock - $d->stock_fisik }}
+                        @endif
+                    </td>
                     <td class="px-4 py-3 justify-end space-x-2 flex items-center">
 
                         @if (auth()->user()->role == 'admin')
@@ -66,7 +72,7 @@
                                     class="fixed top-0 right-0 z-50 w-full h-screen max-w-xs p-4 overflow-y-auto transition-transform bg-white dark:bg-gray-800" tabindex="-1" aria-labelledby="drawer-label" aria-hidden="true">
                                     <!-- Drawer Header -->
                                     <div class="flex justify-between items-center">
-                                        <h5 id="drawer-label" class="text-sm font-semibold text-gray-500 uppercase dark:text-gray-400">Edit Stock</h5>
+                                        <h5 id="drawer-label" class="text-sm mb-5 font-semibold text-gray-500 uppercase dark:text-gray-400">Edit Stock</h5>
                                         <button @click="openupdatemodal = false" aria-controls="drawer-create-product-default"
                                             class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5">
                                             <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -76,12 +82,12 @@
                                         </button>
                                     </div>
                                     <div class="h-full overflow-y-auto">
-                                        <form action="{{route('admin.updateProduct',$d->id)}}" method="POST" enctype="multipart/form-data">
+                                        <form action="{{route('admin.updateProduct',$d->id)}}" method="POST">
                                             @csrf
                                             <div class="grid gap-4 mb-4 sm:grid-cols-2">
                                                 <div>
                                                     <label for="stock_fisik" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Stock</label>
-                                                    <input type="number" name="stock_fisik" id="stock" value="{{$d->stock_fisik}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
+                                                    <input type="number" name="stock_fisik" id="stock_fisik" value="{{ $d->stock_fisik }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
                                                 </div>
                                             </div>
                                             <div class="flex items-center space-x-4">

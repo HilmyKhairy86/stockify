@@ -37,6 +37,7 @@ class Product extends Model
         'purchase_price',
         'selling_price',
         'stock',
+        'stock_fisik',
         'stock_minimum',
         'image',
     ];
