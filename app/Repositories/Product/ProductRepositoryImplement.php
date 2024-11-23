@@ -41,6 +41,31 @@ class ProductRepositoryImplement extends Eloquent implements ProductRepository{
         $update->update($data);
     }
 
+    public function updateStock($id, array $data){
+        $product = $this->model->findOrfail($id);
+        switch ($data['status']) {
+            case 'diterima':
+                    $product->update([
+                        'stock' => $product->stock + $data['quantity'],
+                    ]);
+                break;
+            
+            case 'ditolak':
+                    
+                break;
+            
+            case 'dikeluarkan':
+                    $product->update([
+                        'stock' => $product->stock - $data['quantity'],
+                    ]);
+                break;
+            
+            default:
+                # code...
+                break;
+        }
+    }
+
     public function deleteProduct($id){
         $product = $this->model->where('id', $id)->first();
         $product->delete();

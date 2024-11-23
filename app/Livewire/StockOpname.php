@@ -17,11 +17,9 @@ class StockOpname extends Component
     protected $categoryService;
     protected $supplierService;
 
-    public function boot(ProductService $productService, CategoryService $categoryService, SupplierService $supplierService)
+    public function boot(ProductService $productService)
     {
         $this->productService = $productService;
-        $this->supplierService = $supplierService;
-        $this->categoryService = $categoryService;
     }
 
     public $search = '';
@@ -49,13 +47,9 @@ class StockOpname extends Component
     
     public function render()
     {   
-        
-            $result = $this->productService->searchByName($this->search, $this->categories);
-            return view('livewire.stock-opname', [
-                'products' => $result->paginate(10),
-                'sup' => $this->supplierService->viewSupplier(),
-                'cat' => $this->categoryService->viewCategory(),
-            ]);
-
+        $result = $this->productService->searchByName($this->search, $this->categories);
+        return view('livewire.stock-opname', [
+            'products' => $result->paginate(10),
+        ]);
     }
 }

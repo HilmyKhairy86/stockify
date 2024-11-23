@@ -23,12 +23,12 @@
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-300 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                    {{-- <th scope="col" class="px-4 py-3"><input type="checkbox" id="select-all"></th> --}}
                     <th scope="col" class="px-4 py-3">Product name</th>
                     <th scope="col" class="px-4 py-3">Category</th>
                     <th scope="col" class="px-4 py-3">Suplier</th>
                     <th scope="col" class="px-4 py-3">SKU</th>
-                    <th scope="col" class="px-4 py-3">Stock</th>
+                    <th scope="col" class="px-4 py-3">Stock Sistem</th>
+                    <th scope="col" class="px-4 py-3">Stock Fisik</th>
                     <th scope="col" class="px-4 py-3">
                         <span class="sr-only">Actions</span>
                     </th>
@@ -37,19 +37,11 @@
             <tbody>
                 @foreach ($products as $d)
                 <tr class="border-b dark:border-gray-700 odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800">
-                    {{-- <td class="px-4 py-3">
-                        <input type="checkbox" name="ids[]" value="{{ $d->id }}">
-                        <script>
-                            document.getElementById('select-all').addEventListener('change', function () {
-                                const checkboxes = document.querySelectorAll('input[name="ids[]"]');
-                                checkboxes.forEach(checkbox => checkbox.checked = this.checked);
-                            });
-                        </script>
-                    </td> --}}
                     <td scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $d->name }}</td>
                     <td class="px-4 py-3">{{ optional($d->category)->name }}</td>
                     <td class="px-4 py-3">{{ optional($d->supplier)->name }}</td>
                     <td class="px-4 py-3">{{ $d->sku }}</td>
+                    <td class="px-4 py-3">{{ $d->stock }}</td>
                     <td class="px-4 py-3">{{ $d->stock }}</td>
                     <td class="px-4 py-3 justify-end space-x-2 flex items-center">
 

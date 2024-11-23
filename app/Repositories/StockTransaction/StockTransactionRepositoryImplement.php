@@ -32,7 +32,8 @@ class StockTransactionRepositoryImplement extends Eloquent implements StockTrans
 
     public function updateTransaction($id, array $data)
     {
-        return $this->model->update($id,$data);
+        $update = $this->model->findOrfail($id);
+        return $update->update($data);
     }
 
     public function deleteTransaction($id)

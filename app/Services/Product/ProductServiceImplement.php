@@ -68,9 +68,14 @@ class ProductServiceImplement extends Service implements ProductService{
       
     }
 
+    public function updateStock($id, array $data)
+    {
+      return $this->mainRepository->updateStock($id, $data);
+    }
+
     public function deleteProduct($id)
     {
-      return $this->mainRepository->delete($id);
+      return $this->mainRepository->deleteProduct($id);
     }
 
     public function pagProduct(int $num)

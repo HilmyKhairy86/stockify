@@ -23,6 +23,7 @@ return new class extends Migration
             $table->decimal('purchase_price');
             $table->decimal('selling_price');
             $table->integer('stock');
+            $table->integer('stock_fisik')->nullable();
             $table->integer('stock_minimum')->nullable();
             $table->string('image')->nullable();
             $table->timestamps();

@@ -14,6 +14,8 @@ interface ProductRepository extends Repository{
 
     public function updateProduct($id, array $data);
 
+    public function updateStock($id, array $data);
+
     public function deleteProduct($id);
 
     public function pagProduct(int $num);

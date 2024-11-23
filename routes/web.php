@@ -143,6 +143,8 @@ Route::middleware('auth', 'verified', 'role:staff_gudang')->group(function (){
     Route::get('/Staff/Stock/History',function(){
         return view('Stock.History');
     })->name('staff.sHistory');
+
+    Route::post('/Staff/Stock/Confirm-Transaction/{id}',[StockTransactionController::class, 'updateTransaction'])->name('staff.confirmtransaction');
 });
 
 
