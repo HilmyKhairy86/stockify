@@ -24,15 +24,15 @@
               <div id="lastDaysdropdown" class="z-10 px-3 py-2 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
                     <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
                       <li>
-                        <input wire:model.live="day" id="" type="radio" name="day" value="day" class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                        <input wire:model.live="day" id="date" type="radio" name="day" value="day" class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                         <label for="" class="px-4 py-2 dark:hover:text-white">Today</label>
                       </li>
                       <li>
-                        <input wire:model.live="day" id="" type="radio" name="day" value="week" class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                        <input wire:model.live="day" id="date" type="radio" name="day" value="week" class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                         <label for="" class="px-4 py-2 dark:hover:text-white">Week</label>
                       </li>
                       <li>
-                        <input wire:model.live="day" id="" type="radio" name="day" value="month" class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                        <input wire:model.live="day" id="date" type="radio" name="day" value="month" class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                         <label for="" class="px-4 py-2 dark:hover:text-white">Month</label>
                       </li>
                     </ul>
@@ -55,6 +55,7 @@
               </div>
             </div>
           </div>
+        
           <script>
             const chartData = @json($chart);
             const options = {
@@ -92,7 +93,7 @@
                 },
               },
               
-              series: @json($chart),
+              series: chartData,
               legend: {
                 show: false
               },
@@ -100,7 +101,10 @@
                 curve: 'smooth'
               },
               xaxis: {
-                categories: @json($date),
+                type: 'datetime', // Dynamically handle dates
+                labels: {
+                format: 'yyyy-MM-dd', // Format x-axis labels
+                },
               },
               yaxis: {
                 show: false,

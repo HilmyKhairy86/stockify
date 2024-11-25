@@ -13,16 +13,17 @@ class GrafikStock extends Component
         $this->stockTransactionService = $stockTransactionService;
     }
     
-    public $day = 'week';
+    public $day = '';
 
     public function render()
     {
         $chartdata = [];
-        $chrtdate = [];
+        // $chrtdate = [];
         $data = $this->stockTransactionService->FilterStock($this->day);
             foreach ($data as $d) {
                 $productName = $d->product->name;
                 $quantity = $d->quantity;
+                $date = $d->date;
             
                 // Group by product name
                 if (!isset($chartdata[$productName])) {
@@ -33,31 +34,27 @@ class GrafikStock extends Component
                 }
             
                 // Add the quantity to the appropriate product series (grouping by product)
-                $chartdata[$productName]['data'][] = $quantity;
+                // $chartdata[$productName] = [
+                //     $date, // Date for the x-axis
+                // ];
+
+                // $chartdata[$productName]['data'][] = $quantity;
+
+                $chartdata[$productName]['data'][] = [
+                    'x' => $date, // Date for the x-axis
+                    'y' => $quantity, // Quantity for the y-axis
+                ];
                 
                 
             }
-            $startOfWeek = now()->startOfWeek();
-            $endOfWeek = now()->endOfWeek();
-            
-            // Iterate through each day of the week
-            while ($startOfWeek <= $endOfWeek) {
-                // Add the formatted date to the array
-                $chrtdate[] = $startOfWeek->format('Y-m-d');
-                
-                // Move to the next day
-                $startOfWeek->addDay();
-            }
-            // sort($chrtdate); 
             $chartdata = array_values($chartdata);
-            $chrtdate = array_values($chrtdate);
             // dd($chrtdate);
-            
             // dd($chartdata);
+            
         return view('livewire.grafik-stock',[
             'chart' => $chartdata,
             'prod' => $data,
-            'date' => $chrtdate,
+            // 'date' => $chrtdate,
         ]);
     }
 }
