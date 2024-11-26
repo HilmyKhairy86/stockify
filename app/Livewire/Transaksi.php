@@ -39,19 +39,17 @@ class Transaksi extends Component
             $types = is_array($this->types) ? $this->types : [$this->types];
 
             if (in_array('all', $types)) {
-                $types = []; // Clear the types filter to show all data
+                $types = [];
             }
             
             $status = is_array($this->status) ? $this->status : [$this->status];
             if (in_array('all', $status)) {
-                $status = []; // Clear the types filter to show all data
+                $status = [];
             }
 
-            $routeName = Auth::user()->role == 'manager' ? 'admin.addTransaction' : 'manager.addTransaction';
-            $stock = $this->stocktransactionService->searchByName($this->search, $this->date, $types, $status,)->paginate(10);
+            $stock = $this->stocktransactionService->searchByName($this->search, $this->date, $types, $status)->paginate(10);
             return view('livewire.transaksi',[
                 'stock' => $stock,
-                'routeName' => $routeName,
             ]);  
     }
 }
