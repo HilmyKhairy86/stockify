@@ -4,12 +4,13 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use Livewire\WithPagination;
+use Livewire\WithoutUrlPagination;
 use Illuminate\Support\Facades\Auth;
 use App\Services\StockTransaction\StockTransactionService;
 
 class Transaksi extends Component
 {
-    use WithPagination;
+    use WithPagination, WithoutUrlPagination; 
     protected $stocktransactionService;
     public function boot(StockTransactionService $stockTransactionService)
     {
@@ -34,6 +35,11 @@ class Transaksi extends Component
         $this->resetPage();
     }
 
+    public function search()
+    {
+        $this->resetPage();
+    }
+
     public function render()
     {
             $types = is_array($this->types) ? $this->types : [$this->types];
@@ -47,9 +53,9 @@ class Transaksi extends Component
                 $status = [];
             }
 
-            $stock = $this->stocktransactionService->searchByName($this->search, $this->date, $types, $status)->paginate(10);
+            $stock = $this->stocktransactionService->searchByName($this->search, $this->date, $types, $status);
             return view('livewire.transaksi',[
-                'stock' => $stock,
+                'stock' => $stock->paginate(5),
             ]);  
     }
 }
