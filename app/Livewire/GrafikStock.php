@@ -12,14 +12,12 @@ class GrafikStock extends Component
     {
         $this->stockTransactionService = $stockTransactionService;
     }
-    
-    public $day = '';
-
+    public $filterstock = 'week';
     public function render()
     {
         $chartdata = [];
         // $chrtdate = [];
-        $data = $this->stockTransactionService->FilterStock($this->day);
+        $data = $this->stockTransactionService->FilterStock($this->filterstock);
             foreach ($data as $d) {
                 $productName = $d->product->name;
                 $quantity = $d->quantity;
@@ -50,6 +48,7 @@ class GrafikStock extends Component
             $chartdata = array_values($chartdata);
             // dd($chrtdate);
             // dd($chartdata);
+            // dd($this->filterstock);
             
         return view('livewire.grafik-stock',[
             'chart' => $chartdata,

@@ -16,26 +16,13 @@
 
               {{-- select --}}
               <div>
-                <button id="dropdownDefaultButton"
-                  data-dropdown-toggle="lastDaysdropdown"
-                  data-dropdown-placement="bottom" type="button" class="px-3 py-2 inline-flex items-center text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Last week <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
-              </svg></button>
+                <select wire:model.live="filterstock" class="text-md dark:bg-gray-800 py-2.5 px-0 text-gray-500 bg-transparent border-0 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+                  <option value="day">Sehari</option>
+                  <option value="week" selected=''>Seminggu</option>
+                  <option value="month">Sebulan</option>
+                  <option value="year">Setahun</option>
+                </select>
               <div id="lastDaysdropdown" class="z-10 px-3 py-2 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
-                      <li>
-                        <input wire:model.live="day" id="date" type="radio" name="day" value="day" class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                        <label for="" class="px-4 py-2 dark:hover:text-white">Today</label>
-                      </li>
-                      <li>
-                        <input wire:model.live="day" id="date" type="radio" name="day" value="week" class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                        <label for="" class="px-4 py-2 dark:hover:text-white">Week</label>
-                      </li>
-                      <li>
-                        <input wire:model.live="day" id="date" type="radio" name="day" value="month" class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                        <label for="" class="px-4 py-2 dark:hover:text-white">Month</label>
-                      </li>
-                    </ul>
                 </div>
               </div>
             </div>
@@ -43,7 +30,7 @@
             <div id="line-chart"></div>
 
             {{-- footer --}}
-            <div class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between mt-2.5">
+            {{-- <div class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between mt-2.5">
               <div class="pt-5">      
                 <a href="#" class="px-5 py-2.5 text-sm font-medium text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                   <svg class="w-3.5 h-3.5 text-white me-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 20">
@@ -53,7 +40,7 @@
                   View full report
                 </a>
               </div>
-            </div>
+            </div> --}}
           </div>
         
           <script>
@@ -68,13 +55,13 @@
                   enabled: false,
                 },
                 toolbar: {
-                  show: false,
+                  show: true,
                 },
               },
               tooltip: {
                 enabled: true,
                 x: {
-                  show: false,
+                  show: true,
                 },
               },
               dataLabels: {
@@ -87,7 +74,8 @@
                 show: true,
                 strokeDashArray: 4,
                 padding: {
-                  left: 2,
+                  left: 10,
+                  bottom: 10,
                   right: 2,
                   top: -26
                 },
@@ -103,11 +91,17 @@
               xaxis: {
                 type: 'datetime', // Dynamically handle dates
                 labels: {
-                format: 'yyyy-MM-dd', // Format x-axis labels
-                },
+        format: '', // Adjust as needed
+        datetimeFormatter: {
+            year: 'yyyy',
+            month: 'MMM yyyy',
+            day: 'dd MMM',
+            hour: 'HH:mm',
+        },
+    },
               },
               yaxis: {
-                show: false,
+                show: true,
               },
             }
       

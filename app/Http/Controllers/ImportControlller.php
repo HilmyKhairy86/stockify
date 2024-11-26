@@ -31,23 +31,40 @@ class ImportControlller extends Controller
 
     public function export()
     {
+        // Fetch the product data
         $products = $this->productService->viewProduct();
-        $csvFileName = 'Product-' . now()->format('Y-m-d_H-i-s') . '.csv';
-        $headers = [
-            'Content-Type' => 'text/csv',
-            'Content-Disposition' => 'attachment; filename="' . $csvFileName . '"',
-        ];
 
-        $handle = fopen('php://output', 'w');
-        fputcsv($handle, ['category_id', 'supplier_id', 'name', 'sku', 'stock', 'purchase_price', 'selling_price', 'description']); // Add more headers as needed
+        // Set CSV file name
+        $csvFileName = 'Product-' . now()->format('Y-m-d_H-i_s') . '.csv';
 
+        // Define the temporary file path
+        $tempFilePath = storage_path('app/public/' . $csvFileName);
+
+        // Open a file for writing
+        $handle = fopen($tempFilePath, 'w');
+
+        // Write the CSV header row
+        fputcsv($handle, ['category_id', 'supplier_id', 'name', 'sku', 'stock', 'purchase_price', 'selling_price', 'description']); 
+
+        // Write product data to CSV
         foreach ($products as $product) {
-            fputcsv($handle, [$product->category_id, $product->supplier_id, $product->name, $product->sku, $product->stock, $product->purchase_price, $product->selling_price, $product->description]); // Add more fields as needed
+            fputcsv($handle, [
+                $product->category_id, 
+                $product->supplier_id, 
+                $product->name, 
+                $product->sku, 
+                $product->stock, 
+                $product->purchase_price, 
+                $product->selling_price, 
+                $product->description
+            ]);
         }
 
+        // Close the file handle
         fclose($handle);
 
-        return Response::make('', 200, $headers);
+        // Return the file as a download response
+        return response()->download($tempFilePath)->deleteFileAfterSend(true);          
     }
 
     public function exportxls()

@@ -1,24 +1,19 @@
 <div class="mb-3">
-    {{-- search --}}
-    {{-- {{dd(auth()->user())}} --}}
     <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
         <div class="w-full md:w-1/2">
             {{-- search --}}
-
-                <label for="simple-search" class="sr-only">Search</label>
-                <div class="relative w-full">
-                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                        <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
-                        </svg>
-                    </div>
-                    <input type="seacrh" wire:model.live="search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Search">
-
+            <label for="simple-search" class="sr-only">Search</label>
+            <div class="relative w-full">
+                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+                    </svg>
                 </div>
+                <input type="seacrh" wire:model.live="search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Search">
+            </div>
         </div>
-        {{-- addproduct --}}
+        {{-- menu bar --}}
         <div class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
-
             <div x-data="{ adddatamodal: false }" x-cloak="{display: none}" x-init="open = false" @keydown.escape.window="open = false" x-bind:class="{ 'overflow-hidden': open }"  class="relative">
                 <!-- Button to open drawer -->
                 <button @click="adddatamodal = true" class="flex items-center justify-center dark:bg-blue-600 bg-blue-600 text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800" type="button">
@@ -27,10 +22,8 @@
                     </svg>
                     Add product
                 </button>
-                
                 <div x-show="adddatamodal"
                 class="fixed inset-0 bg-gray-800 bg-opacity-50 z-50 over" @click="adddatamodal = false"></div>
-                
                 <!-- Drawer -->
                 <div x-show="adddatamodal" x-transition:enter="transition ease-out duration-300"
                     x-transition:enter-start="transform translate-x-full" x-transition:enter-end="transform translate-x-0"
@@ -166,75 +159,165 @@
                 </div>
             </div>
 
-            @if (auth()->user()->role == 'admin')    
-            <button type="button" id="importModalbutton" data-modal-target="importModal" data-modal-toggle="importModal" type="button" class="flex items-center justify-center dark:bg-blue-600 bg-blue-600 text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
-                <i class="fa-solid fa-file-import"></i>
+            @if (auth()->user()->role == 'admin')
+            <div x-data="{ importdatamodal: false }" x-cloak="{display: none}" x-init="open = false" @keydown.escape.window="open = false" x-bind:class="{ 'overflow-hidden': open }"  class="relative">
+                <!-- Button to toggle the modal -->
+                <button id="importmodal" @click="importdatamodal = true" class="flex items-center justify-center dark:bg-blue-600 bg-blue-600 text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800" type="button">
+                    <i class="fa-solid fa-file-import"></i>
                 Import
-            </button>
-            <div x-data="{ open: false }" x-show="open" @keydown.escape.window="open = false" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center" style="display: none;">
-                <div class="relative w-96 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
+                </button>
+                
+                <div id="importdatamodal" x-show="importdatamodal"
+                    x-transition:enter="transition ease-out duration-200"
+                    x-transition:enter-start="opacity-0"
+                    x-transition:enter-end="opacity-100"
+                    x-transition:leave="transition ease-in duration-200"
+                    x-transition:leave-start="opacity-100"
+                    x-transition:leave-end="opacity-0"
+                class="fixed inset-0 bg-gray-800 bg-opacity-50 z-50" @click="importdatamodal = false"></div>
+                
+                {{-- modal header --}}
+                <div id="importdatamodal" x-show="importdatamodal"
+                    class="fixed inset-0 z-50 flex justify-center items-center w-full h-full bg-gray-900 bg-opacity-50" tabindex="-1" aria-labelledby="drawer-label" aria-hidden="true" @click="importdatamodal = false">
+                    <!-- Drawer Header -->
+                    <div class="relative p-4 w-full max-w-2xl max-h-full">
+                        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                        
+                        <!-- Close Button -->
+                        <button 
+                            @click="importdatamodal = false" 
+                            type="button" 
+                            class="absolute top-3 right-3 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white">
+                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                            </svg>
+                            <span class="sr-only">Close modal</span>
+                        </button>
+                        
+                            <div class="p-3">
+                                <!-- Modal Text -->
+                                <div class="flex p-6">
+                                    <form action="{{ route('import') }}" method="post" enctype="multipart/form-data">
+                                        @csrf
+                                        <div class="mb-4 w-full">
+                                            <label for="file" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Select File</label>
+                                            <input type="file" name="file" id="file" class="mt-1 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:bg-gray-700 dark:text-gray-400 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                        </div>
+                            
+                                        <div class="flex">
+                                            <button type="submit" class="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 dark:bg-blue-500 dark:hover:bg-blue-600 focus:outline-none dark:focus:ring-blue-700">
+                                                <i class="fa-solid fa-file-import"></i>
+                                                Upload
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal -->
+                <div 
+                x-data="{ importdatamodal: false }" 
+                x-show="importdatamodal" 
+                x-transition 
+                @keydown.escape.window="importdatamodal = false" 
+                tabindex="-1" 
+                class="fixed inset-0 z-50 flex justify-center items-center w-full h-full bg-gray-900 bg-opacity-50">
+                
+                <div class="relative p-4 w-full max-w-md max-h-full">
+                    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                    
                     <!-- Close Button -->
-                    <button type="button" @click="open = false" class="absolute top-2 right-2 text-gray-400 hover:text-gray-600 dark:text-gray-300 dark:hover:text-white">
-                        &times;
+                    <button 
+                    @click="importdatamodal = false" 
+                    type="button" 
+                    class="absolute top-3 right-3 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white">
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                    </svg>
+                    <span class="sr-only">Close modal</span>
                     </button>
-            
-                    <!-- Modal Header -->
-                    <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-4">Import CSV File</h3>
-            
-                    <!-- Form -->
-                    <form action="{{ route('import') }}" method="post" enctype="multipart/form-data">
-                        @csrf
-                        <div class="mb-4">
-                            <label for="file" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Select File</label>
-                            <input type="file" name="file" id="file" class="mt-1 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:bg-gray-700 dark:text-gray-400 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        </div>
-            
-                        <div class="flex items-center justify-center">
-                            <button type="submit" class="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 dark:bg-blue-500 dark:hover:bg-blue-600 focus:outline-none dark:focus:ring-blue-700">
-                                Upload
-                            </button>
-                            <button type="button" @click="open = false" class="ml-2 px-4 py-2 bg-gray-300 text-gray-800 text-sm font-medium rounded-lg hover:bg-gray-400 focus:ring-4 focus:ring-gray-200 dark:bg-gray-600 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">
-                                Cancel
-                            </button>
-                        </div>
-                    </form>
+                    
+                    <div class="p-4 md:p-5 text-center">
+                    
+                    <!-- Icon -->
+                    <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                    </svg>
+                
+                    <!-- Modal Text -->
+                    <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure you want to delete this product?</h3>
+                    
+                    <!-- Action Buttons -->
+                    <button 
+                        @click="importdatamodal = false" 
+                        type="button" 
+                        class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
+                        Yes, I'm sure
+                    </button>
+                    
+                    <button 
+                        @click="importdatamodal = false" 
+                        type="button" 
+                        class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+                        No, cancel
+                    </button>
+                    </div>
+                </div>
+                
+                </div>
                 </div>
             </div>
-            <div x-data="{ isOpen: false }" x-cloak="{display: none}" @click.away="isOpen = false" >
-                <button @click="isOpen = !isOpen" class="w-full md:w-auto flex items-center justify-center py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
-                    <i class="fa-solid fa-download mr-2"></i>
-                    Export
-                    <svg class="-mr-1 ml-1.5 w-5 h-5" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                        <path clip-rule="evenodd" fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
-                    </svg>
-                </button>
-              
-                <div x-show="isOpen" class="fixed w-48 p-3 bg-white rounded-lg shadow dark:bg-gray-700 z-50">
-                    <ul class="space-y-2 text-sm" aria-labelledby="filterDropdownButton">
-                        <li class="items-center">
+
+            {{-- export --}}
+            <div x-data="{ open: false }" x-cloak="{display: none}" class="relative inline-block text-left">
+                <!-- Button to toggle the dropdown -->
+                <div>
+                    <button @click="open = !open" type="button" class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50" id="menu-button" aria-expanded="true" aria-haspopup="true">
+                        <i class="fa-solid fa-download mr-2"></i>
+                        Export
+                        <svg class="-mr-1 ml-1.5 w-5 h-5" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path clip-rule="evenodd" fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
+                        </svg>
+                    </button>
+                </div>
+                
+                <div x-show="open" @click.away="open = false"
+                    x-transition:enter="transition ease-out duration-100"
+                    x-transition:enter-start="transform opacity-0 scale-95"
+                    x-transition:enter-end="transform opacity-100 scale-100"
+                    x-transition:leave="transition ease-in duration-75"
+                    x-transition:leave-start="transform opacity-100 scale-100"
+                    x-transition:leave-end="transform opacity-0 scale-95"
+                    class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none"
+                    role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+                    <div class="py-1" role="none">
+                        <!-- Active: "bg-gray-100 text-gray-900 outline-none", Not Active: "text-gray-700" -->
+                        <div>
                             <form action="{{route('export')}}" method="post" enctype="multipart/form-data">
                                 @csrf
-                                <button type="submit" class="w-full dark:bg-blue-600 bg-blue-600 text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
-                                    <i class="fa-solid fa-download mr-2"></i>
+                                <button type="submit" class="block px-4 py-2 text-sm text-gray-700"></i>
                                     Export .CSV
                                 </button>
                             </form>
-                        </li>
-                        <li class="items-center">
+                        </div>
+                        <div>
                             <form action="{{route('exportxls')}}" method="post" enctype="multipart/form-data">
                                 @csrf
-                                <button type="submit" class="w-full dark:bg-blue-600 bg-blue-600 text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
-                                    <i class="fa-solid fa-download mr-2"></i>
+                                <button type="submit" class="block px-4 py-2 text-sm text-gray-700"></i>
                                     Export .XLSX
                                 </button>
                             </form>
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
             @endif   
             
-            <div x-data="{ filtermodal: false }" x-cloak="{display: none}" x-init="open = false" @keydown.escape.window="open = false" x-bind:class="{ 'overflow-hidden': open }"  class="relative">
+            {{-- filter --}}
+            <div x-data="{ filtermodal: false }" x-cloak="{display: none}" x-init="open = false" @keydown.escape.window="open = false" x-bind:class="{ 'overflow-hidden': open }" class="relative">
                 <!-- Button to open drawer -->
                 <button @click="filtermodal = true" class="w-full hover:text-gray-900 md:w-auto flex items-center justify-center py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" type="button">
                     <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="h-4 w-4 mr-2 text-gray-400" viewbox="0 0 20 20" fill="currentColor">
@@ -266,7 +349,7 @@
                             <span class="sr-only">Close menu</span>
                         </button>
                     </div>
-                    <div class="h-full overflow-y-auto">
+                    <div class="h-full ">
                         <div class="grid gap-4 p-4 mb-5 sm:grid-cols-2 justify-items">
                             @foreach ($cat as $p)
                             <div class=" flex items-center">

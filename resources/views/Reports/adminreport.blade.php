@@ -14,13 +14,12 @@
         </div>
         <div class="mb-5 border dark:border-gray-800 dark:bg-gray-800 rounded-lg shadow-lg bg-white border-gray-200">
             <div class="p-5">
-                <h2 class="mb-5 text-5xl font-bold text-gray-900 dark:text-white">Laporan</h2>
+                <h2 class="mb-5 text-5xl font-bold text-gray-900 dark:text-white">Laporan Transaksi</h2>
                 @livewire('AdminReport')
             </div>
         </div>
         @livewire('KeluarMasukReport')
         {{-- @livewire('ProdKeluarMasuk') --}}
-        @livewire('GrafikStock')
         
         <!-- Card Footer -->
 

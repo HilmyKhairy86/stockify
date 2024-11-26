@@ -144,12 +144,11 @@ class StockTransactionRepositoryImplement extends Eloquent implements StockTrans
 
     public function FilterStock(string $day){
         $query = StockTransaction::query();
-        // $query = StockTransaction::query();
+        // $day = 'week';
         switch ($day) {
             case 'day':
                 $query->whereDate('date', today());
                 break;
-
             case 'week':
                 $query->whereBetween('date', [now()->startOfWeek(), now()->endOfWeek()]);
                 break;
@@ -162,17 +161,12 @@ class StockTransactionRepositoryImplement extends Eloquent implements StockTrans
                 $query->whereYear('date', now()->year);
                 break;
             case 'all':
-
+                break;
             default:
                 // No filter applied; get all records
                 break;
         }
 
         return $query->get();
-    }
-
-    public function ShowProductAndStock()
-    {
-        
     }
 }
