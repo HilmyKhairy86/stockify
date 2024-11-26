@@ -35,27 +35,27 @@ class Transaksi extends Component
         $this->resetPage();
     }
 
-    public function search()
+    public function updatingsearch()
     {
         $this->resetPage();
     }
 
     public function render()
     {
-            $types = is_array($this->types) ? $this->types : [$this->types];
+        $types = is_array($this->types) ? $this->types : [$this->types];
 
-            if (in_array('all', $types)) {
-                $types = [];
-            }
-            
-            $status = is_array($this->status) ? $this->status : [$this->status];
-            if (in_array('all', $status)) {
-                $status = [];
-            }
+        if (in_array('all', $types)) {
+            $types = [];
+        }
 
-            $stock = $this->stocktransactionService->searchByName($this->search, $this->date, $types, $status);
+        $status = is_array($this->status) ? $this->status : [$this->status];
+
+        if (in_array('all', $status)) {
+            $status = [];
+        }
+            $stock = $this->stocktransactionService->searchByName($this->search, $this->date, $types, $status)->paginate(10);
             return view('livewire.transaksi',[
-                'stock' => $stock->paginate(5),
+                'stock' => $stock,
             ]);  
     }
 }

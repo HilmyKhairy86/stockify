@@ -27,7 +27,7 @@ class StockTransactionRepositoryImplement extends Eloquent implements StockTrans
 
     public function viewTransaction()
     {
-        return $this->model->all();
+        return StockTransaction::all();
     }
 
     public function updateTransaction($id, array $data)
@@ -100,23 +100,23 @@ class StockTransactionRepositoryImplement extends Eloquent implements StockTrans
 
     public function searchByName(string $name, string $date, array $types = [], array $status = [])
     {
-        $query = StockTransaction::join('products', 'stock_transactions.product_id', '=', 'products.id')
-        ->join('users', 'stock_transactions.user_id', '=', 'users.id') // Join the users table
-        ->where('products.name', 'like', '%' . $name . '%')
-        ->select('stock_transactions.*', 'products.name as product_name', 'users.name as user_name') // Select user information
-        ->orderBy('stock_transactions.id', 'desc');
-
-        if (!empty($types)) {
-            $query->whereIn('type', $types);
-        }
-
-        if (!empty($status)) {
-            $query->whereIn('status', $status);
-        }
-        if (!empty($date)) {
-            $query->whereDate('stock_transactions.date', $date);
-        }
-
+        $query = StockTransaction::with(['product', 'user']) // Load related Product and User data
+        ->when(!empty($name), function ($q) use ($name) {
+            $q->whereHas('product', function ($query) use ($name) {
+                $query->where('name', 'like', '%' . $name . '%');
+            });
+        })
+        ->when(!empty($types), function ($q) use ($types) {
+            $q->whereIn('type', $types);
+        })
+        ->when(!empty($status), function ($q) use ($status) {
+            $q->whereIn('status', $status);
+        })
+        ->when(!empty($date), function ($q) use ($date) {
+            $q->whereDate('date', $date);
+        })
+        ->orderBy('id', 'desc');
+        
         return $query;
     }
 

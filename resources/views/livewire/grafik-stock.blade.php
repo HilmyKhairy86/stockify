@@ -15,18 +15,19 @@
               </div>
 
               {{-- select --}}
-              <div>
-                <select wire:model.live="filterstock" class="text-md dark:bg-gray-800 py-2.5 px-0 text-gray-500 bg-transparent border-0 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
-                  <option value="day">Sehari</option>
-                  <option value="week" selected=''>Seminggu</option>
-                  <option value="month">Sebulan</option>
-                  <option value="year">Setahun</option>
-                </select>
-              <div id="lastDaysdropdown" class="z-10 px-3 py-2 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                  <div>
+                    <select wire:model.live="filterstock" class="text-md dark:bg-gray-800 py-2.5 px-0 text-gray-500 bg-transparent border-0 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+                      <option value="day">Sehari</option>
+                      <option value="week" selected=''>Seminggu</option>
+                      <option value="month">Sebulan</option>
+                      <option value="year">Setahun</option>
+                    </select>
+                  <div id="lastDaysdropdown" class="z-10 px-3 py-2 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
                 </div>
               </div>
             </div>
             {{-- chart --}}
+            {{-- <div id="line-chart"></div> --}}
             <div id="line-chart"></div>
 
             {{-- footer --}}
@@ -91,14 +92,18 @@
               xaxis: {
                 type: 'datetime', // Dynamically handle dates
                 labels: {
-        format: '', // Adjust as needed
-        datetimeFormatter: {
-            year: 'yyyy',
-            month: 'MMM yyyy',
-            day: 'dd MMM',
-            hour: 'HH:mm',
-        },
-    },
+                  show: true,
+                  style: {
+                    fontFamily: "Inter, sans-serif",
+                    cssClass: 'text-xs font-normal fill-gray-500 dark:fill-gray-400'
+                  }
+                },
+                axisBorder: {
+                  show: false,
+                },
+                axisTicks: {
+                  show: false,
+                },
               },
               yaxis: {
                 show: true,

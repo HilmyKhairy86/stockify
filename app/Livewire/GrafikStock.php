@@ -50,10 +50,10 @@ class GrafikStock extends Component
             // dd($chartdata);
             // dd($this->filterstock);
             
-        return view('livewire.grafik-stock',[
-            'chart' => $chartdata,
-            'prod' => $data,
-            // 'date' => $chrtdate,
-        ]);
+            return view('livewire.grafik-stock',[
+                'chart' => $chartdata,
+                'prod' => $data,
+                // 'date' => $chrtdate,
+            ]);
     }
 }
