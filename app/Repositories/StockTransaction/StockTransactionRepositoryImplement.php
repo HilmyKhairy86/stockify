@@ -172,7 +172,7 @@ class StockTransactionRepositoryImplement extends Eloquent implements StockTrans
 
     public function stockOpname(string $name)
     {
-        $query = StockTransaction::with(['product', 'user']) // Load related Product and User data
+        $query = StockTransaction::with(['product', 'user']) 
         ->when(!empty($name), function ($q) use ($name) {
             $q->whereHas('product', function ($query) use ($name) {
                 $query->where('name', 'like', '%' . $name . '%');
