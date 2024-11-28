@@ -20,7 +20,7 @@ class CategoryController extends Controller
     public function addCategory(Request $request){
         $data = $request->all();
         $this->categoryService->addCategory($data);
-        return redirect()->back();
+        return redirect()->back()->with('success','Action was successful!');
     }
 
     public function viewCategories()
@@ -36,7 +36,7 @@ class CategoryController extends Controller
     {
         $data = $request->all();
         $this->categoryService->updateCategory($id, $data);
-        return redirect()->back();
+        return redirect()->back()->with('success','Action was successful!');
     }
 
     public function deleteCategory($id, Request $request)
@@ -50,6 +50,6 @@ class CategoryController extends Controller
             $this->categoryService->deleteCategory($id);
         }
 
-        return redirect()->back();
+        return redirect()->back()->with('success','Action was successful!');
     }
 }

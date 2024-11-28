@@ -27,9 +27,9 @@
                     <th scope="col" class="px-4 py-3">Category</th>
                     <th scope="col" class="px-4 py-3">Suplier</th>
                     <th scope="col" class="px-4 py-3">SKU</th>
-                    <th scope="col" class="px-4 py-3">Stock Sistem</th>
-                    <th scope="col" class="px-4 py-3">Stock Fisik</th>
-                    <th scope="col" class="px-4 py-3">Selisih Stock</th>
+                    <th scope="col" class="px-4 py-3 text-center">Product Masuk/keluar</th>
+                    <th scope="col" class="px-4 py-3 text-center">Stock Fisik</th>
+                    <th scope="col" class="px-4 py-3 text-center">Selisih Stock</th>
                     <th scope="col" class="px-4 py-3">
                         <span class="sr-only">Actions</span>
                     </th>
@@ -42,9 +42,9 @@
                     <td class="px-4 py-3">{{ optional($d->category)->name }}</td>
                     <td class="px-4 py-3">{{ optional($d->supplier)->name }}</td>
                     <td class="px-4 py-3">{{ $d->sku }}</td>
-                    <td class="px-4 py-3">{{ $d->stock }}</td>
-                    <td class="px-4 py-3">{{ $d->stock_fisik }}</td>
-                    <td class="px-4 py-3">
+                    <td class="px-4 py-3 text-center items-center">{{ $d->stock }}</td>
+                    <td class="px-4 py-3 text-center">{{ $d->stock_fisik }}</td>
+                    <td class="px-4 py-3 text-center">
                         @if ($d->stock < $d->stock_fisik)
                             {{ $d->stock_fisik - $d->stock }}
                         @elseif ($d->stock_fisik < $d->stock)

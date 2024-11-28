@@ -22,15 +22,32 @@ class Transaksi extends Component
     public $types = [];
     public $status = [];
 
-    public function updatingTypes()
+    public function updatingtypes()
     {
         $this->resetPage();
     }
+
+    public function updatedtypes()
+    {
+        $this->resetPage();
+    }
+
     public function updatingdate()
     {
         $this->resetPage();
     }
+
+    public function updateddate()
+    {
+        $this->resetPage();
+    }
+
     public function updatingstatus()
+    {
+        $this->resetPage();
+    }
+
+    public function updatedstatus()
     {
         $this->resetPage();
     }
@@ -53,7 +70,8 @@ class Transaksi extends Component
         if (in_array('all', $status)) {
             $status = [];
         }
-            $stock = $this->stocktransactionService->searchByName($this->search, $this->date, $types, $status)->paginate(10);
+            $stock = $this->stocktransactionService->searchByName($this->search, $this->date, $types, $status)->paginate(5);
+            // dd($stock);
             return view('livewire.transaksi',[
                 'stock' => $stock,
             ]);  

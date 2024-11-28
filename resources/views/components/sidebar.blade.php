@@ -2,19 +2,20 @@
   @if (Auth()->user()->role === 'admin')
       <div class="overflow-y-auto py-5 px-3 h-full bg-white dark:bg-gray-800">
         <ul class="space-y-2">
-            <x-li :url="route('admin.dashboard')">
+            <li>
+              <x-nav-link-parent :active="request()->routeIs('admin.dashboard')" href="{{ route('admin.dashboard') }}">
                 <svg
-                aria-hidden="true"
-                class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
-                <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
-              </svg>
-              <span class="ml-3">Dashboard</span>
-            </x-li>
+                  aria-hidden="true"
+                  class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
+                  <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
+                </svg>
+                <span class="ml-3">Dashboard</span>
+              </x-nav-link-parent>
+            </li>
             
           <li>
             <button
@@ -117,16 +118,16 @@
                 ></path>
               </svg>
             </button>
-            <ul id="dropdown-stock" class="{{ request()->routeIs('admin.sHistory','stockminimum') ? '' : 'hidden' }} py-2 space-y-2">
+            <ul id="dropdown-stock" class="{{ request()->routeIs('admin.sHistory','stockminimum','admin.opname') ? '' : 'hidden' }} py-2 space-y-2">
             {{-- <ul id="dropdown-stock" class="hidden' py-2 space-y-2"> --}}
               <li>
-                <x-nav-link :active="request()->is('*/Stock/History')" href="{{route('admin.sHistory')}}">Riwayat transaksi barang</x-nav-link>
+                <x-nav-link :active="request()->routeIs('admin.sHistory')" href="{{route('admin.sHistory')}}">Riwayat transaksi barang</x-nav-link>
               </li>
               <li>
-                <x-nav-link href="{{ route('admin.opname') }}">Stock opname</x-nav-link>
+                <x-nav-link :active="request()->routeIs('admin.opname')" href="{{ route('admin.opname') }}">Stock opname</x-nav-link>
               </li>
               <li>
-                <x-nav-link :active="request()->is('*/Stock/Stock-minimum')" href="{{route('stockminimum')}}">Pengaturan stok minimum</x-nav-link>
+                <x-nav-link :active="request()->routeIs('stockminimum')" href="{{route('stockminimum')}}">Pengaturan stok minimum</x-nav-link>
               </li>
             </ul>
           </li>
@@ -163,9 +164,9 @@
                 ></path>
               </svg>
             </button>
-            <ul id="dropdown-report" class="hidden py-2 space-y-2">
+            <ul id="dropdown-report" class="{{ request()->routeIs('admin.report') ? '' : 'hidden' }} py-2 space-y-2">
               <li>
-                <x-nav-link href="{{route('admin.report')}}">Laporan Stock Barang</x-nav-link>
+                <x-nav-link :active="request()->routeIs('admin.report')" href="{{route('admin.report')}}">Laporan Stock Barang</x-nav-link>
               </li>
             </ul>
           </li>
@@ -339,19 +340,20 @@
   @elseif (Auth()->user()->role === 'staff_gudang')
     <div class="overflow-y-auto py-5 px-3 h-full bg-white dark:bg-gray-800">
       <ul class="space-y-2">
-          <x-li :url="route('staff.dashboard')">
+          <li>
+            <x-nav-link-parent :active="request()->routeIs('staff.dashboard')" href="{{ route('staff.dashboard') }}">
               <svg
-              aria-hidden="true"
-              class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
-              <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
-            </svg>
-            <span class="ml-3">Dashboard</span>
-          </x-li>
+                aria-hidden="true"
+                class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
+                <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
+              </svg>
+              <span class="ml-3">Dashboard</span>
+            </x-nav-link-parent>
+          </li>
           <li>
             <button
               type="button"
@@ -388,7 +390,7 @@
             <ul id="dropdown-stock" class="{{ request()->routeIs('staff.sHistory') ? '' : 'hidden' }} py-2 space-y-2">
             {{-- <ul id="dropdown-stock" class="hidden' py-2 space-y-2"> --}}
               <li>
-                <x-nav-link :active="request()->is('*/Stock/History')" href="{{route('staff.sHistory')}}">
+                <x-nav-link :active="request()->routeIs('staff.sHistory')" href="{{route('staff.sHistory')}}">
                   <i class="fa-solid fa-arrow-right-arrow-left mx-1"></i>Transaksi barang
                 </x-nav-link>
               </li>

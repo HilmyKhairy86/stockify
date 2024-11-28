@@ -23,7 +23,6 @@ class StockOpname extends Component
     }
 
     public $search = '';
-    public $categories = [];
 
     public function search()
     {
@@ -47,7 +46,7 @@ class StockOpname extends Component
     
     public function render()
     {   
-        $result = $this->productService->searchByName($this->search, $this->categories);
+        $result = $this->productService->searchByName($this->search,);
         return view('livewire.stock-opname', [
             'products' => $result->paginate(10),
         ]);

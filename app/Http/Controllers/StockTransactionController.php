@@ -20,7 +20,7 @@ class StockTransactionController extends Controller
     {
         $data = $request->all();
         $this->stocktransactionService->addTransaction($data);
-        return redirect()->back();
+        return redirect()->back()->with('success','Action was successful!');
     }
 
     public function updateTransaction($id, Request $request)

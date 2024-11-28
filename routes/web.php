@@ -135,7 +135,7 @@ Route::middleware('auth', 'verified', 'role:staff_gudang')->group(function (){
         }
         return view('auth.login');
     });
-    Route::get('Staff/Dashboard',[DashboardController::class, 'staffdash'])->name('staff.dashboard');
+    Route::get('/Staff/Dashboard',[DashboardController::class, 'staffdash'])->name('staff.dashboard');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

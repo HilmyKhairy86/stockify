@@ -46,7 +46,7 @@ class AdminReport extends Component
             $status = []; // Clear the types filter to show all data
         }
 
-        $stock = $this->stocktransactionService->searchByName($this->search, $this->date, $types, $status,)->paginate(10);
+        $stock = $this->stocktransactionService->searchByName($this->search, $this->date, $types, $status,)->paginate(5);
         return view('livewire.admin-report',[
             'stock' => $stock,
         ]);

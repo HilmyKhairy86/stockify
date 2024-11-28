@@ -56,7 +56,7 @@
                   enabled: false,
                 },
                 toolbar: {
-                  show: true,
+                  show: false,
                 },
               },
               tooltip: {

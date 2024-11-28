@@ -20,7 +20,7 @@ class ProductAttributeController extends Controller
     {
         $data = $request->all();
         $this->attributeService->addAttribute($data);
-        return redirect()->back()->with('success');
+        return redirect()->back()->with('success','Action was successful!');
     }
 
     public function viewAttribute()
@@ -37,12 +37,12 @@ class ProductAttributeController extends Controller
     {
         $data = $request->all();
         $this->attributeService->updateAttribute($id, $data);
-        return redirect()->back()->with('success');
+        return redirect()->back()->with('success','Action was successful!');
     }
 
     public function deleteAttribute($id)
     {
         $this->attributeService->deleteAttribute($id);
-        return redirect()->back();
+        return redirect()->back()->with('success','Action was successful!');
     }
 }

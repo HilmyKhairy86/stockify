@@ -259,25 +259,25 @@
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-300 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                    <th scope="col" class="px-4 py-3"></th>
-                                    <th scope="col" class="px-4 py-3">Product</th>
-                                    <th scope="col" class="px-4 py-3">User</th>
-                                    <th scope="col" class="px-4 py-3">Type</th>
-                                    <th scope="col" class="px-4 py-3">Quantity</th>
-                                    <th scope="col" class="px-4 py-3">Date</th>
-                                    <th scope="col" class="px-4 py-3">Status</th>
-                                    <th scope="col" class="px-4 py-3">Notes</th>
-                                    @if (auth()->user()->role === 'staff_gudang')
-                                    <th scope="col" class="px-4 py-3">Action</th>
-                                    @endif
+                    <th scope="col" class="px-4 py-3">Product</th>
+                    <th scope="col" class="px-4 py-3">User</th>
+                    <th scope="col" class="px-4 py-3">Type</th>
+                    <th scope="col" class="px-4 py-3">Quantity</th>
+                    <th scope="col" class="px-4 py-3">Date</th>
+                    <th scope="col" class="px-4 py-3">Status</th>
+                    <th scope="col" class="px-4 py-3">Notes</th>
+                    @if (auth()->user()->role == 'admin')
+
+                    @elseif (auth()->user()->role == 'staff_gudang')
+                    <th scope="col" class="px-4 py-3">Action</th>
+                    @endif
+                    
                 </tr>
             </thead>
             <tbody>
                 {{-- {{dd($stock)}} --}}
                 @foreach ($stock as $d)
-                
                 <tr class="border-b dark:border-gray-700 odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800">
-                    <td class="px-4 py-3"></td>
                     <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{$d->product_id}} - {{ $d->product->name }}</th>
                     <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $d->user_id }} - {{$d->user->name}}</th>
                     <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -325,9 +325,9 @@
                         @endswitch
                     </th>
                     <th scope="row" class="px-4 py-3 font-medium text-gray-900 dark:text-white">{{ $d->notes }}</th>
-                    @if (auth()->user()->role === 'staff_gudang')
-                        @if ($d->status === 'pending')    
-                        <th class="px-4 py-3 flex items-center">
+                    @if (auth()->user()->role == 'admin')    
+                        @elseif (auth()->user()->role == 'staff_gudang')
+                        <td class="px-4 py-3 flex items-center">
                             <div x-data="{ openupdatemodal: false }" x-cloak="{display: none}" x-init="open = false" @keydown.escape.window="open = false" x-bind:class="{ 'overflow-hidden': open }"  class="relative">
                                 <!-- Button to open drawer -->
                                 <button id="{{$d->id}}" @click="openupdatemodal = true" class="py-2 px-3 text-sm font-medium text-gray-500 bg-blue-500 rounded-lg hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-900 focus:z-10 dark:bg-blue-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-blue-700 dark:focus:ring-gray-600" type="button">
@@ -394,7 +394,7 @@
                                                     <label for="status" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
                                                     <select id="status" name="status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required>
                                                         <option value="" hidden disabled selected>Status</option>
-                                                        {{-- <option value="pending" {{ $d->status === 'pending' ? 'selected' : '' }}>Pending</option> --}}
+                                                        <option value="pending" {{ $d->status === 'pending' ? 'selected' : '' }}>Pending</option>
                                                         <option value="diterima" {{ $d->status === 'diterima' ? 'selected' : '' }}>Diterima</option>
                                                         <option value="ditolak" {{ $d->status === 'ditolak' ? 'selected' : '' }}>Ditolak</option>
                                                         <option value="dikeluarkan" {{ $d->status === 'dikeluarkan' ? 'selected' : '' }}>Dikeluarkan</option>
@@ -415,22 +415,19 @@
                                     <!-- Form -->
                                 </div>
                             </div>
-                        </th>
+                        </td>
                         @else
-                        <th></th>
                         @endif
-                    @endif
-                </tr>
-                
+                    </td>
                 @endforeach
                 <!--Update Main modal -->
             </tbody>
         </table>
-        @empty ($stock->links())
-        @else
-        {{$stock->links('pagination::tailwind')}}
-        @endempty
     </div>
+    @empty ($stock->links())
+    @else
+    {{$stock->links('pagination::tailwind')}}
+    @endempty
 </div>
 
 

@@ -17,7 +17,7 @@ class SupplierController extends Controller
     {
         $data = $request->all();
         $this->supplierService->addSupplier($data);
-        return redirect()->back();
+        return redirect()->back()->with('success','Action was successful!');
     }
 
     public function viewSupplier()
@@ -33,12 +33,12 @@ class SupplierController extends Controller
     {
         $data = $request->all();
         $this->supplierService->updateSupplier($id, $data);
-        return redirect()->back();
+        return redirect()->back()->with('success','Action was successful!');
     }
 
     public function deleteSupplier($id)
     {
         $this->supplierService->deleteSupplier($id);
-        return redirect()->back();
+        return redirect()->back()->with('success','Action was successful!');
     }
 }

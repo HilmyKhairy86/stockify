@@ -27,7 +27,7 @@ class ProductController extends Controller
     {
         $data = $request->all();
         $this->productService->addProduct($data);
-        return redirect()->back()->with('success');
+        return redirect()->back()->with('success','Action was successful!');
     }
 
     public function getAllCategories()
@@ -53,7 +53,7 @@ class ProductController extends Controller
     {
         $data = $request->all();
         $this->productService->updateProduct($id,$data);
-        return redirect()->back()->with('success');
+        return redirect()->back()->with('success','Action was successful!');
     }
 
     public function deleteProduct($id)
@@ -61,7 +61,7 @@ class ProductController extends Controller
         // $a_id = $this->attributeService->getAttByProdId($id);
         // $this->attributeService->deleteAttribute($a_id);
         $this->productService->deleteProduct($id);
-        return redirect()->back()->with('success');
+        return redirect()->back()->with('success','Action was successful!');
     }
 
     public function searchProduct(Request $request){
