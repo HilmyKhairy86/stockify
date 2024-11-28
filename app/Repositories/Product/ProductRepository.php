@@ -27,4 +27,6 @@ interface ProductRepository extends Repository{
     public function findProductBySku($sku);
 
     public function stockfilter();
+
+    public function stockOpname(string $name);
 }

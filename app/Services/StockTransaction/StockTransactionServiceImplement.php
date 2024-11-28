@@ -104,4 +104,9 @@ class StockTransactionServiceImplement extends ServiceApi implements StockTransa
     {
       return $this->mainRepository->FilterStock($day);
     }
+
+    public function stockOpname(string $name)
+    {
+      return $this->mainRepository->stockOpname($name);
+    }
 }

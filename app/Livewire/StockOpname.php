@@ -7,19 +7,18 @@ use Livewire\WithPagination;
 use Livewire\WithoutUrlPagination;
 use App\Services\Product\ProductService;
 use App\Services\Category\CategoryService;
+use App\Services\StockTransaction\StockTransactionService;
 use App\Services\Supplier\SupplierService;
 
 class StockOpname extends Component
 {
     use WithPagination, WithoutUrlPagination;
 
-    protected $productService;
-    protected $categoryService;
-    protected $supplierService;
+    protected $stockTransactionService;
 
-    public function boot(ProductService $productService)
+    public function boot(StockTransactionService $stockTransactionService)
     {
-        $this->productService = $productService;
+        $this->stockTransactionService = $stockTransactionService;
     }
 
     public $search = '';
@@ -46,7 +45,8 @@ class StockOpname extends Component
     
     public function render()
     {   
-        $result = $this->productService->searchByName($this->search,);
+        $result = $this->stockTransactionService->stockOpname($this->search);
+        // dd($result);
         return view('livewire.stock-opname', [
             'products' => $result->paginate(10),
         ]);

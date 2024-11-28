@@ -18,4 +18,5 @@ interface StockTransactionService extends BaseService{
     public function TaskMasuk();
     public function TaskKeluar();
     public function FilterStock(string $day);
+    public function stockOpname(string $name);
 }

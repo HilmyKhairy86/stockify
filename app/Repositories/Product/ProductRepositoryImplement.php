@@ -112,5 +112,10 @@ class ProductRepositoryImplement extends Eloquent implements ProductRepository{
         return Product::wherecolumn('stock', '<', 'stock_minimum');
     }
 
+    public function stockOpname(string $name)
+    {
+        
+    }
+
 
 }
