@@ -11,13 +11,12 @@
                 <div class="mb-5 border dark:border-gray-800 dark:bg-gray-800 rounded-lg shadow-lg bg-white border-gray-200">
                     <div class="p-5">
                         <h2 class="mb-2 text-5xl font-bold text-gray-900 dark:text-white">Riwayat Transaksi</h2>
-                        {{-- <h2 class="mb-2 text-xl font-bold text-gray-900 dark:text-white">Halo, {{auth()->user()->name}}</h2> --}}
                     </div>
                 </div>
                 <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
                     @livewire('Transaksi')
-                    
-            </section>
+                </div>
+        </section>
 
             @if (session('success'))
                 <!-- Modal toggle -->

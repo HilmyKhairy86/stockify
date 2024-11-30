@@ -742,7 +742,7 @@
                                                 <div class="sm:col-span-2">
                                                     <label for="brand" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Supplier</label>
                                                     <p class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                                        {{ $d->supplier->name }}
+                                                        {{ optional($d->supplier)->name }}
                                                     </p>
                                                 </div>
                                                 <div>
@@ -794,7 +794,7 @@
                             </div>
 
                             {{-- update modal --}}
-                            <div x-data="{ openupdatemodal: false }" x-cloak="{display: none}" x-init="open = false" @keydown.escape.window="open = false" x-bind:class="{ 'overflow-hidden': open }"  class="relative">
+                            {{-- <div x-data="{ openupdatemodal: false }" x-cloak="{display: none}" x-init="open = false" @keydown.escape.window="open = false" x-bind:class="{ 'overflow-hidden': open }"  class="relative">
                                 <!-- Button to open drawer -->
                                 <button id="{{$d->id}}" @click="openupdatemodal = true" class="py-2 px-3 text-sm font-medium text-gray-500 bg-blue-500 rounded-lg hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-900 focus:z-10 dark:bg-blue-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-blue-700 dark:focus:ring-gray-600" type="button">
                                     <i class="fa-solid fa-pen-to-square text-white"></i>
@@ -885,10 +885,10 @@
                                     </div>
                                     <!-- Form -->
                                 </div>
-                            </div>
+                            </div> --}}
 
                             {{-- delete modal --}}
-                            <div x-data="{ deletemodal: false }" x-cloak="{display: none}" x-init="open = false" @keydown.escape.window="open = false" x-bind:class="{ 'overflow-hidden': open }"  class="relative">
+                            {{-- <div x-data="{ deletemodal: false }" x-cloak="{display: none}" x-init="open = false" @keydown.escape.window="open = false" x-bind:class="{ 'overflow-hidden': open }"  class="relative">
                                 <!-- Button to toggle the modal -->
                                 <button id="{{$d->id}}" @click="deletemodal = true" class="py-2 px-3 text-sm font-medium text-gray-500 bg-red-600 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-red-900 focus:z-10 dark:red-blue-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-red-900 dark:focus:ring-gray-600" type="button">
                                     <i class="fa-solid fa-trash text-white"></i>
@@ -1000,7 +1000,7 @@
                                 </div>
                                 </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         @endif
                         
                         

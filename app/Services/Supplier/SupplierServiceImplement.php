@@ -23,9 +23,6 @@ class SupplierServiceImplement extends Service implements SupplierService{
     {
       $validator = Validator::make($data, [
         'name' => 'required|string|max:255',
-        'address' => 'required|string|max:255',
-        'phone' => 'required|string|max:255',
-        'email' => 'required|string|max:255',
       ]);
 
       if ($validator->fails()) {

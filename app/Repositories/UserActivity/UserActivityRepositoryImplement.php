@@ -23,4 +23,13 @@ class UserActivityRepositoryImplement extends Eloquent implements UserActivityRe
     {
         $this->model->create($data);
     }
+
+    public function viewActivity()
+    {
+        $query = UserActivity::query()
+        ->where('id', 'LIKE', '%' .''. '%')
+        ->orderBy('id', 'desc');
+
+        return $query;
+    }
 }

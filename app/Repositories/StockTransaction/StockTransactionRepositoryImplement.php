@@ -172,14 +172,12 @@ class StockTransactionRepositoryImplement extends Eloquent implements StockTrans
 
     public function stockOpname(string $name)
     {
-        $query = StockTransaction::with(['product', 'user']) 
-        ->when(!empty($name), function ($q) use ($name) {
-            $q->whereHas('product', function ($query) use ($name) {
-                $query->where('name', 'like', '%' . $name . '%');
-            });
-        })->orderBy('id', 'desc');
-
-        
+        $query = StockTransaction::join('products', 'stock_transactions.product_id', '=', 'products.id')
+        ->select('stock_transactions.product_id', 'stock_fisik', 'sku', 'products.name', DB::raw('SUM(stock_transactions.quantity) as stock_total'))
+        ->where('type','keluar')
+        ->where('name', 'like', '%' . $name . '%')
+        ->whereBetween('date', [now()->startOfWeek(), now()->endOfWeek()])
+        ->groupBy('stock_transactions.product_id', 'products.name', 'sku', 'stock_fisik');
         return $query;
     }
 }

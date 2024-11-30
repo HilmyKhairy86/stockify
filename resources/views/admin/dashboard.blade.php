@@ -19,11 +19,12 @@
         </div>
         @livewire('ProdKeluarMasuk')
         @livewire('GrafikStock')
-        <div class="mb-5 border dark:border-gray-800 dark:bg-gray-800 rounded-lg shadow-lg bg-white border-gray-200">
+        @livewire('UserActivity')
+        {{-- <div class="mb-5 border dark:border-gray-800 dark:bg-gray-800 rounded-lg shadow-lg bg-white border-gray-200">
             <div class="p-5">
                 Aktivitas pengguna terbaru
             </div>
-        </div>
+        </div> --}}
         <!-- Card Footer -->
 
         <!-- 2 columns -->

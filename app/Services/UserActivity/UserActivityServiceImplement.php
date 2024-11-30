@@ -34,4 +34,9 @@ class UserActivityServiceImplement extends ServiceApi implements UserActivitySer
     {
       $this->mainRepository->createActivity($data);
     }
+
+    public function viewActivity()
+    {
+      return $this->mainRepository->viewActivity();
+    }
 }

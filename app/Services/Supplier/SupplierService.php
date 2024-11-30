@@ -12,4 +12,5 @@ interface SupplierService extends BaseService{
     public function deleteSupplier($id);
     public function pagSupplier(int $num);
     public function searchByName(string $name);
+    
 }
