@@ -3,18 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Services\Product\ProductService;
 use Illuminate\Support\Facades\Response;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use App\Services\UserActivity\UserActivityService;
 
 class ImportControlller extends Controller
 {
 
     protected $productService;
-    public function __construct(ProductService $productService)
+    protected $userActivityService;
+    public function __construct(ProductService $productService, UserActivityService $userActivityService)
     {
         $this->productService = $productService;
+        $this->userActivityService = $userActivityService;
     }
 
     public function import(Request $request)
@@ -26,11 +30,23 @@ class ImportControlller extends Controller
         $this->productService->importProduct($request->file('file'));
 
         // Redirect with a success message
+        $act = [
+            'user_id' => Auth::user()?->id,
+            'kegiatan' => 'mengimport produk menggunakan file',
+            'tanggal' => now(),
+        ];
+        $this->userActivityService->createActivity($act);
         return redirect()->back()->with('success', 'Products imported successfully!');
     }
 
     public function export()
     {
+        $act = [
+            'user_id' => Auth::user()?->id,
+            'kegiatan' => 'mengekspor produk dengan format csv',
+            'tanggal' => now(),
+        ];
+        $this->userActivityService->createActivity($act);
         // Fetch the product data
         $products = $this->productService->viewProduct();
 
@@ -107,6 +123,13 @@ class ImportControlller extends Controller
         ob_start();
         $writer->save('php://output');
         $excelOutput = ob_get_clean();
+
+        $act = [
+            'user_id' => Auth::user()?->id,
+            'kegiatan' => 'mengekspor produk dengan format xlsx',
+            'tanggal' => now(),
+        ];
+        $this->userActivityService->createActivity($act);
 
         return response($excelOutput)
         ->header('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')

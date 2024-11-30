@@ -405,7 +405,7 @@
                     <td class="px-4 py-3 justify-end space-x-2 flex items-center">
 
                         @if (auth()->user()->role == 'admin')
-                            {{-- update modal --}}
+                            {{-- detail modal --}}
                             <div x-data="{ detailmodal: false }" x-cloak="{display: none}" x-init="open = false" @keydown.escape.window="open = false" x-bind:class="{ 'overflow-hidden': open }"  class="relative">
                                 <!-- Button to open drawer -->
                                 <button id="{{$d->id}}" @click="detailmodal = true" class="py-2 px-3 text-sm font-medium text-gray-500 bg-blue-500 rounded-lg hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-900 focus:z-10 dark:bg-blue-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-blue-700 dark:focus:ring-gray-600" type="button">
@@ -473,7 +473,7 @@
                                                 <div class="sm:col-span-2">
                                                     <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
                                                     <p class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                                        {{$d->category_id}} - {{$d->category->name}}
+                                                        {{$d->category_id ?? ''}} - {{ optional($d->category)->name}}
                                                     </p>
                                                 </div>
                                                 @if ($d->image)
