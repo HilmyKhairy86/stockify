@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\UserActivity;
 use App\Services\User\UserService;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\User\UserRepository;
@@ -17,6 +18,8 @@ use App\Repositories\ProductAttribute\ProductAttributeRepositoryImplement;
 use App\Repositories\StockTransaction\StockTransactionRepositoryImplement;
 use App\Repositories\Supplier\SupplierRepository;
 use App\Repositories\Supplier\SupplierRepositoryImplement;
+use App\Repositories\UserActivity\UserActivityRepository;
+use App\Repositories\UserActivity\UserActivityRepositoryImplement;
 use App\Services\Attribute\AttributeService;
 use App\Services\Attribute\AttributeServiceImplement;
 use App\Services\Category\CategoryService;
@@ -27,6 +30,8 @@ use App\Services\StockTransaction\StockTransactionService;
 use App\Services\StockTransaction\StockTransactionServiceImplement;
 use App\Services\Supplier\SupplierService;
 use App\Services\Supplier\SupplierServiceImplement;
+use App\Services\UserActivity\UserActivityService;
+use App\Services\UserActivity\UserActivityServiceImplement;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -41,6 +46,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(ProductAttributeRepository::class, ProductAttributeRepositoryImplement::class);
         $this->app->bind(StockTransactionRepository::class, StockTransactionRepositoryImplement::class);
         $this->app->bind(SupplierRepository::class, SupplierRepositoryImplement::class);
+        $this->app->bind(UserActivityRepository::class, UserActivityRepositoryImplement::class);
 
         $this->app->bind(UserService::class, UserServiceImplement::class);
         $this->app->bind(ProductService::class, ProductServiceImplement::class);
@@ -48,6 +54,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(SupplierService::class, SupplierServiceImplement::class);
         $this->app->bind(AttributeService::class, AttributeServiceImplement::class);
         $this->app->bind(StockTransactionService::class, StockTransactionServiceImplement::class);
+        $this->app->bind(UserActivityService::class, UserActivityServiceImplement::class);
     }
 
     /**

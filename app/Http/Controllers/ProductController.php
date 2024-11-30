@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\Attribute\AttributeService;
-use App\Services\Category\CategoryService;
-use App\Services\Product\ProductService;
-use App\Services\Supplier\SupplierService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Services\Product\ProductService;
+use App\Services\Category\CategoryService;
+use App\Services\Supplier\SupplierService;
+use App\Services\Attribute\AttributeService;
+use App\Services\UserActivity\UserActivityService;
 
 class ProductController extends Controller
 {
@@ -14,19 +16,27 @@ class ProductController extends Controller
     protected $categoryService;
     protected $supplierService;
     protected $attributeService;
+    protected $userActivityService;
 
-    public function __construct(ProductService $productService, CategoryService $categoryService, SupplierService $supplierService, AttributeService $attributeService)
+    public function __construct(ProductService $productService, CategoryService $categoryService, SupplierService $supplierService, AttributeService $attributeService, UserActivityService $userActivityService)
     {
         $this->productService = $productService;
         $this->categoryService = $categoryService;
         $this->supplierService = $supplierService;
         $this->attributeService = $attributeService;
+        $this->userActivityService = $userActivityService;
     }
 
     public function addProduct(Request $request)
     {
         $data = $request->all();
         $this->productService->addProduct($data);
+        $act = [
+            'user_id' => Auth::user()?->id,
+            'kegiatan' => 'menambahkan produk dengan nama '.$request->name,
+            'tanggal' => now(),
+        ];
+        $this->userActivityService->createActivity($act);
         return redirect()->back()->with('success','Action was successful!');
     }
 
@@ -53,6 +63,12 @@ class ProductController extends Controller
     {
         $data = $request->all();
         $this->productService->updateProduct($id,$data);
+        $act = [
+            'user_id' => Auth::user()?->id,
+            'kegiatan' => 'mengubah produk dengan id : '.$id,
+            'tanggal' => now(),
+        ];
+        $this->userActivityService->createActivity($act);
         return redirect()->back()->with('success','Action was successful!');
     }
 
@@ -61,6 +77,12 @@ class ProductController extends Controller
         // $a_id = $this->attributeService->getAttByProdId($id);
         // $this->attributeService->deleteAttribute($a_id);
         $this->productService->deleteProduct($id);
+        $act = [
+            'user_id' => Auth::user()?->id,
+            'kegiatan' => 'menghapus produk dengan id : '.$id,
+            'tanggal' => now(),
+        ];
+        $this->userActivityService->createActivity($act);
         return redirect()->back()->with('success','Action was successful!');
     }
 

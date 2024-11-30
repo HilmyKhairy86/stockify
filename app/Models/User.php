@@ -17,6 +17,11 @@ class User extends Authenticatable
         return $this->hasMany(StockTransaction::class);
     }
 
+    public function UserActivity()
+    {
+        return $this->hasMany(UserActivity::class);
+    }
+
     /**
      * The attributes that are mass assignable.
      *
