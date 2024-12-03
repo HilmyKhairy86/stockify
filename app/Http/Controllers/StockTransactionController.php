@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Services\Product\ProductService;
 use App\Services\UserActivity\UserActivityService;
 use App\Services\StockTransaction\StockTransactionService;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class StockTransactionController extends Controller
 {
@@ -60,7 +61,7 @@ class StockTransactionController extends Controller
     public function generatePDF()
     {
         $data = $this->stocktransactionService->viewTransaction();
-        $pdf = PDF::loadView("report", ["data" => $data]);
+        $pdf = Pdf::loadView("Export.transaksipdf", ["data" => $data]);
         $date = now();
         $act = [
             "user_id" => Auth::user()?->id,

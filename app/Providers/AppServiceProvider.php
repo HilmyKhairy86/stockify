@@ -41,20 +41,53 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(UserRepository::class, UserRepositoryImplement::class);
-        $this->app->bind(CategoryRepository::class, CategoryRepositoryImplement::class);
-        $this->app->bind(ProductRepository::class, ProductRepositoryImplement::class);
-        $this->app->bind(ProductAttributeRepository::class, ProductAttributeRepositoryImplement::class);
-        $this->app->bind(StockTransactionRepository::class, StockTransactionRepositoryImplement::class);
-        $this->app->bind(SupplierRepository::class, SupplierRepositoryImplement::class);
-        $this->app->bind(UserActivityRepository::class, UserActivityRepositoryImplement::class);
+        $this->app->bind(
+            CategoryRepository::class,
+            CategoryRepositoryImplement::class
+        );
+        $this->app->bind(
+            ProductRepository::class,
+            ProductRepositoryImplement::class
+        );
+        $this->app->bind(
+            ProductAttributeRepository::class,
+            ProductAttributeRepositoryImplement::class
+        );
+        $this->app->bind(
+            StockTransactionRepository::class,
+            StockTransactionRepositoryImplement::class
+        );
+        $this->app->bind(
+            SupplierRepository::class,
+            SupplierRepositoryImplement::class
+        );
+        $this->app->bind(
+            UserActivityRepository::class,
+            UserActivityRepositoryImplement::class
+        );
 
         $this->app->bind(UserService::class, UserServiceImplement::class);
         $this->app->bind(ProductService::class, ProductServiceImplement::class);
-        $this->app->bind(CategoryService::class, CategoryServiceImplement::class);
-        $this->app->bind(SupplierService::class, SupplierServiceImplement::class);
-        $this->app->bind(AttributeService::class, AttributeServiceImplement::class);
-        $this->app->bind(StockTransactionService::class, StockTransactionServiceImplement::class);
-        $this->app->bind(UserActivityService::class, UserActivityServiceImplement::class);
+        $this->app->bind(
+            CategoryService::class,
+            CategoryServiceImplement::class
+        );
+        $this->app->bind(
+            SupplierService::class,
+            SupplierServiceImplement::class
+        );
+        $this->app->bind(
+            AttributeService::class,
+            AttributeServiceImplement::class
+        );
+        $this->app->bind(
+            StockTransactionService::class,
+            StockTransactionServiceImplement::class
+        );
+        $this->app->bind(
+            UserActivityService::class,
+            UserActivityServiceImplement::class
+        );
     }
 
     /**
