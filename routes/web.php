@@ -50,7 +50,7 @@ Route::middleware('auth', 'verified', 'role:admin')->group(function () {
     Route::post('/Admin/Products/Attributes/update/{id}', [ProductAttributeController::class, 'updateAttribute'])->name('updateAttribute');
     Route::post('/Admin/Products/Attributes/delete/{id}', [ProductAttributeController::class, 'deleteAttribute'])->name('deleteAttribute');
     
-    Route::get('/Admin/Suppliers',[SupplierController::class, 'viewSupplier'])->name('suppliers');
+    Route::get('/Admin/Suppliers',[SupplierController::class, 'viewSupplier'])->name('admin.suppliers');
     Route::post('/Admin/Suppliers/add', [SupplierController::class, 'addSupplier'])->name('addSupplier');
     Route::post('/Admin/Suppliers/update/{id}',[SupplierController::class, 'updateSupplier'])->name('updateSupplier');
     Route::post('/Admin/Suppliers/delete/{id}',[SupplierController::class, 'deleteSupplier'])->name('deleteSupplier');
@@ -126,9 +126,22 @@ Route::middleware('auth', 'verified', 'role:manajer_gudang')->group(function (){
     
     Route::get('/Manager/Suppliers',[SupplierController::class, 'viewSupplier'])->name('manager.suppliers');
 
+    Route::get('/Manager/Stock/Opname', function(){
+        return view('Stock.Opname');
+    })->name('manager.opname');
+    Route::post('/Manager/Stock/opname/{id}',[ProductController::class, 'stockOpname'])->name('manager.stockOpname');
+
     Route::get('/Manager/Stock/Transaction',function(){
         return view('Stock.History');
     })->name('manager.transaction');
+
+    Route::get('/Manager/Reports/Transactions',function(){
+        return view('Reports.adminreport');
+    })->name('manager.report');
+
+    Route::get('/Manager/Reports/Products',function(){
+        return view('Reports.KeluarMasuk');
+    })->name('manager.KeluarMasuk');
     
     Route::post('/Manager/Stock/History/create',[StockTransactionController::class, 'addTransaction'])->name('manager.addTransaction');
     Route::post('/Manager/Stock/History/delete/{id}',[StockTransactionController::class, 'deleteTransaction'])->name('manager.deleteTransaction');

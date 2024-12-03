@@ -66,7 +66,7 @@
               </li>
             </ul>
             <li>
-              <x-nav-link-parent :active="request()->is('*/Suppliers')" href="{{route('suppliers')}}">
+              <x-nav-link-parent :active="request()->is('*/Suppliers')" href="{{route('admin.suppliers')}}">
                 <svg class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 512 512"
                   xmlns="http://www.w3.org/2000/svg">
                   <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512l388.6 0c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304l-91.4 0z"/>
@@ -121,10 +121,13 @@
             <ul id="dropdown-stock" class="{{ request()->routeIs('admin.sHistory','stockminimum','admin.opname') ? '' : 'hidden' }} py-2 space-y-2">
             {{-- <ul id="dropdown-stock" class="hidden' py-2 space-y-2"> --}}
               <li>
-                <x-nav-link :active="request()->routeIs('admin.sHistory')" href="{{route('admin.sHistory')}}">Riwayat transaksi barang</x-nav-link>
+                <x-nav-link :active="request()->routeIs('admin.sHistory')" href="{{route('admin.sHistory')}}">
+                  <i class="fa-solid fa-arrow-right-arrow-left mx-1"></i>Riwayat transaksi barang</x-nav-link>
               </li>
               <li>
-                <x-nav-link :active="request()->routeIs('admin.opname')" href="{{ route('admin.opname') }}">Stock opname</x-nav-link>
+                <x-nav-link :active="request()->routeIs('admin.opname')" href="{{ route('admin.opname') }}">
+                  <i class="fa-solid fa-list-check mx-1"></i>Stock opname
+                </x-nav-link>
               </li>
               <li>
                 <x-nav-link :active="request()->routeIs('stockminimum')" href="{{route('stockminimum')}}">Pengaturan stok minimum</x-nav-link>
@@ -281,18 +284,16 @@
                 ></path>
               </svg>
             </button>
-            <ul id="dropdown-stock" class="{{ request()->routeIs('manager.transaction',) ? '' : 'hidden' }} py-2 space-y-2">
+            <ul id="dropdown-stock" class="{{ request()->routeIs('manager.transaction','manager.opname') ? '' : 'hidden' }} py-2 space-y-2">
             {{-- <ul id="dropdown-stock" class="hidden' py-2 space-y-2"> --}}
               <li>
                 <x-nav-link :active="request()->is('*/Stock/Transaction')" href="{{route('manager.transaction')}}">
-                  <i class="fa-solid fa-arrow-right-arrow-left mx-1"></i></i>Transaksi barang</x-nav-link>
+                  <i class="fa-solid fa-arrow-right-arrow-left mx-1"></i>Transaksi barang</x-nav-link>
               </li>
               <li>
-                <x-nav-link href="">
-                  <i class="fa-solid fa-clock mx-1"></i>Stock opname</x-nav-link>
-              </li>
-              <li>
-                <x-nav-link href="">Pengaturan stok minimum</x-nav-link>
+                <x-nav-link :active="request()->routeIs('manager.opname')" href="{{ route('manager.opname') }}">
+                  <i class="fa-solid fa-list-check mx-1"></i>Stock Opname
+                </x-nav-link>
               </li>
             </ul>
           </li>
@@ -329,15 +330,12 @@
                 ></path>
               </svg>
             </button>
-            <ul id="dropdown-report" class="hidden py-2 space-y-2">
+            <ul id="dropdown-report" class="{{ request()->routeIs('manager.report','manager.KeluarMasuk') ? '' : 'hidden' }} py-2 space-y-2">
               <li>
-                <x-nav-link href="">Riwayat transaksi barang</x-nav-link>
+                <x-nav-link :active="request()->routeIs('manager.report')" href="{{route('manager.report')}}">Stock Barang</x-nav-link>
               </li>
               <li>
-                <x-nav-link href="">Stock opname</x-nav-link>
-              </li>
-              <li>
-                <x-nav-link href="">Pengaturan stok minimum</x-nav-link>
+                <x-nav-link :active="request()->routeIs('manager.KeluarMasuk')" href="{{route('manager.KeluarMasuk')}}">Keluar Masuk</x-nav-link>
               </li>
             </ul>
           </li>
