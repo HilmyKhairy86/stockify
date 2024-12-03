@@ -12,19 +12,8 @@
                 {{-- <h2 class="mb-2 text-xl font-bold text-gray-900 dark:text-white">Halo, {{auth()->user()->name}}</h2> --}}
             </div>
         </div>
-        <div class="mb-5 border dark:border-gray-800 dark:bg-gray-800 rounded-lg shadow-lg bg-white border-gray-200">
-            <div class="p-5">
-                <h2 class="mb-5 text-5xl font-bold text-gray-900 dark:text-white">Transaksi</h2>
-                @livewire('AdminReport')
-            </div>
-        </div>
-        {{-- @livewire('ProdKeluarMasuk') --}}
-        
-        <!-- Card Footer -->
-
-        <!-- 2 columns -->
-        {{-- masuk keluar --}}
-        {{-- @livewire('MasukKeluar') --}}
+        {{-- content here --}}
+        @livewire('UserActivity')
     </div> 
     
 </x-app-layout>

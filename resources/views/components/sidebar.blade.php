@@ -164,9 +164,15 @@
                 ></path>
               </svg>
             </button>
-            <ul id="dropdown-report" class="{{ request()->routeIs('admin.report') ? '' : 'hidden' }} py-2 space-y-2">
+            <ul id="dropdown-report" class="{{ request()->routeIs('admin.report','admin.KeluarMasuk','admin.UserActivity') ? '' : 'hidden' }} py-2 space-y-2">
               <li>
-                <x-nav-link :active="request()->routeIs('admin.report')" href="{{route('admin.report')}}">Laporan Stock Barang</x-nav-link>
+                <x-nav-link :active="request()->routeIs('admin.report')" href="{{route('admin.report')}}">Stock Barang</x-nav-link>
+              </li>
+              <li>
+                <x-nav-link :active="request()->routeIs('admin.KeluarMasuk')" href="{{route('admin.KeluarMasuk')}}">Keluar Masuk</x-nav-link>
+              </li>
+              <li>
+                <x-nav-link :active="request()->routeIs('admin.UserActivity')" href="{{route('admin.UserActivity')}}">User Acttivity</x-nav-link>
               </li>
             </ul>
           </li>

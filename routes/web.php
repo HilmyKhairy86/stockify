@@ -67,14 +67,23 @@ Route::middleware('auth', 'verified', 'role:admin')->group(function () {
     Route::get('/Admin/Stock/Opname', function(){
         return view('Stock.Opname');
     })->name('admin.opname');
+    Route::post('/Admin/Stock/opname/{id}',[ProductController::class, 'stockOpname'])->name('admin.stockOpname');
 
     Route::get('/Admin/Stock/Stock-minimum', function(){
         return view('Stock.Setting');
     })->name('stockminimum');
 
-    Route::get('/Admin/Report',function(){
+    Route::get('/Admin/Reports/Transactions',function(){
         return view('Reports.adminreport');
     })->name('admin.report');
+
+    Route::get('/Admin/Reports/Products',function(){
+        return view('Reports.KeluarMasuk');
+    })->name('admin.KeluarMasuk');
+
+    Route::get('/Admin/Reports/User-Activity',function(){
+        return view('Reports.UserActivity');
+    })->name('admin.UserActivity');
     
     Route::post('/Admin/Stock/History/create',[StockTransactionController::class, 'addTransaction'])->name('admin.addTransaction');
     Route::post('/Admin/Stock/History/delete/{id}',[StockTransactionController::class, 'deleteTransaction'])->name('admin.deleteTransaction');

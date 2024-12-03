@@ -9,6 +9,7 @@ use App\Services\Product\ProductService;
 use App\Services\Category\CategoryService;
 use App\Services\StockTransaction\StockTransactionService;
 use App\Services\Supplier\SupplierService;
+use App\Services\UserActivity\UserActivityService;
 
 class StockOpname extends Component
 {
@@ -45,10 +46,10 @@ class StockOpname extends Component
     
     public function render()
     {   
-        $result = $this->stockTransactionService->stockOpname($this->search);
+        $result = $this->stockTransactionService->stockOpname($this->search)->paginate(10);
         // dd($result);
         return view('livewire.stock-opname', [
-            'products' => $result->paginate(10),
+            'products' => $result,
         ]);
     }
 }

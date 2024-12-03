@@ -72,6 +72,19 @@ class ProductController extends Controller
         return redirect()->back()->with('success','Action was successful!');
     }
 
+    public function stockOpname($id, Request $request)
+    {
+        $data = $request->all();
+        $this->productService->updateProduct($id,$data);
+        $act = [
+            'user_id' => Auth::user()?->id,
+            'kegiatan' => 'melakukan stock opname untuk produk dengan id : '.$id,
+            'tanggal' => now(),
+        ];
+        $this->userActivityService->createActivity($act);
+        return redirect()->back()->with('success','Action was successful!');
+    }
+
     public function deleteProduct($id)
     {
         // $a_id = $this->attributeService->getAttByProdId($id);
