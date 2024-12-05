@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Spatie\Browsershot\Browsershot;
 use Illuminate\Support\Facades\Auth;
 use App\Services\Product\ProductService;
 use App\Services\UserActivity\UserActivityService;
 use App\Services\StockTransaction\StockTransactionService;
-use Barryvdh\DomPDF\Facade\Pdf;
 
 class StockTransactionController extends Controller
 {
@@ -61,6 +62,7 @@ class StockTransactionController extends Controller
     public function generatePDF()
     {
         $data = $this->stocktransactionService->viewTransaction();
+
         $pdf = Pdf::loadView("Export.transaksipdf", ["data" => $data]);
         $date = now();
         $act = [
@@ -69,7 +71,8 @@ class StockTransactionController extends Controller
             "tanggal" => now(),
         ];
         $this->userActivityService->createActivity($act);
-        return $pdf->download("laporan transaksi " . $date . "pdf");
+        // return $pdf->download("laporan transaksi " . $date);
+        // return view("Export.transaksipdf", ["data" => $data]);
     }
 
     public function deleteTransaction($id)

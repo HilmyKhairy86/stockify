@@ -11,6 +11,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductAttributeController;
+use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\StockTransactionController;
 use App\Models\Product;
 use Illuminate\Support\Facades\View;
@@ -178,6 +179,12 @@ Route::middleware("auth", "verified", "role:admin")->group(function () {
         StockTransactionController::class,
         "deleteTransaction",
     ])->name("admin.deleteTransaction");
+
+    Route::get("/Admin/Settings/App", function () {
+        return View("Settings.app");
+    })->name("admin.settings");
+
+    Route::post("/Admin/Settings/App/Update", [SettingsController::class, "updateSetting"])->name('admin.updateSettings');
 });
 
 Route::middleware("auth", "verified", "role:manajer_gudang")->group(

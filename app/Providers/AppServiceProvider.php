@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\AppSettings;
 use App\Models\UserActivity;
+use App\Repositories\AppSettings\AppSettingsRepository;
+use App\Repositories\AppSettings\AppSettingsRepositoryImplement;
 use App\Services\User\UserService;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\User\UserRepository;
@@ -20,6 +23,8 @@ use App\Repositories\Supplier\SupplierRepository;
 use App\Repositories\Supplier\SupplierRepositoryImplement;
 use App\Repositories\UserActivity\UserActivityRepository;
 use App\Repositories\UserActivity\UserActivityRepositoryImplement;
+use App\Services\AppSettings\AppSettingsService;
+use App\Services\AppSettings\AppSettingsServiceImplement;
 use App\Services\Attribute\AttributeService;
 use App\Services\Attribute\AttributeServiceImplement;
 use App\Services\Category\CategoryService;
@@ -66,6 +71,8 @@ class AppServiceProvider extends ServiceProvider
             UserActivityRepositoryImplement::class
         );
 
+        $this->app->bind(AppSettingsRepository::class, AppSettingsRepositoryImplement::class);
+
         $this->app->bind(UserService::class, UserServiceImplement::class);
         $this->app->bind(ProductService::class, ProductServiceImplement::class);
         $this->app->bind(
@@ -88,6 +95,8 @@ class AppServiceProvider extends ServiceProvider
             UserActivityService::class,
             UserActivityServiceImplement::class
         );
+
+        $this->app->bind(AppSettingsService::class, AppSettingsServiceImplement::class);
     }
 
     /**

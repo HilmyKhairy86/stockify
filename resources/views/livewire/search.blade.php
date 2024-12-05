@@ -371,7 +371,7 @@
                     {{-- <th scope="col" class="px-4 py-3"><input type="checkbox" id="select-all"></th> --}}
                     <th scope="col" class="px-4 py-3">Product name</th>
                     <th scope="col" class="px-4 py-3">Category</th>
-                    <th scope="col" class="px-4 py-3">Suplier</th>
+                    <th scope="col" class="px-4 py-3">Supplier</th>
                     <th scope="col" class="px-4 py-3">SKU</th>
                     <th scope="col" class="px-4 py-3">Stock</th>
                     <th scope="col" class="px-4 py-3">Purchase Price</th>

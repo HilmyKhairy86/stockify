@@ -1,3 +1,9 @@
+<?php
+use Illuminate\Support\Facades\DB;
+
+$appName = DB::table('app_settings')->value('app_name');
+$appLogo = DB::table('app_settings')->value('logo');
+?>
 <nav class="bg-white border-b border-gray-200 px-4 py-2.5 dark:bg-gray-800 dark:border-gray-700 fixed left-0 right-0 top-0 z-50">
     <div class="flex flex-wrap justify-between items-center">
       <div class="flex justify-start items-center">
@@ -9,7 +15,9 @@
           </svg>
        </button>
         <a href="" class="flex items-center justify-between mr-4">
-          <span class="self-center text-2xl font-semibold whitespace-nowrap text-black dark:text-white">Stockify</span>
+          {{-- logo and app name --}}
+          <img for="image" src="{{ asset('storage/'.$appLogo ) }}" class="block w-8 h-8 mx-3 object-cover rounded-lg " />
+          <span class="self-center text-2xl font-semibold whitespace-nowrap text-black dark:text-white">{{ $appName }}</span>
         </a>
       </div>
       <div class="flex items-center lg:order-2">

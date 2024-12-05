@@ -16,7 +16,7 @@
                 <span class="ml-3">Dashboard</span>
               </x-nav-link-parent>
             </li>
-            
+
           <li>
             <button
               type="button"
@@ -83,7 +83,7 @@
                 <span class="ml-3">User Management</span>
               </x-nav-link-parent>
             </li>
-            
+
           </li>
           <li>
             <button
@@ -178,6 +178,13 @@
                 <x-nav-link :active="request()->routeIs('admin.UserActivity')" href="{{route('admin.UserActivity')}}">User Acttivity</x-nav-link>
               </li>
             </ul>
+          </li>
+
+          <li>
+            <x-nav-link-parent :active="request()->routeIs('admin.settings')" href="{{ route('admin.settings') }}">
+              <i class="fa-solid fa-gear mx-1"></i>
+              <span class="ml-3">Settings</span>
+            </x-nav-link-parent>
           </li>
         </ul>
       </div>
