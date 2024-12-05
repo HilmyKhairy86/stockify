@@ -20,6 +20,7 @@
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-300 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
+                    <th scope="col" class="px-4 py-3">No</th>
                     <th scope="col" class="px-4 py-3">Product name</th>
                     <th scope="col" class="px-4 py-3">SKU</th>
                     <th scope="col" class="px-4 py-3 text-center">Stock Awal</th>
@@ -32,8 +33,9 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($products as $d)
+                @foreach ($products as $index => $d)
                 <tr class="border-b dark:border-gray-700 odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800">
+                    <td class="px-4 py-3 text-center">{{$index+1}}</td>
                     <td scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $d->name }}</td>
                     <td class="px-4 py-3">{{ $d->sku }}</td>
                     <td class="px-4 py-3 text-center">0</td>

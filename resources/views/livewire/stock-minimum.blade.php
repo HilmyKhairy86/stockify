@@ -16,12 +16,13 @@
 
                 </div>
         </div>
-          
+
     </div>
     <div class="overflow-x-auto">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-300 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
+                    <th scope="col" class="px-4 py-3">No</th>
                     {{-- <th scope="col" class="px-4 py-3"><input type="checkbox" id="select-all"></th> --}}
                     <th scope="col" class="px-4 py-3">Product name</th>
                     <th scope="col" class="px-4 py-3">SKU</th>
@@ -33,8 +34,9 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($products as $d)
+                @foreach ($products as $index => $d)
                 <tr class="border-b dark:border-gray-700 odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800">
+                    <td class="px-4 py-3">{{ $index+1 }}</td>
                     <td scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $d->name }}</td>
                     <td class="px-4 py-3">{{ $d->sku }}</td>
                     <td class="px-4 py-3">{{ $d->stock }}</td>
@@ -47,10 +49,10 @@
                                 <button id="{{$d->id}}" @click="openupdatemodal = true" class="py-2 px-3 text-sm font-medium text-gray-500 bg-blue-500 rounded-lg hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-900 focus:z-10 dark:bg-blue-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-blue-700 dark:focus:ring-gray-600" type="button">
                                     <i class="fa-solid fa-pen-to-square text-white"></i>
                                 </button>
-                                
+
                                 <div id="{{$d->id}}" x-show="openupdatemodal"
                                 class="fixed inset-0 bg-gray-800 bg-opacity-50 z-50" @click="openupdatemodal = false"></div>
-                                
+
                                 <!-- Drawer -->
                                 <div id="{{$d->id}}" x-show="openupdatemodal" x-transition:enter="transition ease-out duration-300"
                                     x-transition:enter-start="transform translate-x-full" x-transition:enter-end="transform translate-x-0"
@@ -76,7 +78,7 @@
                                                     <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
                                                     <p class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">{{ $d->name }}</p>
                                                 </div>
-                                             
+
                                                 <div class="sm:col-span-2">
                                                     <label for="sku" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">SKU</label>
                                                     <p class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">{{ $d->sku }}</p>
@@ -85,7 +87,7 @@
                                                     <label for="stock" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Stock Minimum</label>
                                                     <input type="number" min="1" name="stock_minimum" id="stock" value="{{$d->stock_minimum}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
                                                 </div>
-                                                
+
                                             </div>
                                             <div class="flex items-center space-x-4">
                                                 <button type="submit" class="py-2 px-3 text-sm font-medium text-gray-500 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
@@ -98,11 +100,11 @@
                                 </div>
                             </div>
 
-                        
+
                         @endif
-                        
-                        
-                        
+
+
+
                     </td>
                 </tr>
                 @endforeach
@@ -115,4 +117,3 @@
     {{$products->links('pagination::tailwind')}}
     @endempty
 </div>
-

@@ -17,7 +17,7 @@
         </div>
 
         {{-- addproduct --}}
-        
+
         <div class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
             <div class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
                 @if (auth()->user()->role == 'admin')
@@ -29,10 +29,10 @@
                         </svg>
                         Add Transaction
                     </button>
-                    
+
                     <div x-show="adddatamodal"
                     class="fixed inset-0 bg-gray-800 bg-opacity-50 z-50 over" @click="adddatamodal = false"></div>
-                    
+
                     <!-- Drawer -->
                     <div x-show="adddatamodal" x-transition:enter="transition ease-out duration-300"
                         x-transition:enter-start="transform translate-x-full" x-transition:enter-end="transform translate-x-0"
@@ -92,7 +92,7 @@
                                     </div> --}}
                                     <div class="sm:col-span-2">
                                         <label for="notes" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Notes</label>
-                                        <textarea id="notes" name="notes" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Write Notes here"></textarea>                    
+                                        <textarea id="notes" name="notes" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Write Notes here"></textarea>
                                     </div>
                                 </div>
                                 <button type="submit" class=" text-white dark:text-white inline-flex items-center bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
@@ -112,10 +112,10 @@
                         </svg>
                         Add Transaction
                     </button>
-                    
+
                     <div x-show="adddatamodal"
                     class="fixed inset-0 bg-gray-800 bg-opacity-50 z-50 over" @click="adddatamodal = false"></div>
-                    
+
                     <!-- Drawer -->
                     <div x-show="adddatamodal" x-transition:enter="transition ease-out duration-300"
                         x-transition:enter-start="transform translate-x-full" x-transition:enter-end="transform translate-x-0"
@@ -175,7 +175,7 @@
                                     </div> --}}
                                     <div class="sm:col-span-2">
                                         <label for="notes" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Notes</label>
-                                        <textarea id="notes" name="notes" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Write Notes here"></textarea>                    
+                                        <textarea id="notes" name="notes" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Write Notes here"></textarea>
                                     </div>
                                 </div>
                                 <button type="submit" class=" text-white dark:text-white inline-flex items-center bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
@@ -187,7 +187,7 @@
                     </div>
                 </div>
                 @endif
-                
+
             </div>
             <div x-data="{ isOpen: false }" @click.away="isOpen = false" >
                 <button @click="isOpen = !isOpen" class="w-full md:w-auto flex items-center justify-center py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 hover:text-black dark:hover:text-white dark:hover:bg-gray-700">
@@ -199,7 +199,7 @@
                         <path clip-rule="evenodd" fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
                     </svg>
                 </button>
-              
+
                 <div x-show="isOpen" class="fixed w-48 p-3 bg-white rounded-lg shadow-xl dark:bg-gray-700">
                     <h6 class="mb-3 text-sm font-medium text-gray-900 dark:text-white">Choose Filter</h6>
                     <h6 class="mb-3 text-sm font-medium text-gray-900 dark:text-white">Type</h6>
@@ -240,7 +240,7 @@
                             <label for="" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">Dikeluarkan</label>
                         </li>
                     </ul>
-                        
+
                 </div>
             </div>
             <div x-data="{ isOpen: false }" @click.away="isOpen = false" >
@@ -259,25 +259,24 @@
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-300 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                    <th scope="col" class="px-4 py-3"></th>
-                                    <th scope="col" class="px-4 py-3">Product</th>
-                                    <th scope="col" class="px-4 py-3">User</th>
-                                    <th scope="col" class="px-4 py-3">Type</th>
-                                    <th scope="col" class="px-4 py-3">Quantity</th>
-                                    <th scope="col" class="px-4 py-3">Date</th>
-                                    <th scope="col" class="px-4 py-3">Status</th>
-                                    <th scope="col" class="px-4 py-3">Notes</th>
-                                    @if (auth()->user()->role === 'staff_gudang')
-                                    <th scope="col" class="px-4 py-3">Action</th>
-                                    @endif
+                    <th scope="col" class="px-4 py-3">No</th>
+                    <th scope="col" class="px-4 py-3">Product</th>
+                    <th scope="col" class="px-4 py-3">User</th>
+                    <th scope="col" class="px-4 py-3">Type</th>
+                    <th scope="col" class="px-4 py-3">Quantity</th>
+                    <th scope="col" class="px-4 py-3">Date</th>
+                    <th scope="col" class="px-4 py-3">Status</th>
+                    <th scope="col" class="px-4 py-3">Notes</th>
+                    @if (auth()->user()->role === 'staff_gudang')
+                    <th scope="col" class="px-4 py-3">Action</th>
+                    @endif
                 </tr>
             </thead>
             <tbody>
-                {{-- {{dd($stock)}} --}}
-                @foreach ($stock as $d)
-                
+                @foreach ($stock as $index => $d)
+
                 <tr class="border-b dark:border-gray-700 odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800">
-                    <td class="px-4 py-3"></td>
+                    <td class="px-4 py-3">{{$stock->firstItem() + $index}}</td>
                     <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{$d->product_id}} - {{ $d->product->name }}</th>
                     <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $d->user_id }} - {{$d->user->name}}</th>
                     <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -326,17 +325,17 @@
                     </th>
                     <th scope="row" class="px-4 py-3 font-medium text-gray-900 dark:text-white">{{ $d->notes }}</th>
                     @if (auth()->user()->role === 'staff_gudang')
-                        @if ($d->status === 'pending')    
+                        @if ($d->status === 'pending')
                         <th class="px-4 py-3 flex items-center">
                             <div x-data="{ openupdatemodal: false }" x-cloak="{display: none}" x-init="open = false" @keydown.escape.window="open = false" x-bind:class="{ 'overflow-hidden': open }"  class="relative">
                                 <!-- Button to open drawer -->
                                 <button id="{{$d->id}}" @click="openupdatemodal = true" class="py-2 px-3 text-sm font-medium text-gray-500 bg-blue-500 rounded-lg hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-900 focus:z-10 dark:bg-blue-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-blue-700 dark:focus:ring-gray-600" type="button">
                                     <i class="fa-solid fa-check text-white"></i>
                                 </button>
-                                
+
                                 <div id="{{$d->id}}" x-show="openupdatemodal"
                                 class="fixed inset-0 bg-gray-800 bg-opacity-50 z-50" @click="openupdatemodal = false"></div>
-                                
+
                                 <!-- Drawer -->
                                 <div id="{{$d->id}}" x-show="openupdatemodal" x-transition:enter="transition ease-out duration-300"
                                     x-transition:enter-start="transform translate-x-full" x-transition:enter-end="transform translate-x-0"
@@ -402,7 +401,7 @@
                                                 </div>
                                                 <div class="sm:col-span-2">
                                                     <label for="notes" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Notes</label>
-                                                    <textarea id="notes" name="notes" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Write Notes here">{{$d->notes}}</textarea>                    
+                                                    <textarea id="notes" name="notes" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Write Notes here">{{$d->notes}}</textarea>
                                                 </div>
                                             </div>
                                             <div class="flex items-center space-x-4">
@@ -421,7 +420,7 @@
                         @endif
                     @endif
                 </tr>
-                
+
                 @endforeach
                 <!--Update Main modal -->
             </tbody>
@@ -432,6 +431,3 @@
         @endempty
     </div>
 </div>
-
-
-

@@ -92,7 +92,7 @@
                                 </div>
                                 <div class="sm:col-span-2">
                                     <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-                                    <textarea id="description" name="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Write product description here"></textarea>                    
+                                    <textarea id="description" name="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Write product description here"></textarea>
                                 </div>
                                 <button type="submit" class="py-2 px-3 mt-3 text-sm font-medium text-gray-500 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
                                     Add new product
@@ -147,14 +147,14 @@
                                 </div>
                                 <div class="sm:col-span-2">
                                     <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-                                    <textarea id="description" name="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Write product description here"></textarea>                    
+                                    <textarea id="description" name="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Write product description here"></textarea>
                                 </div>
                                 <button type="submit" class="py-2 px-3 mt-3 text-sm font-medium text-gray-500 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
                                     Add new product
                                 </button>
                             </form>
                         @endif
-                        
+
                     </div>
                 </div>
             </div>
@@ -166,7 +166,7 @@
                     <i class="fa-solid fa-file-import"></i>
                 Import
                 </button>
-                
+
                 <div id="importdatamodal" x-show="importdatamodal"
                     x-transition:enter="transition ease-out duration-200"
                     x-transition:enter-start="opacity-0"
@@ -175,25 +175,25 @@
                     x-transition:leave-start="opacity-100"
                     x-transition:leave-end="opacity-0"
                 class="fixed inset-0 bg-gray-800 bg-opacity-50 z-50" @click="importdatamodal = false"></div>
-                
+
                 {{-- modal header --}}
                 <div id="importdatamodal" x-show="importdatamodal"
                     class="fixed inset-0 z-50 flex justify-center items-center w-full h-full bg-gray-900 bg-opacity-50" tabindex="-1" aria-labelledby="drawer-label" aria-hidden="true" @click="importdatamodal = false">
                     <!-- Drawer Header -->
                     <div class="relative p-4 w-full max-w-2xl max-h-full">
                         <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                        
+
                         <!-- Close Button -->
-                        <button 
-                            @click="importdatamodal = false" 
-                            type="button" 
+                        <button
+                            @click="importdatamodal = false"
+                            type="button"
                             class="absolute top-3 right-3 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white">
                             <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
                             </svg>
                             <span class="sr-only">Close modal</span>
                         </button>
-                        
+
                             <div class="p-3">
                                 <!-- Modal Text -->
                                 <div class="flex p-6">
@@ -203,7 +203,7 @@
                                             <label for="file" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Select File</label>
                                             <input type="file" name="file" id="file" class="mt-1 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:bg-gray-700 dark:text-gray-400 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500">
                                         </div>
-                            
+
                                         <div class="flex">
                                             <button type="submit" class="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 dark:bg-blue-500 dark:hover:bg-blue-600 focus:outline-none dark:focus:ring-blue-700">
                                                 <i class="fa-solid fa-file-import"></i>
@@ -218,55 +218,55 @@
                 </div>
 
                 <!-- Modal -->
-                <div 
-                x-data="{ importdatamodal: false }" 
-                x-show="importdatamodal" 
-                x-transition 
-                @keydown.escape.window="importdatamodal = false" 
-                tabindex="-1" 
+                <div
+                x-data="{ importdatamodal: false }"
+                x-show="importdatamodal"
+                x-transition
+                @keydown.escape.window="importdatamodal = false"
+                tabindex="-1"
                 class="fixed inset-0 z-50 flex justify-center items-center w-full h-full bg-gray-900 bg-opacity-50">
-                
+
                 <div class="relative p-4 w-full max-w-md max-h-full">
                     <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                    
+
                     <!-- Close Button -->
-                    <button 
-                    @click="importdatamodal = false" 
-                    type="button" 
+                    <button
+                    @click="importdatamodal = false"
+                    type="button"
                     class="absolute top-3 right-3 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white">
                     <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
                     </svg>
                     <span class="sr-only">Close modal</span>
                     </button>
-                    
+
                     <div class="p-4 md:p-5 text-center">
-                    
+
                     <!-- Icon -->
                     <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
                     </svg>
-                
+
                     <!-- Modal Text -->
                     <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure you want to delete this product?</h3>
-                    
+
                     <!-- Action Buttons -->
-                    <button 
-                        @click="importdatamodal = false" 
-                        type="button" 
+                    <button
+                        @click="importdatamodal = false"
+                        type="button"
                         class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
                         Yes, I'm sure
                     </button>
-                    
-                    <button 
-                        @click="importdatamodal = false" 
-                        type="button" 
+
+                    <button
+                        @click="importdatamodal = false"
+                        type="button"
                         class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
                         No, cancel
                     </button>
                     </div>
                 </div>
-                
+
                 </div>
                 </div>
             </div>
@@ -283,7 +283,7 @@
                         </svg>
                     </button>
                 </div>
-                
+
                 <div x-show="open" @click.away="open = false"
                     x-transition:enter="transition ease-out duration-100"
                     x-transition:enter-start="transform opacity-0 scale-95"
@@ -314,8 +314,8 @@
                     </div>
                 </div>
             </div>
-            @endif   
-            
+            @endif
+
             {{-- filter --}}
             <div x-data="{ filtermodal: false }" x-cloak="{display: none}" x-init="open = false" @keydown.escape.window="open = false" x-bind:class="{ 'overflow-hidden': open }" class="relative">
                 <!-- Button to open drawer -->
@@ -328,10 +328,10 @@
                         <path clip-rule="evenodd" fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
                     </svg>
                 </button>
-                
+
                 <div x-show="filtermodal"
                 class="fixed inset-0 bg-gray-800 bg-opacity-50 z-50 over" @click="filtermodal = false"></div>
-                
+
                 <!-- Drawer -->
                 <div x-show="filtermodal" x-transition:enter="transition ease-out duration-300"
                     x-transition:enter-start="transform translate-x-full" x-transition:enter-end="transform translate-x-0"
@@ -362,12 +362,13 @@
                 </div>
             </div>
         </div>
-          
+
     </div>
     <div class="overflow-x-auto">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-300 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
+                    <th scope="col" class="px-4 py-3">No</th>
                     {{-- <th scope="col" class="px-4 py-3"><input type="checkbox" id="select-all"></th> --}}
                     <th scope="col" class="px-4 py-3">Product name</th>
                     <th scope="col" class="px-4 py-3">Category</th>
@@ -383,7 +384,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($products as $d)
+                @foreach ($products as $index => $d)
                 <tr class="border-b dark:border-gray-700 odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800">
                     {{-- <td class="px-4 py-3">
                         <input type="checkbox" name="ids[]" value="{{ $d->id }}">
@@ -394,6 +395,7 @@
                             });
                         </script>
                     </td> --}}
+                    <td class="px-4 py-3">{{$products->firstItem() + $index}}</td>
                     <td scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $d->name }}</td>
                     <td class="px-4 py-3">{{ optional($d->category)->name }}</td>
                     <td class="px-4 py-3">{{ optional($d->supplier)->name }}</td>
@@ -411,10 +413,10 @@
                                 <button id="{{$d->id}}" @click="detailmodal = true" class="py-2 px-3 text-sm font-medium text-gray-500 bg-blue-500 rounded-lg hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-900 focus:z-10 dark:bg-blue-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-blue-700 dark:focus:ring-gray-600" type="button">
                                     <i class="fa-solid fa-circle-info text-white"></i>
                                 </button>
-                                
+
                                 <div id="{{$d->id}}" x-show="detailmodal"
                                 class="fixed inset-0 bg-gray-800 bg-opacity-50 z-50" @click="detailmodal = false"></div>
-                                
+
                                 <!-- Drawer -->
                                 <div id="{{$d->id}}" x-show="detailmodal" x-transition:enter="transition ease-out duration-300"
                                     x-transition:enter-start="transform translate-x-full" x-transition:enter-end="transform translate-x-0"
@@ -498,10 +500,10 @@
                                 <button id="{{$d->id}}" @click="openupdatemodal = true" class="py-2 px-3 text-sm font-medium text-gray-500 bg-blue-500 rounded-lg hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-900 focus:z-10 dark:bg-blue-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-blue-700 dark:focus:ring-gray-600" type="button">
                                     <i class="fa-solid fa-pen-to-square text-white"></i>
                                 </button>
-                                
+
                                 <div id="{{$d->id}}" x-show="openupdatemodal"
                                 class="fixed inset-0 bg-gray-800 bg-opacity-50 z-50" @click="openupdatemodal = false"></div>
-                                
+
                                 <!-- Drawer -->
                                 <div id="{{$d->id}}" x-show="openupdatemodal" x-transition:enter="transition ease-out duration-300"
                                     x-transition:enter-start="transform translate-x-full" x-transition:enter-end="transform translate-x-0"
@@ -592,7 +594,7 @@
                                 <button id="{{$d->id}}" @click="deletemodal = true" class="py-2 px-3 text-sm font-medium text-gray-500 bg-red-600 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-red-900 focus:z-10 dark:red-blue-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-red-900 dark:focus:ring-gray-600" type="button">
                                     <i class="fa-solid fa-trash text-white"></i>
                                 </button>
-                                
+
                                 <div id="{{$d->id}}" x-show="deletemodal"
                                     x-transition:enter="transition ease-out duration-200"
                                     x-transition:enter-start="opacity-0"
@@ -601,30 +603,30 @@
                                     x-transition:leave-start="opacity-100"
                                     x-transition:leave-end="opacity-0"
                                 class="fixed inset-0 bg-gray-800 bg-opacity-50 z-50" @click="deletemodal = false"></div>
-                                
+
                                 <div id="{{$d->id}}" x-show="deletemodal"
                                     class="fixed inset-0 z-50 flex justify-center items-center w-full h-full bg-gray-900 bg-opacity-50" tabindex="-1" aria-labelledby="drawer-label" aria-hidden="true" @click="deletemodal = false">
                                     <!-- Drawer Header -->
                                     <div class="relative p-4 w-full max-w-md max-h-full">
                                         <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                                        
+
                                         <!-- Close Button -->
-                                        <button 
-                                            @click="deletemodal = false" 
-                                            type="button" 
+                                        <button
+                                            @click="deletemodal = false"
+                                            type="button"
                                             class="absolute top-3 right-3 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white">
                                             <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
                                             </svg>
                                             <span class="sr-only">Close modal</span>
                                         </button>
-                                        
+
                                         <div class="p-4 md:p-5 text-center">
                                             <!-- Icon -->
                                             <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
                                             </svg>
-                                    
+
                                             <!-- Modal Text -->
                                             <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure you want to delete this product?</h3>
                                             <div class="flex justify-center items-center">
@@ -634,10 +636,10 @@
                                                         Yes, I'm sure
                                                     </button>
                                                 </form>
-                                                
-                                                <button 
-                                                @click="deletemodal = false" 
-                                                type="button" 
+
+                                                <button
+                                                @click="deletemodal = false"
+                                                type="button"
                                                 class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
                                                 No, cancel
                                                 </button>
@@ -645,53 +647,53 @@
                                         </div>
                                         </div>
                                     </div>
-                                    
+
                                 </div>
 
                                 <!-- Modal -->
-                                <div 
-                                x-data="{ deletemodal: false }" 
-                                x-show="deletemodal" 
-                                x-transition 
-                                @keydown.escape.window="deletemodal = false" 
-                                tabindex="-1" 
+                                <div
+                                x-data="{ deletemodal: false }"
+                                x-show="deletemodal"
+                                x-transition
+                                @keydown.escape.window="deletemodal = false"
+                                tabindex="-1"
                                 class="fixed inset-0 z-50 flex justify-center items-center w-full h-full bg-gray-900 bg-opacity-50">
-                                
+
                                 <div class="relative p-4 w-full max-w-md max-h-full">
                                 <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                                    
+
                                     <!-- Close Button -->
-                                    <button 
-                                    @click="deletemodal = false" 
-                                    type="button" 
+                                    <button
+                                    @click="deletemodal = false"
+                                    type="button"
                                     class="absolute top-3 right-3 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white">
                                     <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
                                     </svg>
                                     <span class="sr-only">Close modal</span>
                                     </button>
-                                    
+
                                     <div class="p-4 md:p-5 text-center">
-                                    
+
                                     <!-- Icon -->
                                     <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
                                     </svg>
-                                
+
                                     <!-- Modal Text -->
                                     <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure you want to delete this product?</h3>
-                                    
+
                                     <!-- Action Buttons -->
-                                    <button 
-                                        @click="deletemodal = false" 
-                                        type="button" 
+                                    <button
+                                        @click="deletemodal = false"
+                                        type="button"
                                         class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
                                         Yes, I'm sure
                                     </button>
-                                    
-                                    <button 
-                                        @click="deletemodal = false" 
-                                        type="button" 
+
+                                    <button
+                                        @click="deletemodal = false"
+                                        type="button"
                                         class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
                                         No, cancel
                                     </button>
@@ -708,10 +710,10 @@
                                 <button id="{{$d->id}}" @click="detailmodal = true" class="py-2 px-3 text-sm font-medium text-gray-500 bg-blue-500 rounded-lg hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-900 focus:z-10 dark:bg-blue-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-blue-700 dark:focus:ring-gray-600" type="button">
                                     <i class="fa-solid fa-circle-info text-white"></i>
                                 </button>
-                                
+
                                 <div id="{{$d->id}}" x-show="detailmodal"
                                 class="fixed inset-0 bg-gray-800 bg-opacity-50 z-50" @click="detailmodal = false"></div>
-                                
+
                                 <!-- Drawer -->
                                 <div id="{{$d->id}}" x-show="detailmodal" x-transition:enter="transition ease-out duration-300"
                                     x-transition:enter-start="transform translate-x-full" x-transition:enter-end="transform translate-x-0"
@@ -799,10 +801,10 @@
                                 <button id="{{$d->id}}" @click="openupdatemodal = true" class="py-2 px-3 text-sm font-medium text-gray-500 bg-blue-500 rounded-lg hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-900 focus:z-10 dark:bg-blue-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-blue-700 dark:focus:ring-gray-600" type="button">
                                     <i class="fa-solid fa-pen-to-square text-white"></i>
                                 </button>
-                                
+
                                 <div id="{{$d->id}}" x-show="openupdatemodal"
                                 class="fixed inset-0 bg-gray-800 bg-opacity-50 z-50" @click="openupdatemodal = false"></div>
-                                
+
                                 <!-- Drawer -->
                                 <div id="{{$d->id}}" x-show="openupdatemodal" x-transition:enter="transition ease-out duration-300"
                                     x-transition:enter-start="transform translate-x-full" x-transition:enter-end="transform translate-x-0"
@@ -893,7 +895,7 @@
                                 <button id="{{$d->id}}" @click="deletemodal = true" class="py-2 px-3 text-sm font-medium text-gray-500 bg-red-600 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-red-900 focus:z-10 dark:red-blue-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-red-900 dark:focus:ring-gray-600" type="button">
                                     <i class="fa-solid fa-trash text-white"></i>
                                 </button>
-                                
+
                                 <div id="{{$d->id}}" x-show="deletemodal"
                                     x-transition:enter="transition ease-out duration-200"
                                     x-transition:enter-start="opacity-0"
@@ -902,30 +904,30 @@
                                     x-transition:leave-start="opacity-100"
                                     x-transition:leave-end="opacity-0"
                                 class="fixed inset-0 bg-gray-800 bg-opacity-50 z-50" @click="deletemodal = false"></div>
-                                
+
                                 <div id="{{$d->id}}" x-show="deletemodal"
                                     class="fixed inset-0 z-50 flex justify-center items-center w-full h-full bg-gray-900 bg-opacity-50" tabindex="-1" aria-labelledby="drawer-label" aria-hidden="true" @click="deletemodal = false">
                                     <!-- Drawer Header -->
                                     <div class="relative p-4 w-full max-w-md max-h-full">
                                         <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                                        
+
                                         <!-- Close Button -->
-                                        <button 
-                                            @click="deletemodal = false" 
-                                            type="button" 
+                                        <button
+                                            @click="deletemodal = false"
+                                            type="button"
                                             class="absolute top-3 right-3 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white">
                                             <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
                                             </svg>
                                             <span class="sr-only">Close modal</span>
                                         </button>
-                                        
+
                                         <div class="p-4 md:p-5 text-center">
                                             <!-- Icon -->
                                             <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
                                             </svg>
-                                    
+
                                             <!-- Modal Text -->
                                             <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure you want to delete this product?</h3>
                                             <div class="flex justify-center items-center">
@@ -935,10 +937,10 @@
                                                         Yes, I'm sure
                                                     </button>
                                                 </form>
-                                                
-                                                <button 
-                                                @click="deletemodal = false" 
-                                                type="button" 
+
+                                                <button
+                                                @click="deletemodal = false"
+                                                type="button"
                                                 class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
                                                 No, cancel
                                                 </button>
@@ -946,53 +948,53 @@
                                         </div>
                                         </div>
                                     </div>
-                                    
+
                                 </div>
 
                                 <!-- Modal -->
-                                <div 
-                                x-data="{ deletemodal: false }" 
-                                x-show="deletemodal" 
-                                x-transition 
-                                @keydown.escape.window="deletemodal = false" 
-                                tabindex="-1" 
+                                <div
+                                x-data="{ deletemodal: false }"
+                                x-show="deletemodal"
+                                x-transition
+                                @keydown.escape.window="deletemodal = false"
+                                tabindex="-1"
                                 class="fixed inset-0 z-50 flex justify-center items-center w-full h-full bg-gray-900 bg-opacity-50">
-                                
+
                                 <div class="relative p-4 w-full max-w-md max-h-full">
                                 <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                                    
+
                                     <!-- Close Button -->
-                                    <button 
-                                    @click="deletemodal = false" 
-                                    type="button" 
+                                    <button
+                                    @click="deletemodal = false"
+                                    type="button"
                                     class="absolute top-3 right-3 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white">
                                     <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
                                     </svg>
                                     <span class="sr-only">Close modal</span>
                                     </button>
-                                    
+
                                     <div class="p-4 md:p-5 text-center">
-                                    
+
                                     <!-- Icon -->
                                     <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
                                     </svg>
-                                
+
                                     <!-- Modal Text -->
                                     <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure you want to delete this product?</h3>
-                                    
+
                                     <!-- Action Buttons -->
-                                    <button 
-                                        @click="deletemodal = false" 
-                                        type="button" 
+                                    <button
+                                        @click="deletemodal = false"
+                                        type="button"
                                         class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
                                         Yes, I'm sure
                                     </button>
-                                    
-                                    <button 
-                                        @click="deletemodal = false" 
-                                        type="button" 
+
+                                    <button
+                                        @click="deletemodal = false"
+                                        type="button"
                                         class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
                                         No, cancel
                                     </button>
@@ -1002,9 +1004,9 @@
                                 </div>
                             </div> --}}
                         @endif
-                        
-                        
-                        
+
+
+
                     </td>
                 </tr>
                 @endforeach
