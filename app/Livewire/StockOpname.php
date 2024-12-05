@@ -5,11 +5,8 @@ namespace App\Livewire;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\WithoutUrlPagination;
-use App\Services\Product\ProductService;
-use App\Services\Category\CategoryService;
 use App\Services\StockTransaction\StockTransactionService;
-use App\Services\Supplier\SupplierService;
-use App\Services\UserActivity\UserActivityService;
+
 
 class StockOpname extends Component
 {
