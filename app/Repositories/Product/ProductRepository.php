@@ -6,7 +6,7 @@ use LaravelEasyRepository\Repository;
 
 interface ProductRepository extends Repository{
 
-    public function viewProduct(?int $page = null);
+    public function viewProduct();
 
     public function getProdbyId($id);
 
@@ -17,8 +17,6 @@ interface ProductRepository extends Repository{
     public function updateStock($id, array $data);
 
     public function deleteProduct($id);
-
-    public function pagProduct(int $num);
     
     public function searchByName(string $name, array $categories = []);
 
@@ -29,4 +27,6 @@ interface ProductRepository extends Repository{
     public function stockfilter();
 
     public function stockOpname(string $name);
+
+    public function startstockOpname($id, array $data);
 }

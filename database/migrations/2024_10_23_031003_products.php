@@ -26,7 +26,7 @@ return new class extends Migration
             $table->integer('stock_fisik')->default(0);
             $table->integer('stock_minimum')->nullable();
             $table->string('image')->nullable();
-            $table->date('last_edit_stock');
+            $table->date('last_edit_stock')->nullable();
             $table->timestamps();
         });
     }

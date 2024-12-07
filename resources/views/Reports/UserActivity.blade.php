@@ -12,8 +12,10 @@
                 {{-- <h2 class="mb-2 text-xl font-bold text-gray-900 dark:text-white">Halo, {{auth()->user()->name}}</h2> --}}
             </div>
         </div>
-        {{-- content here --}}
-        @livewire('UserActivity')
+        <div>
+            {{-- content here --}}
+            @livewire('UserActivity')
+        </div>
     </div> 
     
 </x-app-layout>

@@ -2,11 +2,12 @@
 
 namespace App\Services\Product;
 
-use LaravelEasyRepository\Service;
-use Illuminate\Support\Facades\Validator;
-use App\Repositories\Product\ProductRepository;
 use League\Csv\Reader;
+use LaravelEasyRepository\Service;
 use PhpOffice\PhpSpreadsheet\IOFactory;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
+use App\Repositories\Product\ProductRepository;
 
 class ProductServiceImplement extends Service implements ProductService{
 
@@ -45,9 +46,9 @@ class ProductServiceImplement extends Service implements ProductService{
       }
     }
 
-    public function viewProduct(?int $page = null)
+    public function viewProduct()
     {
-      return $this->mainRepository->viewProduct($page);
+      return $this->mainRepository->viewProduct();
     }
 
     public function getProdbyId($id)
@@ -76,11 +77,6 @@ class ProductServiceImplement extends Service implements ProductService{
     public function deleteProduct($id)
     {
       return $this->mainRepository->deleteProduct($id);
-    }
-
-    public function pagProduct(int $num)
-    {
-      return $this->mainRepository->pagProduct($num);
     }
 
     public function searchByName(string $name, array $categories = [])
@@ -185,6 +181,13 @@ class ProductServiceImplement extends Service implements ProductService{
     public function stockOpname(string $name)
     {
       return $this->mainRepository->stockOpname($name);
+    }
+
+    public function startstockOpname($id, array $data)
+    {
+      
+      return $this->mainRepository->startstockOpname($id, $data);
+
     }
 
     

@@ -3,6 +3,17 @@
         <div class="p-5">
             <h2 class="mb-2 text-5xl font-bold text-gray-900 dark:text-white">User Activity</h2>
         </div>
+        @if (request()->routeIs('admin.UserActivity'))    
+        <div  class="relative mb-3">
+            <form action="{{ route('admin.exportpdf') }}" method="post">
+            @csrf
+            <button type="submit" class="flex items-center justify-center dark:bg-blue-600 bg-blue-600 text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
+                <i class="fa-solid fa-file-export mx-1"></i>
+                Export to PDF
+            </button>
+            </form>
+        </div>
+        @endif
         <div class="overflow-x-auto">
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-300 dark:bg-gray-700 dark:text-gray-400">

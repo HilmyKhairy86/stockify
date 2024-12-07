@@ -145,9 +145,10 @@ Route::middleware("auth", "verified", "role:admin")->group(function () {
     Route::get("/Admin/Stock/Opname", function () {
         return view("Stock.Opname");
     })->name("admin.opname");
+    
     Route::post("/Admin/Stock/opname/{id}", [
         ProductController::class,
-        "stockOpname",
+        "startstockOpname",
     ])->name("admin.stockOpname");
 
     Route::get("/Admin/Stock/Stock-minimum", function () {

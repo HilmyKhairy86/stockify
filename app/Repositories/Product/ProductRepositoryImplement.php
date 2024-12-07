@@ -22,11 +22,7 @@ class ProductRepositoryImplement extends Eloquent implements ProductRepository{
     }
 
     public function viewProduct(?int $page = null){
-        if ($page === null) {
-            return $this->model->all();
-        } else {
-            return $this->model->paginate($page);
-        }
+        return $this->model->all();
     }
 
     public function getProdbyId($id){
@@ -72,15 +68,11 @@ class ProductRepositoryImplement extends Eloquent implements ProductRepository{
         $product->delete();
     }
 
-    public function pagProduct(int $num)
-    {
-        return $this->model->paginate($num);
-    }
-
-    // public function searchByName(string $name)
+    // public function pagProduct(int $num)
     // {
-    //     return Product::where('name', 'LIKE', '%'.$name . '%');
+    //     return $this->model->paginate($num);
     // }
+
     public function searchByName(string $name, array $categories = [])
     {
         $query = Product::query();
@@ -125,12 +117,17 @@ class ProductRepositoryImplement extends Eloquent implements ProductRepository{
             'products.sku',
             'products.stock',
             'products.stock_fisik',
+            'products.last_edit_stock AS last',
             DB::raw('COALESCE(SUM(stock_transactions.quantity), 0) AS stock_total')
         )
         ->where('products.name', 'like', '%' . $name . '%')
-        ->groupBy('products.id','products.name', 'products.sku', 'products.stock', 'products.stock_fisik');
+        ->groupBy('products.id','products.name', 'products.sku', 'products.stock', 'products.stock_fisik', 'products.last_edit_stock');
         return $product;
     }
 
-
+    public function startstockOpname($id, array $data)
+    {
+        $update = $this->model->findOrfail($id);
+        $update->update($data);
+    }
 }
