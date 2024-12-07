@@ -16,7 +16,9 @@ $appLogo = DB::table('app_settings')->value('logo');
        </button>
         <a href="" class="flex items-center justify-between mr-4">
           {{-- logo and app name --}}
+          @if ($appLogo)
           <img for="image" src="{{ asset('storage/'.$appLogo ) }}" class="block w-8 h-8 mx-3 object-cover rounded-lg " />
+          @endif
           <span class="self-center text-2xl font-semibold whitespace-nowrap text-black dark:text-white">{{ $appName }}</span>
         </a>
       </div>

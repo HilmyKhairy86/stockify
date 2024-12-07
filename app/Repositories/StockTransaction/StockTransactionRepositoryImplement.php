@@ -116,7 +116,7 @@ class StockTransactionRepositoryImplement extends Eloquent implements StockTrans
             $q->whereDate('date', $date);
         })
         ->orderBy('id', 'desc');
-        
+
         return $query;
     }
 
@@ -173,11 +173,16 @@ class StockTransactionRepositoryImplement extends Eloquent implements StockTrans
     public function stockOpname(string $name)
     {
         $query = StockTransaction::join('products', 'stock_transactions.product_id', '=', 'products.id')
-        ->select('stock_transactions.product_id', 'stock_fisik', 'sku', 'products.name', DB::raw('SUM(stock_transactions.quantity) as stock_total'))
+        ->select('stock_transactions.product_id', 'stock', 'stock_fisik', 'sku', 'products.name', DB::raw('SUM(stock_transactions.quantity) as stock_total'))
         ->where('type','keluar')
         ->where('name', 'like', '%' . $name . '%')
-        ->whereBetween('date', [now()->startOfWeek(), now()->endOfWeek()])
-        ->groupBy('stock_transactions.product_id', 'products.name', 'sku', 'stock_fisik');
+        ->whereBetween('stock_transactions.date', [now()->startOfWeek(), now()->endOfWeek()])
+        ->groupBy('stock_transactions.product_id', 'stock', 'products.name', 'sku', 'stock_fisik');
         return $query;
+    }
+
+    public function stockCheck()
+    {
+        //
     }
 }

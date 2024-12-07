@@ -40,6 +40,7 @@ class Product extends Model
         'stock_fisik',
         'stock_minimum',
         'image',
+        'last_edit_stock',
     ];
     protected static function boot()
     {

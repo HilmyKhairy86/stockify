@@ -35,19 +35,16 @@
             <tbody>
                 @foreach ($products as $index => $d)
                 <tr class="border-b dark:border-gray-700 odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800">
-                    <td class="px-4 py-3 text-center">{{$index+1}}</td>
+                    <td class="px-4 py-3 text-center">{{$products->firstItem() + $index}}</td>
                     <td scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $d->name }}</td>
                     <td class="px-4 py-3">{{ $d->sku }}</td>
-                    <td class="px-4 py-3 text-center">0</td>
+                    <td class="px-4 py-3 text-center">{{ $d->stock }}</td>
                     <td class="px-4 py-3 text-center items-center">{{ $d->stock_total }}</td>
                     <td class="px-4 py-3 text-center">{{ $d->stock_fisik }}</td>
                     <td class="px-4 py-3 text-center">
-                        @if ($d->stock_total < $d->stock_fisik)
-                            Stock Lebih {{ $d->stock_fisik - $d->stock_total }}
-                        @elseif ($d->stock_fisik < $d->stock_total)
-                            Stock Kurang {{ $d->stock_total - $d->stock_fisik }}
-                        @else
-                            0
+                        
+                        @if (( $d->stock - ($d->stock_total + $d->stock_fisik) ) > 0)
+                            Kurang {{( $d->stock - ($d->stock_total + $d->stock_fisik) ) }}
                         @endif
                     </td>
                     <td class="px-4 py-3 justify-end space-x-2 flex items-center">
@@ -81,7 +78,7 @@
                                         </button>
                                     </div>
                                     <div class="h-full overflow-y-auto">
-                                        <form action="{{route('admin.stockOpname',$d->product_id)}}" method="POST">
+                                        <form action="{{route('admin.stockOpname',$d->id)}}" method="POST">
                                             @csrf
                                             <div class="grid gap-4 mb-4 sm:grid-cols-2">
                                                 <div class="sm:col-span-2">
@@ -103,7 +100,7 @@
                             <!-- modal -->
                             <div x-data="{ openupdatemodal: false }" x-cloak="{display: none}" x-init="open = false" @keydown.escape.window="open = false" x-bind:class="{ 'overflow-hidden': open }"  class="relative">
                                 <!-- Button to open drawer -->
-                                <button id="{{$d->id}}" @click="openupdatemodal = true" class="py-2 px-3 text-sm font-medium text-gray-500 bg-blue-500 rounded-lg hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-400 focus:z-10 dark:bg-blue-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-blue-700 dark:focus:ring-gray-600" type="button">
+                                <button id="{{$d->id}}" @click="openupdatemodal = true" class="py-2 px-3 text-sm font-medium text-gray-100 bg-blue-500 rounded-lg hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-400 focus:z-10 dark:bg-blue-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-blue-700 dark:focus:ring-gray-600" type="button">
                                     Cek Stock
                                 </button>
 
@@ -128,7 +125,7 @@
                                         </button>
                                     </div>
                                     <div class="h-full overflow-y-auto">
-                                        <form action="{{route('admin.stockOpname',$d->product_id)}}" method="POST">
+                                        <form action="{{route('admin.stockOpname',$d->id)}}" method="POST">
                                             @csrf
                                             <div class="grid gap-4 mb-4 sm:grid-cols-2">
                                                 <div class="sm:col-span-2">

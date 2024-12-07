@@ -2,9 +2,10 @@
 
 namespace App\Repositories\Product;
 
-use LaravelEasyRepository\Implementations\Eloquent;
 use App\Models\Product;
 use App\Models\ProductAttribute;
+use Illuminate\Support\Facades\DB;
+use LaravelEasyRepository\Implementations\Eloquent;
 
 class ProductRepositoryImplement extends Eloquent implements ProductRepository{
 
@@ -114,7 +115,21 @@ class ProductRepositoryImplement extends Eloquent implements ProductRepository{
 
     public function stockOpname(string $name)
     {
-        
+        $product = Product::leftJoin('stock_transactions', function ($join) {
+            $join->on('products.id', '=', 'stock_transactions.product_id')
+                 ->whereBetween(DB::raw('DATE(stock_transactions.date)'), [now()->startOfWeek(), now()->endOfWeek()]);
+        })
+        ->select(
+            'products.id AS id',
+            'products.name',
+            'products.sku',
+            'products.stock',
+            'products.stock_fisik',
+            DB::raw('COALESCE(SUM(stock_transactions.quantity), 0) AS stock_total')
+        )
+        ->where('products.name', 'like', '%' . $name . '%')
+        ->groupBy('products.id','products.name', 'products.sku', 'products.stock', 'products.stock_fisik');
+        return $product;
     }
 
 

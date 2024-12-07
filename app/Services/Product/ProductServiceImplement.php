@@ -182,6 +182,11 @@ class ProductServiceImplement extends Service implements ProductService{
       return $this->mainRepository->stockfilter();
     }
 
+    public function stockOpname(string $name)
+    {
+      return $this->mainRepository->stockOpname($name);
+    }
+
     
 
 }
