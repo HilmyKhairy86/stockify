@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Barryvdh\Snappy\Facades\SnappyPdf;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Auth;
 use App\Services\Product\ProductService;
 use App\Services\UserActivity\UserActivityService;
@@ -62,7 +62,7 @@ class StockTransactionController extends Controller
     {
         $data = $this->stocktransactionService->viewTransaction();
 
-        $pdf = SnappyPdf::loadView("Export.transaksipdf", ["data" => $data]);
+        $pdf = Pdf::loadView("Export.transaksipdf", ["data" => $data]);
         $date = now();
         $act = [
             "user_id" => Auth::user()?->id,
@@ -70,7 +70,7 @@ class StockTransactionController extends Controller
             "tanggal" => now(),
         ];
         $this->userActivityService->createActivity($act);
-        return $pdf->download("laporan transaksi " . $date);
+        return $pdf->download("laporan_transaksi_" . $date);
         // return view("Export.transaksipdf", ["data" => $data]);
     }
 
@@ -79,7 +79,7 @@ class StockTransactionController extends Controller
         $masuk = $this->stocktransactionService->masuk()->get();
         $keluar = $this->stocktransactionService->keluar()->get();
 
-        $pdf = SnappyPdf::loadView("Export.keluarmasukpdf", ["masuk" => $masuk, 'keluar' => $keluar]);
+        $pdf = Pdf::loadView("Export.keluarmasukpdf", ["masuk" => $masuk, 'keluar' => $keluar]);
         $date = now();
         $act = [
             "user_id" => Auth::user()?->id,
@@ -87,7 +87,7 @@ class StockTransactionController extends Controller
             "tanggal" => now(),
         ];
         $this->userActivityService->createActivity($act);
-        return $pdf->download("laporan keluar masuk " . $date);
+        return $pdf->download("laporan_keluar_masuk_" . $date);
         // return view("Export.transaksipdf", ["data" => $data]);
     }
 
