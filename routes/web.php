@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ImportControlller;
@@ -8,13 +10,12 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TestingController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UserActivityController;
 use App\Http\Controllers\ProductAttributeController;
-use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\StockTransactionController;
-use App\Models\Product;
-use Illuminate\Support\Facades\View;
 
 // Route::get('/testing', [TestingController::class, 'index']);
 
@@ -159,10 +160,25 @@ Route::middleware("auth", "verified", "role:admin")->group(function () {
         return view("Reports.adminreport");
     })->name("admin.report");
 
-    Route::post("/Admin/Reports/Transactions/export", [
+
+    
+    Route::post("/Admin/Reports/Transactions/export-transaksi", [
         StockTransactionController::class,
         "generatePDF",
     ])->name("admin.exportpdf");
+
+    Route::post("/Admin/Reports/Transactions/export-keluarmasuk", [
+        StockTransactionController::class,
+        "generatePDFkel",
+    ])->name("admin.exportpdfkel");
+
+    Route::post("/Admin/Reports/Transactions/export-activity", [
+        UserActivityController::class,
+        "generatePDF",
+    ])->name("admin.exportpdfact");
+
+
+
 
     Route::get("/Admin/Reports/Products", function () {
         return view("Reports.KeluarMasuk");

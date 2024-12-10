@@ -3,11 +3,12 @@
 namespace App\Services\User;
 
 use App\Models\User;
-use LaravelEasyRepository\ServiceApi;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use LaravelEasyRepository\ServiceApi;
 use Illuminate\Auth\Events\Registered;
 use App\Repositories\User\UserRepository;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
 
 class UserServiceImplement extends ServiceApi implements UserService{
@@ -31,24 +32,31 @@ class UserServiceImplement extends ServiceApi implements UserService{
 
     public function addUser($data)
     {
-      $data->validate([
-        'name' => ['required', 'string', 'max:255'],
-        'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-        'password' => ['required', 'confirmed', Password::defaults()],
-      ]);
+      // $validator = Validator::make($data, [
+      //   'name' => 'required|string|max:255',
+      //   'supplier_id' => 'required|exists:users,email',
+      //   'role' => 'required|string|max:255',
+      //   'password' => 'required|string|max:255',
+      // ]);
 
+      // if ($validator->fails()) {
+      //   throw new \Illuminate\Validation\ValidationException($validator);
+      // } else {
+      // }
       $user = [
-        'name' => $data->name,
-        'email' => $data->email,
-        'password' => Hash::make($data->password),
+        'name' => $data['name'],
+        'email' => $data['email'],
+        'role' => $data['role'],
+        'password' => Hash::make($data['password']),
       ];
 
-      $create = $this->mainRepository->createUser($user);
-
-      event(new Registered($create));
-
-      Auth::login($user);
-
+      return $this->mainRepository->createUser($user);
+      // $data->validate([
+      //   'name' => ['required', 'string', 'max:255'],
+      //   'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+      //   'role' => ['required', 'string', 'max:255'],
+      //   'password' => ['required', 'confirmed', Password::defaults()],
+      // ]);
     }
 
     public function updateUser($id, array $data)

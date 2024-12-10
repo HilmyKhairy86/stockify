@@ -175,7 +175,7 @@
                 <x-nav-link :active="request()->routeIs('admin.KeluarMasuk')" href="{{route('admin.KeluarMasuk')}}">Keluar Masuk</x-nav-link>
               </li>
               <li>
-                <x-nav-link :active="request()->routeIs('admin.UserActivity')" href="{{route('admin.UserActivity')}}">User Acttivity</x-nav-link>
+                <x-nav-link :active="request()->routeIs('admin.UserActivity')" href="{{route('admin.UserActivity')}}">User Activity</x-nav-link>
               </li>
             </ul>
           </li>

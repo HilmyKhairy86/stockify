@@ -38,7 +38,7 @@
                     class="fixed top-0 right-0 z-50 w-full h-screen max-w-xs p-4 overflow-y-auto transition-transform bg-white dark:bg-gray-800" tabindex="-1" aria-labelledby="drawer-label" aria-hidden="true">
                     <!-- Drawer Header -->
                     <div class="flex justify-between items-center">
-                        <h5 id="drawer-label" class="text-sm font-semibold text-gray-500 uppercase dark:text-gray-400">New Attribute</h5>
+                        <h5 id="drawer-label" class="text-sm font-semibold text-gray-500 uppercase dark:text-gray-400">New User</h5>
                         <button @click="adddatamodal = false" aria-controls="drawer-create-product-default"
                             class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5">
                             <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -47,9 +47,77 @@
                             <span class="sr-only">Close menu</span>
                         </button>
                     </div>
-                    <div class="h-full overflow-y-auto">
+                    <div class="h-full overflow-y-auto" x-data="passwordChecker()">
                         {{-- form --}}
-
+                        <form action="{{ route('admin.adduser') }}" method="post">
+                            @csrf
+                            <div class="grid gap-4 mb-4 sm:grid-cols-2 p-2">
+                                <div class="sm:col-span-2">
+                                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
+                                    <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type user name" required="">
+                                </div>
+                                <div class="sm:col-span-2">
+                                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                                    <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type user email" required="">
+                                </div>
+                                <div class="sm:col-span-2">
+                                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Role</label>
+                                    <select id="role" name="role" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required>
+                                        <option value="" selected disabled >Pilih Role</option>
+                                        <option value="admin" >admin</option>
+                                        <option value="manajer_gudang" >manajer gudang</option>
+                                        <option value="staff_gudang" >staff gudang</option>
+                                    </select>
+                                </div>
+                                <div class="sm:col-span-2">
+                                    <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+                                    <input 
+                                        type="password" 
+                                        name="password" 
+                                        id="password"
+                                        x-model="password" 
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type password" required=""
+                                    >
+                                </div>
+                                <div class="sm:col-span-2">
+                                    <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm Password</label>
+                                    <input 
+                                        type="password" 
+                                        name="password" 
+                                        id="confirmPassword"
+                                        x-model="confirmPassword"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type password" required="">
+                                </div>
+                                <div x-show="password && confirmPassword" class="sm:col-span-2">
+                                    <p x-text="passwordsMatch ? 'Passwords match!' : 'Passwords do not match.'" 
+                                       :class="passwordsMatch ? 'text-green-600' : 'text-red-600'">
+                                    </p>
+                                </div>
+                            </div>
+                            <script>
+                                function passwordChecker() {
+                                    return {
+                                        password: '',
+                                        confirmPassword: '',
+                                        get passwordsMatch() {
+                                            return this.password === this.confirmPassword;
+                                        },
+                                        submitForm() {
+                                            if (this.passwordsMatch) {
+                                                alert('Passwords match. Form submitted!');
+                                            } else {
+                                                alert('Passwords do not match. Please try again.');
+                                            }
+                                        }
+                                    };
+                                }
+                            </script>
+                            <div class="flex items-center space-x-4">
+                                <button type="submit" :disabled="!passwordsMatch" class="py-2 px-3 text-sm font-medium text-gray-500 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
+                                    Add User
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -129,7 +197,7 @@
                                         </div>
                                         <div class="flex items-center space-x-4">
                                             <button type="submit" class="py-2 px-3 text-sm font-medium text-gray-500 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
-                                                Update Supplier
+                                                Update User
                                             </button>
                                         </div>
                                     </form>

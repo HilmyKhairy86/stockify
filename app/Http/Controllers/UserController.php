@@ -37,12 +37,18 @@ class UserController extends Controller
             "tanggal" => now(),
         ];
         $this->userActivityService->createActivity($act);
-        return redirect()->back();
+        return redirect()->route('viewUsers')->with("success", "Action was successful!");
     }
 
     public function deleteUser($id)
     {
         $this->userService->deleteUser($id);
-        return redirect()->back();
+        $act = [
+            "user_id" => Auth::user()?->id,
+            "kegiatan" => "menghapus user dengan id " . $id,
+            "tanggal" => now(),
+        ];
+        $this->userActivityService->createActivity($act);
+        return redirect()->route('viewUsers')->with("success", "Action was successful!");
     }
 }

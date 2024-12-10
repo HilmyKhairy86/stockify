@@ -74,6 +74,23 @@ class StockTransactionController extends Controller
         // return view("Export.transaksipdf", ["data" => $data]);
     }
 
+    public function generatePDFkel()
+    {
+        $masuk = $this->stocktransactionService->masuk()->get();
+        $keluar = $this->stocktransactionService->keluar()->get();
+
+        $pdf = SnappyPdf::loadView("Export.keluarmasukpdf", ["masuk" => $masuk, 'keluar' => $keluar]);
+        $date = now();
+        $act = [
+            "user_id" => Auth::user()?->id,
+            "kegiatan" => "mengeksport laporan keluar masuk ",
+            "tanggal" => now(),
+        ];
+        $this->userActivityService->createActivity($act);
+        return $pdf->download("laporan keluar masuk " . $date);
+        // return view("Export.transaksipdf", ["data" => $data]);
+    }
+
     public function deleteTransaction($id)
     {
         $this->stocktransactionService->deleteTransaction($id);
