@@ -76,15 +76,21 @@ class ProductController extends Controller
     {
         $data = $request->all();
         $data['last_edit_stock'] = today();
-        $this->productService->startstockOpname($id,$data);
-        
-        $act = [
-            'user_id' => Auth::user()?->id,
-            'kegiatan' => 'melakukan stock opname untuk produk dengan id : '.$id,
-            'tanggal' => now(),
-        ];
-        $this->userActivityService->createActivity($act);
-        return redirect()->back()->with('success','Action was successful!');
+        $date = $this->productService->getProdbyId($id);
+        if ($date->last_edit_stock != date('Y-m-d')) {
+            
+            $this->productService->startstockOpname($id,$data);
+            
+            $act = [
+                'user_id' => Auth::user()?->id,
+                'kegiatan' => 'melakukan stock opname untuk produk dengan id : '.$id,
+                'tanggal' => now(),
+            ];
+            $this->userActivityService->createActivity($act);
+            return redirect()->back()->with('success','Action was successful!');
+        } else {
+            return redirect()->back()->with('error','Action was successful!');
+        }
     }
 
     public function deleteProduct($id)
