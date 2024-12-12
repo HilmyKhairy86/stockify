@@ -21,14 +21,14 @@ class UserActivityController extends Controller
 
         // $pdf = SnappyPdf::loadView("Export.useractivitypdf", ["data" => $data]);
         $pdf = Pdf::loadView("Export.useractivitypdf", ["data" => $data]);
-
-        $date = now();
         $act = [
             "user_id" => Auth::user()?->id,
             "kegiatan" => "mengeksport laporan user activity",
             "tanggal" => now(),
         ];
         $this->userActivityService->createActivity($act);
-        return $pdf->download("laporan_user activity_" . $date);
+
+        $response = $pdf->download("laporan_user activity_" . now());
+        return $response;
     }
 }

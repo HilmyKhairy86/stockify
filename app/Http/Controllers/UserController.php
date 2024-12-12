@@ -51,4 +51,13 @@ class UserController extends Controller
         $this->userActivityService->createActivity($act);
         return redirect()->route('viewUsers')->with("success", "Action was successful!");
     }
+
+    public function searchById()
+    {
+        $id = Auth::user()?->id;
+        $data = $this->userService->searchById($id);
+        return view('profile.settings',[
+            'data' => $data,
+        ]);
+    }
 }

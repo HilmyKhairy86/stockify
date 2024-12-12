@@ -1,6 +1,7 @@
 <div>
     <div class="w-full dark:bg-gray-600 bg-gray-200 p-2 rounded-md mb-3 md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
         <div x-data="{ adddatamodal: false }" x-cloak="{display: none}" x-init="open = false" @keydown.escape.window="open = false" x-bind:class="{ 'overflow-hidden': open }"  class="relative">
+            @if (auth()->user()->role == 'admin')
             <form action="{{ route('admin.exportpdf') }}" method="post">
             @csrf
             <button type="submit" class="flex items-center justify-center dark:bg-blue-600 bg-blue-600 text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
@@ -8,7 +9,13 @@
                 Export to PDF
             </button>
             </form>
-
+            @elseif (auth()->user()->role == 'manajer_gudang')
+            <button type="submit" class="flex items-center justify-center dark:bg-blue-600 bg-blue-600 text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
+                <i class="fa-solid fa-file-export mx-1"></i>
+                Export to PDF
+            </button>
+            </form>
+            @endif
         </div>
 
         <div x-data="{ filtermodal: false }" x-cloak="{display: none}" x-init="open = false" @keydown.escape.window="open = false" x-bind:class="{ 'overflow-hidden': open }"  class="relative">

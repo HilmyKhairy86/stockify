@@ -32,6 +32,10 @@ Route::middleware("auth", "verified", "role:admin")->group(function () {
         DashboardController::class,
         "admindash",
     ])->name("admin.dashboard");
+
+    Route::get('/Admin/Profile/Settings', [UserController::class, 'searchById'])->name('admin.profile');
+
+
     Route::get("/profile", [ProfileController::class, "edit"])->name(
         "profile.edit"
     );
@@ -172,13 +176,11 @@ Route::middleware("auth", "verified", "role:admin")->group(function () {
         "generatePDFkel",
     ])->name("admin.exportpdfkel");
 
+    // report
     Route::post("/Admin/Reports/Transactions/export-activity", [
         UserActivityController::class,
         "generatePDF",
     ])->name("admin.exportpdfact");
-
-
-
 
     Route::get("/Admin/Reports/Products", function () {
         return view("Reports.KeluarMasuk");
@@ -187,6 +189,8 @@ Route::middleware("auth", "verified", "role:admin")->group(function () {
     Route::get("/Admin/Reports/User-Activity", function () {
         return view("Reports.UserActivity");
     })->name("admin.UserActivity");
+
+    // 
 
     Route::post("/Admin/Stock/History/create", [
         StockTransactionController::class,
@@ -300,13 +304,21 @@ Route::middleware("auth", "verified", "role:manajer_gudang")->group(
             "viewSupplier",
         ])->name("manager.suppliers");
 
+        // 
+        // Route::get("/Manager/Stock/Opname", function () {
+        //     return view("Stock.Opname");
+        // })->name("manager.opname");
+
         Route::get("/Manager/Stock/Opname", function () {
             return view("Stock.Opname");
         })->name("manager.opname");
+        
         Route::post("/Manager/Stock/opname/{id}", [
             ProductController::class,
-            "stockOpname",
+            "startstockOpname",
         ])->name("manager.stockOpname");
+
+        // 
 
         Route::get("/Manager/Stock/Transaction", function () {
             return view("Stock.History");
@@ -328,6 +340,20 @@ Route::middleware("auth", "verified", "role:manajer_gudang")->group(
             StockTransactionController::class,
             "deleteTransaction",
         ])->name("manager.deleteTransaction");
+
+        // rport
+        Route::post("/Manager/Reports/Transactions/export-activity", [
+            UserActivityController::class,
+            "generatePDF",
+        ])->name("manager.exportpdfact");
+    
+        Route::get("/Manager/Reports/Products", function () {
+            return view("Reports.KeluarMasuk");
+        })->name("manager.KeluarMasuk");
+    
+        Route::get("/Manager/Reports/User-Activity", function () {
+            return view("Reports.UserActivity");
+        })->name("manager.UserActivity");
     }
 );
 

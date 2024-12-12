@@ -171,7 +171,7 @@
                                         </button>
                                     </div>
                                     <div class="h-full overflow-y-auto">
-                                        <form action="{{route('manager.stockOpname',$d->product_id)}}" method="POST">
+                                        <form action="{{route('manager.stockOpname',$d->id)}}" method="POST">
                                             @csrf
                                             <div class="grid gap-4 mb-4 sm:grid-cols-2">
                                                 <div class="sm:col-span-2">

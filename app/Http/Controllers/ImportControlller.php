@@ -41,12 +41,6 @@ class ImportControlller extends Controller
 
     public function export()
     {
-        $act = [
-            'user_id' => Auth::user()?->id,
-            'kegiatan' => 'mengekspor produk dengan format csv',
-            'tanggal' => now(),
-        ];
-        $this->userActivityService->createActivity($act);
         // Fetch the product data
         $products = $this->productService->viewProduct();
 
@@ -78,7 +72,12 @@ class ImportControlller extends Controller
 
         // Close the file handle
         fclose($handle);
-
+        $act = [
+            'user_id' => Auth::user()?->id,
+            'kegiatan' => 'mengekspor produk dengan format csv',
+            'tanggal' => now(),
+        ];
+        $this->userActivityService->createActivity($act);
         // Return the file as a download response
         return response()->download($tempFilePath)->deleteFileAfterSend(true);          
     }
@@ -115,7 +114,7 @@ class ImportControlller extends Controller
         }
 
         // Set headers for download
-        $fileName = 'Product-' . now()->format('Y-m-d_H-i-s') . '.xlsx';
+        // $fileName = 'Product-' . now()->format('Y-m-d_H-i-s') . '.xlsx';
         $response = new Response();
 
         // Create writer and stream output
@@ -131,9 +130,10 @@ class ImportControlller extends Controller
         ];
         $this->userActivityService->createActivity($act);
 
-        return response($excelOutput)
+        $response = response($excelOutput)
         ->header('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
         ->header('Content-Disposition', 'attachment; filename="Product-' . now()->format('Y-m-d_H-i-s') . '.xlsx"')
         ->header('Cache-Control', 'max-age=0');
+        return $response;
     }
 }

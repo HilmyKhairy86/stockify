@@ -78,4 +78,9 @@ class UserServiceImplement extends ServiceApi implements UserService{
     {
         return $this->mainRepository->searchByName($name);
     }
+
+    public function searchById($id)
+    {
+      return $this->mainRepository->searchById($id);
+    }
 }

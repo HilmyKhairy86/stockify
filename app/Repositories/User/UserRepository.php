@@ -17,4 +17,5 @@ interface UserRepository extends Repository
 
     public function searchByName(string $name);
 
+    public function searchById($id);
 }

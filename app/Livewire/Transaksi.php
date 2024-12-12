@@ -70,7 +70,7 @@ class Transaksi extends Component
         if (in_array('all', $status)) {
             $status = [];
         }
-            $stock = $this->stocktransactionService->searchByName($this->search, $this->date, $types, $status)->paginate(5);
+            $stock = $this->stocktransactionService->searchByName($this->search, $this->date, $types, $status)->paginate(10);
             // dd($stock);
             return view('livewire.transaksi',[
                 'stock' => $stock,

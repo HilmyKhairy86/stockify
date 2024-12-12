@@ -47,4 +47,9 @@ class UserRepositoryImplement extends Eloquent implements UserRepository{
     {
         return User::where('name', 'LIKE', '%' . $name . '%');
     }
+
+    public function searchById($id)
+    {
+        return $this->model->find($id);
+    }
 }

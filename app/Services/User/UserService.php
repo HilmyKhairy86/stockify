@@ -18,4 +18,6 @@ interface UserService extends BaseService{
     public function deleteUser($id);
 
     public function searchByName(string $name);
+
+    public function searchById($id);
 }

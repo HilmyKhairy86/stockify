@@ -16,7 +16,7 @@
             <div  class="relative p-3">
                 <form action="{{ route('admin.exportpdfact') }}" method="post">
                     @csrf
-                    <button type="submit" class="flex items-center justify-center dark:bg-blue-600 bg-blue-600 text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
+                    <button type="submit" onclick="this.disabled=true; this.form.submit();" class="flex items-center justify-center dark:bg-blue-600 bg-blue-600 text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
                         <i class="fa-solid fa-file-export mx-1"></i>
                         Export to PDF
                     </button>
