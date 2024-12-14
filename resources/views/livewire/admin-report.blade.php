@@ -53,7 +53,13 @@
                 </div>
                 <div class="h-full overflow-y-auto">
                     <div class="grid gap-4 p-4 mb-5 sm:grid-cols-2 justify-items">
-
+                        {{-- {{ dd($cat) }}
+                        @foreach ($cat as $p)
+                            <div class=" flex items-center">
+                                <input wire:model.live="categories" id="cat-{{$p->id}}" type="checkbox" name="category" value="{{$p->id}}" class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                <label for="cat-{{$p->id}}" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">{{ $p->name }}</label>
+                            </div>
+                        @endforeach --}}
                     </div>
                 </div>
             </div>
@@ -77,13 +83,14 @@
             <thead class="text-xs text-gray-700 uppercase bg-gray-300 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" class="px-4 py-3">No</th>
-                                    <th scope="col" class="px-4 py-3">Product</th>
-                                    <th scope="col" class="px-4 py-3">User</th>
-                                    <th scope="col" class="px-4 py-3">Type</th>
-                                    <th scope="col" class="px-4 py-3">Quantity</th>
-                                    <th scope="col" class="px-4 py-3">Date</th>
-                                    <th scope="col" class="px-4 py-3">Status</th>
-                                    <th scope="col" class="px-4 py-3">Notes</th>
+                    <th scope="col" class="px-4 py-3">Product</th>
+                    <th scope="col" class="px-4 py-3">User</th>
+                    <th scope="col" class="px-4 py-3">Type</th>
+                    <th scope="col" class="px-4 py-3">Quantity</th>
+                    <th scope="col" class="px-4 py-3">Date</th>
+                    <th scope="col" class="px-4 py-3">Status</th>
+                    <th scope="col" class="px-4 py-3">Notes</th>
+                    
                 </tr>
             </thead>
             <tbody>

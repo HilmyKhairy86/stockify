@@ -174,11 +174,11 @@
                     x-transition:leave="transition ease-in duration-200"
                     x-transition:leave-start="opacity-100"
                     x-transition:leave-end="opacity-0"
-                class="fixed inset-0 bg-gray-800 bg-opacity-50 z-50" @click="importdatamodal = false"></div>
+                class="fixed inset-0 bg-gray-800 bg-opacity-50 z-10" @click="importdatamodal = false"></div>
 
                 {{-- modal header --}}
                 <div id="importdatamodal" x-show="importdatamodal"
-                    class="fixed inset-0 z-50 flex justify-center items-center w-full h-full bg-gray-900 bg-opacity-50" tabindex="-1" aria-labelledby="drawer-label" aria-hidden="true" @click="importdatamodal = false">
+                    class="fixed inset-0 z-10 flex justify-center items-center w-full h-full bg-gray-900 bg-opacity-50" tabindex="-1" aria-labelledby="drawer-label" aria-hidden="true">
                     <!-- Drawer Header -->
                     <div class="relative p-4 w-full max-w-2xl max-h-full">
                         <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
@@ -196,12 +196,12 @@
 
                             <div class="p-3">
                                 <!-- Modal Text -->
-                                <div class="flex p-6">
+                                <div class="p-6">
                                     <form action="{{ route('import') }}" method="post" enctype="multipart/form-data">
                                         @csrf
-                                        <div class="mb-4 w-full">
+                                        <div class="mb-4">
                                             <label for="file" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Select File</label>
-                                            <input type="file" name="file" id="file" class="mt-1 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:bg-gray-700 dark:text-gray-400 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                            <input type="file" name="file" class="mt-1 w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:bg-gray-700 dark:text-gray-400 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500">
                                         </div>
 
                                         <div class="flex">

@@ -120,57 +120,52 @@ class ProductServiceImplement extends Service implements ProductService{
     //   }
     // }
 
-    public function importProduct($file)
+    public function importProduct($file, string $ext)
     {
-        $fileExtension = $file->extension();
-
-        $rows = [];
-
-        // Handle CSV files
-        if ($fileExtension === 'csv') {
-            $csv = Reader::createFromPath($file->getRealPath(), 'r');
-            $csv->setHeaderOffset(0);
-            $rows = $csv->getRecords();
-        } 
-        // Handle Excel files
-        elseif (in_array($fileExtension, ['xls', 'xlsx'])) {
-            $spreadsheet = IOFactory::load($file->getRealPath());
-            $sheet = $spreadsheet->getActiveSheet();
-            $rows = $sheet->toArray(null, true, true, true);
-
-            $headers = array_shift($rows); // Extract headers
-            $rows = array_map(function($row) use ($headers) {
-                return array_combine($headers, $row); // Combine headers with row values
-            }, $rows);
-        } else {
-            throw new \Exception("Invalid file type. Please upload a CSV or Excel file.");
-        }
-
-        // Process the rows
-        foreach ($rows as $row) {
-          $existingProduct = $this->mainRepository->findProductBySku($row['sku'] ?? null);
-
-          if ($existingProduct) {
-              // If the product exists, skip to the next iteration
-              continue;
-          } else {
-            // Prepare data array
-            $data = [
-                'category_id'   => $row['category_id'] ?? null,
-                'supplier_id'   => $row['supplier_id'] ?? null,
-                'name'          => $row['name'] ?? null,
-                'sku'           => $row['sku'] ?? null,
-                'description'   => $row['description'] ?? null,
-                'purchase_price'=> $row['purchase_price'] ?? 0,
-                'selling_price' => $row['selling_price'] ?? 0,
-                'image'         => $row['image'] ?? null,
-            ];
+      $rows = [];
+      if ($ext === 'csv' || $ext === 'txt') {
+          $csv = Reader::createFromPath($file->getRealPath(), 'r');
+          $csv->setHeaderOffset(0);
+          $rows = iterator_to_array($csv->getRecords());
+      } elseif (in_array($ext, ['xls', 'xlsx'])) {
+          $spreadsheet = IOFactory::load($file->getRealPath());
+          $sheet = $spreadsheet->getActiveSheet();
+          $rows = $sheet->toArray(null, true, true, true);
   
-            // Insert data using the repository
-            $this->mainRepository->createProduct($data);
+          $headers = array_shift($rows);
+          $rows = array_map(function ($row) use ($headers) {
+              return array_combine($headers, $row);
+          }, $rows);
+      } else {
+          throw new \Exception("Invalid file type. Please upload a CSV or Excel file.");
+      }
+  
+      foreach ($rows as $row) {
+          $sku = $row['sku'] ?? null;
+  
+          if (!$sku) {
+              continue;
           }
-
-        }
+  
+          $existingProduct = $this->mainRepository->findProductBySku($sku);
+  
+          if ($existingProduct) {
+              continue;
+          }
+  
+          $data = [
+              'category_id'    => $row['category_id'] ?? null,
+              'supplier_id'    => $row['supplier_id'] ?? null,
+              'name'           => $row['name'] ?? null,
+              'sku'            => $sku,
+              'stock'          => $row['stock'] ?? 0,
+              'description'    => $row['description'] ?? null,
+              'purchase_price' => $row['purchase_price'] ?? 0,
+              'selling_price'  => $row['selling_price'] ?? 0,
+              'image'          => $row['image'] ?? null,
+          ];
+          $this->mainRepository->createProduct($data);
+      }
     }
 
     public function stockfilter()

@@ -110,8 +110,8 @@ class StockTransactionServiceImplement extends ServiceApi implements StockTransa
       return $this->mainRepository->stockOpname($name);
     }
 
-    public function stockCheck()
+    public function reportSearch(string $name,string $day, $cat_id)
     {
-        //
+      return $this->mainRepository->reportSearch($name, $day, $cat_id);
     }
 }

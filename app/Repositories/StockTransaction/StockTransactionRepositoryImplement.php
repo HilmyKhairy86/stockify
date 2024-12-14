@@ -98,6 +98,43 @@ class StockTransactionRepositoryImplement extends Eloquent implements StockTrans
         return $query->get();
     }
 
+    public function reportSearch(string $name,string $day, $cat_id)
+    {
+        $query = StockTransaction::query()
+        ->join('products', 'stock_transactions.product_id', '=', 'products.id')
+        ->select(
+            'products.name as product_name as product_name',
+            'stock_transactions.user_id as user_id',
+            'products.category_id as category_id',
+            'stock_transactions.type as type',
+            'stock_transactions.quantity as quantity',
+            'stock_transactions.date as date',
+            'stock_transactions.status as status'
+        )
+        ->where('products.category_id', $cat_id);
+        switch ($day) {
+            case 'day':
+                $query->whereDate('stock_transactions.date', today());
+                break;
+            case 'week':
+                $query->whereBetween('stock_transactions.date', [now()->startOfWeek(), now()->endOfWeek()]);
+                break;
+
+            case 'month':
+                $query->whereMonth('stock_transactions.date', now()->month);
+                break;
+
+            case 'year':
+                $query->whereYear('stock_transactions.date', now()->year);
+                break;
+            case 'all':
+                break;
+            default:
+                break;
+        }
+        return $query;
+    }
+
     public function searchByName(string $name, string $date, array $types = [], array $status = [])
     {
         $query = StockTransaction::with(['product', 'user']) // Load related Product and User data
@@ -181,8 +218,4 @@ class StockTransactionRepositoryImplement extends Eloquent implements StockTrans
         return $query;
     }
 
-    public function stockCheck()
-    {
-        //
-    }
 }

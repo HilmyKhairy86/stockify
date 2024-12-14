@@ -23,12 +23,14 @@ class ImportControlller extends Controller
 
     public function import(Request $request)
     {
-        $request->validate([
-            'file' => 'required|mimes:csv,xls,xlsx|max:2048',
-        ]);
+        // $request->validate([
+        //     'file' => 'required|mimes:csv,xls,xlsx|max:2048',
+        // ]);
 
-        $this->productService->importProduct($request->file('file'));
-
+        $file = $request->file('file');
+        $ext = $request->file('file')->extension();
+        $res = $this->productService->importProduct($file,$ext);
+        dd($res);
         // Redirect with a success message
         $act = [
             'user_id' => Auth::user()?->id,

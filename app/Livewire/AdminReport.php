@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Services\Category\CategoryService;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Services\StockTransaction\StockTransactionService;
@@ -10,15 +11,16 @@ class AdminReport extends Component
 {
     use WithPagination;
     protected $stocktransactionService;
-    public function boot(StockTransactionService $stockTransactionService)
+    protected $categoryService;
+    public function boot(StockTransactionService $stockTransactionService, CategoryService $categoryService)
     {
         $this->stocktransactionService = $stockTransactionService;
+        $this->categoryService = $categoryService;
     }
 
     public $search = '';
     public $date = '';
-    public $types = [];
-    public $status = [];
+    public $cat = '';
 
     public function updatingTypes()
     {
@@ -35,20 +37,12 @@ class AdminReport extends Component
 
     public function render()
     {
-        $types = is_array($this->types) ? $this->types : [$this->types];
-
-        if (in_array('all', $types)) {
-            $types = []; // Clear the types filter to show all data
-        }
-        
-        $status = is_array($this->status) ? $this->status : [$this->status];
-        if (in_array('all', $status)) {
-            $status = []; // Clear the types filter to show all data
-        }
-
-        $stock = $this->stocktransactionService->searchByName($this->search, $this->date, $types, $status,)->paginate(5);
+        $stock = $this->stocktransactionService->reportSearch($this->search, $this->date, $this->cat)->paginate(10);
+        $cat = $this->categoryService->viewCategory();
+        // dd($stock);
         return view('livewire.admin-report',[
             'stock' => $stock,
+            'cat' => $cat,
         ]);
     }
 }
