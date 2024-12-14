@@ -23,20 +23,28 @@ class ImportControlller extends Controller
 
     public function import(Request $request)
     {
-        // $request->validate([
-        //     'file' => 'required|mimes:csv,xls,xlsx|max:2048',
-        // ]);
+        $request->validate([
+            'file' => 'required|mimes:csv,txt,xls,xlsx|max:2048',
+        ]);
 
         $file = $request->file('file');
         $ext = $request->file('file')->extension();
         $res = $this->productService->importProduct($file,$ext);
         dd($res);
         // Redirect with a success message
-        $act = [
-            'user_id' => Auth::user()?->id,
-            'kegiatan' => 'mengimport produk menggunakan file',
-            'tanggal' => now(),
-        ];
+        if ($ext == 'txt' || $ext == 'csv') {
+            $act = [
+                'user_id' => Auth::user()?->id,
+                'kegiatan' => 'mengimport produk menggunakan file csv',
+                'tanggal' => now(),
+            ];
+        } else {
+            $act = [
+                'user_id' => Auth::user()?->id,
+                'kegiatan' => 'mengimport produk menggunakan file xlsx',
+                'tanggal' => now(),
+            ];
+        }
         $this->userActivityService->createActivity($act);
         return redirect()->back()->with('success', 'Products imported successfully!');
     }

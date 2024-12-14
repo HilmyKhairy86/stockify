@@ -19,5 +19,5 @@ interface StockTransactionRepository extends Repository{
     public function TaskKeluar();
     public function FilterStock(string $day);
     public function stockOpname(string $name);
-    public function reportSearch(string $name,string $day, $cat_id);
+    public function reportSearch(string $day, $cat_id);
 }

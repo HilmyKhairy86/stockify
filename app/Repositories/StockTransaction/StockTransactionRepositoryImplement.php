@@ -98,20 +98,23 @@ class StockTransactionRepositoryImplement extends Eloquent implements StockTrans
         return $query->get();
     }
 
-    public function reportSearch(string $name,string $day, $cat_id)
+    public function reportSearch(string $day, $cat_id)
     {
         $query = StockTransaction::query()
         ->join('products', 'stock_transactions.product_id', '=', 'products.id')
         ->select(
-            'products.name as product_name as product_name',
+            'stock_transactions.product_id as product_id',
+            'products.name as product_name',
             'stock_transactions.user_id as user_id',
             'products.category_id as category_id',
             'stock_transactions.type as type',
             'stock_transactions.quantity as quantity',
             'stock_transactions.date as date',
             'stock_transactions.status as status'
-        )
-        ->where('products.category_id', $cat_id);
+        );
+        if ($cat_id != ''){
+            $query->where('category_id', $cat_id);
+        }
         switch ($day) {
             case 'day':
                 $query->whereDate('stock_transactions.date', today());

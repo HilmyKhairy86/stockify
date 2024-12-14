@@ -53,13 +53,25 @@
                 </div>
                 <div class="h-full overflow-y-auto">
                     <div class="grid gap-4 p-4 mb-5 sm:grid-cols-2 justify-items">
-                        {{-- {{ dd($cat) }}
-                        @foreach ($cat as $p)
+                        <div class=" flex items-center">
+                            <input wire:model.live="categories" id="" type="radio" name="category" value="" class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" >
+                            <label class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">All Item</label>
+                        </div>
+                        @foreach ($category as $p)
                             <div class=" flex items-center">
-                                <input wire:model.live="categories" id="cat-{{$p->id}}" type="checkbox" name="category" value="{{$p->id}}" class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                <input wire:model.live="categories" id="radio{{$p->id}}" type="radio" name="category" value="{{$p->id}}" class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" >
                                 <label for="cat-{{$p->id}}" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">{{ $p->name }}</label>
                             </div>
-                        @endforeach --}}
+                        @endforeach
+                        <script>
+                            function toggleRadio(radio) {
+                              if (radio.checked) {
+                                radio.checked = false; // Uncheck the radio button
+                              } else {
+                                radio.checked = true; // Re-check if not checked
+                              }
+                            }
+                          </script>
                     </div>
                 </div>
             </div>
@@ -68,8 +80,9 @@
 
         <div class="w-full hover:text-gray-900 md:w-auto flex items-center justify-center px-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" >
             <div class="">
-              <select wire:model.live="filtermasuk" id="underline_select" class="text-md dark:bg-gray-800 py-2.5 px-0 text-black bg-transparent border-0 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
-                  <option value="day" selected>Hari ini</option>
+              <select wire:model.live="date" id="underline_select" class="text-md dark:bg-gray-800 py-2.5 px-0 text-black bg-transparent border-0 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+                  <option value="" selected>-</option>
+                  <option value="day">Hari ini</option>
                   <option value="week">Seminggu</option>
                   <option value="month">Sebulan</option>
                   <option value="year">Setahun</option>
@@ -98,7 +111,7 @@
                 @foreach ($stock as $index => $d)
                 <tr class="border-b dark:border-gray-700 odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800">
                     <td class="px-4 py-3">{{$index+1}}</td>
-                    <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{$d->product_id}} - {{ $d->product->name }}</th>
+                    <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{$d->product_id}} - {{ $d->product_name }}</th>
                     <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $d->user_id }} - {{$d->user->name}}</th>
                     <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         @if ($d->type == 'masuk')

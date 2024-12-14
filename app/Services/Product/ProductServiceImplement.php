@@ -130,7 +130,7 @@ class ProductServiceImplement extends Service implements ProductService{
       } elseif (in_array($ext, ['xls', 'xlsx'])) {
           $spreadsheet = IOFactory::load($file->getRealPath());
           $sheet = $spreadsheet->getActiveSheet();
-          $rows = $sheet->toArray(null, true, true, true);
+          $rows = $sheet->toArray();
   
           $headers = array_shift($rows);
           $rows = array_map(function ($row) use ($headers) {

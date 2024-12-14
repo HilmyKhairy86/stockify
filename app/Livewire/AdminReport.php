@@ -18,9 +18,8 @@ class AdminReport extends Component
         $this->categoryService = $categoryService;
     }
 
-    public $search = '';
     public $date = '';
-    public $cat = '';
+    public $categories = '';
 
     public function updatingTypes()
     {
@@ -37,12 +36,12 @@ class AdminReport extends Component
 
     public function render()
     {
-        $stock = $this->stocktransactionService->reportSearch($this->search, $this->date, $this->cat)->paginate(10);
-        $cat = $this->categoryService->viewCategory();
+        $stock = $this->stocktransactionService->reportSearch($this->date, $this->categories)->paginate(10);
+        $category = $this->categoryService->viewCategory();
         // dd($stock);
         return view('livewire.admin-report',[
             'stock' => $stock,
-            'cat' => $cat,
+            'category' => $category,
         ]);
     }
 }
