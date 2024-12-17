@@ -14,7 +14,7 @@ interface ProductService extends BaseService{
     public function deleteProduct($id);
     public function searchByName(string $name, array $categories = []);
     public function filterCategory(int $id);
-    public function importProduct($data, string $ext);
+    public function importProduct($file);
     public function stockfilter();
     public function stockOpname(string $name);
     public function startstockOpname($id, array $data);

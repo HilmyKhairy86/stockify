@@ -10,6 +10,8 @@
             </button>
             </form>
             @elseif (auth()->user()->role == 'manajer_gudang')
+            <form action="{{ route('manager.exportpdf') }}" method="post">
+            @csrf
             <button type="submit" class="flex items-center justify-center dark:bg-blue-600 bg-blue-600 text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
                 <i class="fa-solid fa-file-export mx-1"></i>
                 Export to PDF
@@ -29,7 +31,6 @@
                     <path clip-rule="evenodd" fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
                 </svg>
             </button>
-
 
             <div x-show="filtermodal"
             class="fixed inset-0 bg-gray-800 bg-opacity-50 z-50 over" @click="filtermodal = false"></div>
@@ -89,7 +90,6 @@
               </select>
             </div>
         </div>
-
     </div>
     <div class="overflow-x-auto w-full">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -103,7 +103,6 @@
                     <th scope="col" class="px-4 py-3">Date</th>
                     <th scope="col" class="px-4 py-3">Status</th>
                     <th scope="col" class="px-4 py-3">Notes</th>
-                    
                 </tr>
             </thead>
             <tbody>

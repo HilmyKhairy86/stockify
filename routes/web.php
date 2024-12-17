@@ -232,6 +232,8 @@ Route::middleware("auth", "verified", "role:manajer_gudang")->group(
             "profile.destroy"
         );
 
+        Route::get('/Manager/Profile/Settings', [UserController::class, 'searchById'])->name('manager.profile');
+
         Route::get("/Manager/Products", [
             ProductController::class,
             "allProduct",
@@ -304,11 +306,6 @@ Route::middleware("auth", "verified", "role:manajer_gudang")->group(
             "viewSupplier",
         ])->name("manager.suppliers");
 
-        // 
-        // Route::get("/Manager/Stock/Opname", function () {
-        //     return view("Stock.Opname");
-        // })->name("manager.opname");
-
         Route::get("/Manager/Stock/Opname", function () {
             return view("Stock.Opname");
         })->name("manager.opname");
@@ -342,10 +339,15 @@ Route::middleware("auth", "verified", "role:manajer_gudang")->group(
         ])->name("manager.deleteTransaction");
 
         // rport
-        Route::post("/Manager/Reports/Transactions/export-activity", [
-            UserActivityController::class,
+        Route::post("/Manager/Reports/Transactions/export-transaksi", [
+            StockTransactionController::class,
             "generatePDF",
-        ])->name("manager.exportpdfact");
+        ])->name("manager.exportpdf");
+    
+        Route::post("/Manager/Reports/Transactions/export-keluarmasuk", [
+            StockTransactionController::class,
+            "generatePDFkel",
+        ])->name("manager.exportpdfkel");
     
         Route::get("/Manager/Reports/Products", function () {
             return view("Reports.KeluarMasuk");

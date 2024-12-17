@@ -12,10 +12,9 @@
         "laravel/framework": "^11.9",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
-        "league/csv": "^9.18",
+        "league/csv": "^9.20",
         "livewire/livewire": "^3.5",
-        "maatwebsite/excel": "^1.1",
-        "phpoffice/phpspreadsheet": "^3.4",
+        "phpoffice/phpspreadsheet": "^3.6",
         "spatie/browsershot": "^5.0",
         "yaza/laravel-repository-service": "^5.0"
     },

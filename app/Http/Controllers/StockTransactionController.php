@@ -61,17 +61,14 @@ class StockTransactionController extends Controller
     public function generatePDF()
     {
         $data = $this->stocktransactionService->viewTransaction();
-
         $pdf = Pdf::loadView("Export.transaksipdf", ["data" => $data]);
-        $date = now();
         $act = [
             "user_id" => Auth::user()?->id,
-            "kegiatan" => "mengeksport laporan transaksi ",
+            "kegiatan" => "mengeksport laporan transaksi",
             "tanggal" => now(),
         ];
         $this->userActivityService->createActivity($act);
-        return $pdf->download("laporan_transaksi_" . $date);
-        // return view("Export.transaksipdf", ["data" => $data]);
+        return $pdf->download("laporan_transaksi_" . now());
     }
 
     public function generatePDFkel()
@@ -80,15 +77,13 @@ class StockTransactionController extends Controller
         $keluar = $this->stocktransactionService->keluar()->get();
 
         $pdf = Pdf::loadView("Export.keluarmasukpdf", ["masuk" => $masuk, 'keluar' => $keluar]);
-        $date = now();
         $act = [
             "user_id" => Auth::user()?->id,
-            "kegiatan" => "mengeksport laporan keluar masuk ",
+            "kegiatan" => "mengeksport laporan keluar masuk",
             "tanggal" => now(),
         ];
         $this->userActivityService->createActivity($act);
-        return $pdf->download("laporan_keluar_masuk_" . $date);
-        // return view("Export.transaksipdf", ["data" => $data]);
+        return $pdf->download("laporan_keluar_masuk_" . now());
     }
 
     public function deleteTransaction($id)

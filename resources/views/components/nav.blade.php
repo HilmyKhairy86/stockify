@@ -271,13 +271,6 @@ $appLogo = DB::table('app_settings')->value('logo');
             aria-labelledby="dropdown"
           >
             <li>
-              <a
-                href="#"
-                class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
-                >My profile</a
-              >
-            </li>
-            <li>
               @if (auth()->user()->role == 'admin')
                 <a
                 href="{{ route('admin.profile') }}"
@@ -285,7 +278,7 @@ $appLogo = DB::table('app_settings')->value('logo');
                 >Account settings</a>
               @elseif (auth()->user()->role == 'manajer_gudang')
               <a
-                href=""
+                href="{{ route('manager.profile') }}"
                 class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
                 >Account settings</a
               >

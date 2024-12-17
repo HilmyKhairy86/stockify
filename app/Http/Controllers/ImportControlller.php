@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PhpOffice\PhpSpreadsheet\IOFactory;
 use App\Services\Product\ProductService;
 use Illuminate\Support\Facades\Response;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
@@ -28,10 +29,16 @@ class ImportControlller extends Controller
         ]);
 
         $file = $request->file('file');
+        // $spreadsheet = IOFactory::load($file->getRealPath());
+        // $sheet = $spreadsheet->getActiveSheet();
+        // $rows = $sheet->toArray();
+        // $headers = array_shift($rows);
+        //   $rows = array_map(function ($row) use ($headers) {
+        //       return array_combine($headers, $row);
+        //   }, $rows);
+        // dd($rows);
         $ext = $request->file('file')->extension();
-        $res = $this->productService->importProduct($file,$ext);
-        dd($res);
-        // Redirect with a success message
+        $this->productService->importProduct($file);
         if ($ext == 'txt' || $ext == 'csv') {
             $act = [
                 'user_id' => Auth::user()?->id,
