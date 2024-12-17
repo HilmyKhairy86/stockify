@@ -2,13 +2,14 @@
 
 namespace App\Livewire;
 
+use Livewire\Livewire;
+use Livewire\Component;
+use Livewire\WithPagination;
+use Livewire\WithoutUrlPagination;
+use Illuminate\Support\Facades\Cache;
 use App\Services\Product\ProductService;
 use App\Services\Category\CategoryService;
 use App\Services\Supplier\SupplierService;
-use Livewire\WithPagination;
-use Livewire\WithoutUrlPagination;
-use Livewire\Component;
-use Livewire\Livewire;
 
 class Search extends Component
 {
@@ -51,13 +52,18 @@ class Search extends Component
     
     public function render()
     {   
+        $suppliers = Cache::remember('suppliers', 3600, function () {
+            return $this->supplierService->viewSupplier();
+        });
+        $categories = Cache::remember('categories', 3600, function () {
+            return $this->categoryService->viewCategory();
+        });
         
-            $result = $this->productService->searchByName($this->search, $this->categories);
-            return view('livewire.search', [
-                'products' => $result->paginate(10),
-                'sup' => $this->supplierService->viewSupplier(),
-                'cat' => $this->categoryService->viewCategory(),
-            ]);
-
+        $result = $this->productService->searchByName($this->search, $this->categories);
+        return view('livewire.search', [
+            'products' => $result->paginate(10),
+            'sup' => $this->supplierService->viewSupplier(),
+            'cat' => $this->categoryService->viewCategory(),
+        ]);
     }
 }

@@ -3,6 +3,8 @@ use Illuminate\Support\Facades\DB;
 
 $appName = DB::table('app_settings')->value('app_name');
 $appLogo = DB::table('app_settings')->value('logo');
+// $picture = 'path_to_profile_picture.jpg';
+// $users = DB::table('users')->where('pic', $picture)->get();
 ?>
 <nav class="bg-white border-b border-gray-200 px-4 py-2.5 dark:bg-gray-800 dark:border-gray-700 fixed left-0 right-0 top-0 z-50">
     <div class="flex flex-wrap justify-between items-center">
@@ -240,16 +242,23 @@ $appLogo = DB::table('app_settings')->value('logo');
           data-dropdown-toggle="dropdown"
         >
           <span class="sr-only">Open user menu</span>
-          
+          @empty(auth()->user()->image)  
+          <img
+            class="w-8 h-8 rounded-full"
+            src="https://w7.pngwing.com/pngs/177/551/png-transparent-user-interface-design-computer-icons-default-stephen-salazar-graphy-user-interface-design-computer-wallpaper-sphere-thumbnail.png"
+            alt="user photo"
+          />
+          @else
           <img
             class="w-8 h-8 rounded-full"
             src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gough.png"
             alt="user photo"
           />
+          @endempty
         </button>
         <!-- Dropdown menu -->
         <div
-          class="hidden z-50 my-4 w-56 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600 rounded-xl"
+          class="hidden z-50 my-4 w-56 text-base list-none bg-white divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600 rounded-xl"
           id="dropdown"
         >
           <div class="py-3 px-4">

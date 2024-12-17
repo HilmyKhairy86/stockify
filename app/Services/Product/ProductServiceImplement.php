@@ -140,6 +140,7 @@ class ProductServiceImplement extends Service implements ProductService{
           throw new \Exception("Invalid file type. Please upload a CSV or Excel file.");
       }
       foreach ($rows as $row) {
+        
         $data = [
             'category_id'    => $row['category_id'] ?? null,
             'supplier_id'    => $row['supplier_id'] ?? null,
