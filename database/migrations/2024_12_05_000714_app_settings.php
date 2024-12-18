@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('app_settings', function (Blueprint $table) {
             $table->id();
             $table->string('app_name')->default('Stockify');
-            $table->string('logo');
+            $table->string('logo')->nullable();
             $table->timestamps();
         });
     }

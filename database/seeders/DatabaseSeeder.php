@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\AppSettings;
 use App\Models\Supplier;
 use App\Models\User;
 use App\Models\Category;
@@ -35,5 +36,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Product::factory()->count(50)->create();
+
+        AppSettings::factory()->create();
     }
 }
