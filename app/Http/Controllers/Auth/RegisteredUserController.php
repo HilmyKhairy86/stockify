@@ -42,24 +42,25 @@ class RegisteredUserController extends Controller
             
         ]);
 
-        event(new Registered($user));
+        // event(new Registered($user));
 
-        Auth::login($user);
-        if (Auth::check()) {
-            if(Auth::user()->role == 'admin')
-            {
-                return redirect()->intended(route('admin.dashboard', absolute: false));
+        // Auth::login($user);
+        // if (Auth::check()) {
+        //     if(Auth::user()->role == 'admin')
+        //     {
+        //         return redirect()->intended(route('admin.dashboard', absolute: false));
 
-            } elseif(Auth::user()->role == 'manajer_gudang')
-            {
-                return redirect()->intended(route('manager.dashboard', absolute: false));
+        //     } elseif(Auth::user()->role == 'manajer_gudang')
+        //     {
+        //         return redirect()->intended(route('manager.dashboard', absolute: false));
                 
-            } elseif(Auth::user()->role == 'staff_gudang')
-            {
-                return redirect()->intended(route('staff.dashboard', absolute: false));
-            }
-        }
+        //     } elseif(Auth::user()->role == 'staff_gudang')
+        //     {
+        //         return redirect()->intended(route('staff.dashboard', absolute: false));
+        //     }
+        // }
 
         // return redirect(route('dashboard', absolute: false));
+        return redirect()->route('login');
     }
 }
