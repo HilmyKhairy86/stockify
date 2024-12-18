@@ -206,6 +206,7 @@ Route::middleware("auth", "verified", "role:admin")->group(function () {
     })->name("admin.settings");
 
     Route::post("/Admin/Settings/App/Update", [SettingsController::class, "updateSetting"])->name('admin.updateSettings');
+    Route::post('/Admin/Profile/Settings/update-{id}',[UserController::class, 'updateProfile'])->name('admin.updateprofile');
 });
 
 Route::middleware("auth", "verified", "role:manajer_gudang")->group(
@@ -233,6 +234,7 @@ Route::middleware("auth", "verified", "role:manajer_gudang")->group(
         );
 
         Route::get('/Manager/Profile/Settings', [UserController::class, 'searchById'])->name('manager.profile');
+        Route::post('/Manager/Profile/Settings/update-{id}',[UserController::class, 'updateProfile'])->name('manager.updateprofile');
 
         Route::get("/Manager/Products", [
             ProductController::class,
@@ -372,15 +374,9 @@ Route::middleware("auth", "verified", "role:staff_gudang")->group(function () {
         DashboardController::class,
         "staffdash",
     ])->name("staff.dashboard");
-    Route::get("/profile", [ProfileController::class, "edit"])->name(
-        "profile.edit"
-    );
-    Route::patch("/profile", [ProfileController::class, "update"])->name(
-        "profile.update"
-    );
-    Route::delete("/profile", [ProfileController::class, "destroy"])->name(
-        "profile.destroy"
-    );
+    
+    Route::get('/Staff/Profile/Settings', [UserController::class, 'searchById'])->name('staff.profile');
+    Route::post('/Staff/Profile/Settings/update-{id}',[UserController::class, 'updateProfile'])->name('staff.updateprofile');
 
     Route::get("/Staff/Stock/History", function () {
         return view("Stock.History");

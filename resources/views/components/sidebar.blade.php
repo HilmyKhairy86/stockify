@@ -122,7 +122,7 @@
             {{-- <ul id="dropdown-stock" class="hidden' py-2 space-y-2"> --}}
               <li>
                 <x-nav-link :active="request()->routeIs('admin.sHistory')" href="{{route('admin.sHistory')}}">
-                  <i class="fa-solid fa-arrow-right-arrow-left mx-1"></i>Riwayat transaksi barang</x-nav-link>
+                  <i class="fa-solid fa-arrow-right-arrow-left mx-1"></i>Transaksi barang</x-nav-link>
               </li>
               <li>
                 <x-nav-link :active="request()->routeIs('admin.opname')" href="{{ route('admin.opname') }}">

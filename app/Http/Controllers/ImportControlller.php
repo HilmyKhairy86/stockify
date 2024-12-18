@@ -29,14 +29,7 @@ class ImportControlller extends Controller
         ]);
 
         $file = $request->file('file');
-        // $spreadsheet = IOFactory::load($file->getRealPath());
-        // $sheet = $spreadsheet->getActiveSheet();
-        // $rows = $sheet->toArray();
-        // $headers = array_shift($rows);
-        //   $rows = array_map(function ($row) use ($headers) {
-        //       return array_combine($headers, $row);
-        //   }, $rows);
-        // dd($rows);
+        
         $ext = $request->file('file')->extension();
         $this->productService->importProduct($file);
         if ($ext == 'txt' || $ext == 'csv') {

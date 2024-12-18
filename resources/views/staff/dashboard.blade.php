@@ -14,6 +14,6 @@
         </div>
         <!-- 2 columns -->
         {{-- masuk keluar --}}
-        @livewire('MasukKeluar')
+        @livewire('TaskMasukKeluar')
     </div>
 </x-app-layout>

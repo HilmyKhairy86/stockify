@@ -18,9 +18,11 @@ class GrafikStock extends Component
         $chartdata = [];
         // $chrtdate = [];
         $data = $this->stockTransactionService->FilterStock($this->filterstock);
-            foreach ($data as $d) {
-                $productName = $d->product->name;
-                $quantity = $d->quantity;
+        // dd($data);
+        // $data = $this->stockTransactionService->FilterStock($this->filterstock);
+        foreach ($data as $d) {
+                $productName = $d->pname;
+                $quantity = $d->total;
                 $date = $d->date;
             
                 // Group by product name
@@ -30,13 +32,6 @@ class GrafikStock extends Component
                         'data' => [],
                     ];
                 }
-            
-                // Add the quantity to the appropriate product series (grouping by product)
-                // $chartdata[$productName] = [
-                //     $date, // Date for the x-axis
-                // ];
-
-                // $chartdata[$productName]['data'][] = $quantity;
 
                 $chartdata[$productName]['data'][] = [
                     'x' => $date, // Date for the x-axis

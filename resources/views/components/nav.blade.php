@@ -3,6 +3,8 @@ use Illuminate\Support\Facades\DB;
 
 $appName = DB::table('app_settings')->value('app_name');
 $appLogo = DB::table('app_settings')->value('logo');
+$userid = Auth::user()?->id;
+$pfp = DB::table('users')->where('id', $userid)->first();
 // $picture = 'path_to_profile_picture.jpg';
 // $users = DB::table('users')->where('pic', $picture)->get();
 ?>
@@ -251,7 +253,7 @@ $appLogo = DB::table('app_settings')->value('logo');
           @else
           <img
             class="w-8 h-8 rounded-full"
-            src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gough.png"
+            src="{{ asset('storage/'.$pfp->image ) }}"
             alt="user photo"
           />
           @endempty

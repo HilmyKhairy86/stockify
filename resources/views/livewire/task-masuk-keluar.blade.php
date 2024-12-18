@@ -63,34 +63,8 @@
                 <td class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white">
                   {{$k->product->sku}}
                 </td>
-                <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
-                  @switch($k->status)
-                      @case('pending')
-                          <span class="inline-flex items-center bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-yellow-600 dark:text-yellow-200">
-                              <span class="w-2 h-2 me-1 bg-yellow-500 rounded-full"></span>
-                              Pending
-                          </span>
-                          @break
-                      @case('diterima')
-                          <span class="inline-flex items-center bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
-                              <span class="w-2 h-2 me-1 bg-green-500 rounded-full"></span>
-                              Diterima
-                          </span>
-                          @break
-                      @case('ditolak')
-                          <span class="inline-flex items-center bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-red-900 dark:text-red-300">
-                              <span class="w-2 h-2 me-1 bg-red-500 rounded-full"></span>
-                              Ditolak
-                          </span>
-                          @break
-                      @case('dikeluarkan')
-                          <span class="inline-flex items-center bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-red-900 dark:text-red-300">
-                              <span class="w-2 h-2 me-1 bg-red-500 rounded-full"></span>
-                              Dikeluarkan
-                          </span>
-                          @break
-                      @default
-                  @endswitch
+                <td class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white">
+                  {{$k->type}}
                 </td>
               </tr>
               @endforeach

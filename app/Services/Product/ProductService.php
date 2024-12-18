@@ -18,4 +18,5 @@ interface ProductService extends BaseService{
     public function stockfilter();
     public function stockOpname(string $name);
     public function startstockOpname($id, array $data);
+    public function findProductBySku($sku);
 }

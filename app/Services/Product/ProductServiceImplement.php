@@ -141,18 +141,21 @@ class ProductServiceImplement extends Service implements ProductService{
       }
       foreach ($rows as $row) {
         
-        $data = [
-            'category_id'    => $row['category_id'] ?? null,
-            'supplier_id'    => $row['supplier_id'] ?? null,
-            'name'           => $row['name'] ?? null,
-            'sku'            => $row['sku'] ?? null,
-            'stock'          => $row['stock'] ?? 0,
-            'description'    => $row['description'] ?? null,
-            'purchase_price' => $row['purchase_price'] ?? 0,
-            'selling_price'  => $row['selling_price'] ?? 0,
-            'image'          => $row['image'] ?? null,
-        ];
-        $this->mainRepository->createProduct($data);
+        $check = $this->mainRepository->findProductBySku($row['sku']);
+        if ($check) {
+          $data = [
+              'category_id'    => $row['category_id'] ?? null,
+              'supplier_id'    => $row['supplier_id'] ?? null,
+              'name'           => $row['name'] ?? null,
+              'sku'            => $row['sku'] ?? null,
+              'stock'          => $row['stock'] ?? 0,
+              'description'    => $row['description'] ?? null,
+              'purchase_price' => $row['purchase_price'] ?? 0,
+              'selling_price'  => $row['selling_price'] ?? 0,
+              'image'          => $row['image'] ?? null,
+          ];
+          $this->mainRepository->createProduct($data);
+        }
       }
     }
 
@@ -168,9 +171,12 @@ class ProductServiceImplement extends Service implements ProductService{
 
     public function startstockOpname($id, array $data)
     {
-      
       return $this->mainRepository->startstockOpname($id, $data);
+    }
 
+    public function findProductBySku($sku)
+    {
+      return $this->mainRepository->findProductBySku($sku);
     }
 
     

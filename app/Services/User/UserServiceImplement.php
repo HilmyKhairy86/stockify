@@ -59,10 +59,18 @@ class UserServiceImplement extends ServiceApi implements UserService{
       // ]);
     }
 
+
     public function updateUser($id, array $data)
     {
-        $this->mainRepository->update($id, $data);
+      if (isset($data['image'])){
+        $path = $data['image']->store('images');
+        $data['image'] = $path;
+        return $this->mainRepository->updateUser($id, $data);
+      } else {
+        return $this->mainRepository->updateUser($id, $data);
+      }
     }
+        
 
     public function findUserById($id)
     {
@@ -82,5 +90,16 @@ class UserServiceImplement extends ServiceApi implements UserService{
     public function searchById($id)
     {
       return $this->mainRepository->searchById($id);
+    }
+
+    public function checkpassword($id, string $password): bool
+    {
+      $user = $this->mainRepository->searchById($id);
+
+        if (!$user) {
+            return false; // User not found
+        }
+
+        return Hash::check($password, $user->password);
     }
 }

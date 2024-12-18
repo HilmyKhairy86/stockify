@@ -42,15 +42,15 @@ class StockTransactionController extends Controller
     public function updateTransaction($id, Request $request)
     {
         $data = $request->all();
-        $prod = $this->productService->getProdbyId($request->product_id);
-        $i_stock = $prod->stock;
-        $data["i_stock"] = $i_stock;
+        // $prod = $this->productService->getProdbyId($request->product_id);
+        // $i_stock = $prod->stock;
+        // $data["i_stock"] = $i_stock;
         $this->stocktransactionService->updateTransaction($id, $data);
-        $this->productService->updateStock($request->product_id, $data);
+        // $this->productService->updateStock($request->product_id, $data);
         $act = [
             "user_id" => Auth::user()?->id,
             "kegiatan" =>
-                "mengkofirmasi transaksi dengan product id " .
+                "mengkonfirmasi transaksi dengan product id " .
                 $request->product_id,
             "tanggal" => now(),
         ];

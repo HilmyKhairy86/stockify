@@ -52,4 +52,15 @@ class UserRepositoryImplement extends Eloquent implements UserRepository{
     {
         return $this->model->find($id);
     }
+
+    public function checkpassword($id, string $password)
+    {
+        $user = $this->model->where('id',$id);
+
+        if (!$user) {
+            return false; // User not found
+        }
+
+        return Hash::check($password, $user->password);
+    }
 }

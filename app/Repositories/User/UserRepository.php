@@ -18,4 +18,6 @@ interface UserRepository extends Repository
     public function searchByName(string $name);
 
     public function searchById($id);
+
+    public function checkpassword(string $email, string $password);
 }
