@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('sku')->unique();
             $table->text('description')->nullable();
-            $table->decimal('purchase_price');
-            $table->decimal('selling_price');
+            $table->decimal('purchase_price', 65, 2);
+            $table->decimal('selling_price', 65, 2);
             $table->integer('stock')->default(0);
             $table->integer('stock_fisik')->default(0);
             $table->integer('stock_minimum')->nullable();

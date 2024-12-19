@@ -4,6 +4,7 @@ namespace App\Services\Product;
 
 use League\Csv\Reader;
 use LaravelEasyRepository\Service;
+use Illuminate\Support\Facades\Storage;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
@@ -31,14 +32,14 @@ class ProductServiceImplement extends Service implements ProductService{
         'sku' => 'required|string|max:255',
         'purchase_price' => 'required|numeric|min:0',
         'selling_price' => 'required|numeric|min:0',
+        'image' => 'nullable|file|mimes:jpeg,png,jpg,gif|max:2048',
       ]);
 
       if ($validator->fails()) {
         throw new \Illuminate\Validation\ValidationException($validator);
       } else {
         if (isset($data['image'])){
-          $path = $data['image']->store('images');
-          $data['image'] = $path;
+          $data['image'] = $data['image']->store('images');
           return $this->mainRepository->createProduct($data);
         } else {
           return $this->mainRepository->createProduct($data);

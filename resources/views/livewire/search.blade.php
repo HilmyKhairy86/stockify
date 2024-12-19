@@ -44,7 +44,7 @@
                     <div class="h-full overflow-y-auto">
                         @if (auth()->user()->role == 'admin')
                             {{-- form --}}
-                            <form action="{{ route('admin.addProduct') }}" method="POST">
+                            <form action="{{ route('admin.addProduct') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="grid gap-4 mb-4 sm:grid-cols-2">
                                     <div class="sm:col-span-2">
