@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AddUserController;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
@@ -207,6 +208,15 @@ Route::middleware("auth", "verified", "role:admin")->group(function () {
 
     Route::post("/Admin/Settings/App/Update", [SettingsController::class, "updateSetting"])->name('admin.updateSettings');
     Route::post('/Admin/Profile/Settings/update-{id}',[UserController::class, 'updateProfile'])->name('admin.updateprofile');
+
+    // web.php
+    Route::post('Admin/Users/check-email', [AddUserController::class, 'checkmail'])->name('admin.checkmail');
+
+    Route::post("/Admin/Stock/Confirm-Transaction/{id}", [
+        StockTransactionController::class,
+        "updateTransaction",
+    ])->name("admin.confirmtransaction");
+    
 });
 
 Route::middleware("auth", "verified", "role:manajer_gudang")->group(

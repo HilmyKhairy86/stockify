@@ -16,39 +16,58 @@ class GrafikStock extends Component
     public function render()
     {
         $chartdata = [];
-        // $chrtdate = [];
         $data = $this->stockTransactionService->FilterStock($this->filterstock);
-        // dd($data);
-        // $data = $this->stockTransactionService->FilterStock($this->filterstock);
         foreach ($data as $d) {
-                $productName = $d->pname;
-                $quantity = $d->total;
-                $date = $d->date;
-            
-                // Group by product name
-                if (!isset($chartdata[$productName])) {
-                    $chartdata[$productName] = [
-                        'name' => $productName,
-                        'data' => [],
-                    ];
-                }
-
-                $chartdata[$productName]['data'][] = [
-                    'x' => $date, // Date for the x-axis
-                    'y' => $quantity, // Quantity for the y-axis
+            $productName = $d->pname;
+            $quantity = $d->total;
+            $date = $d->date;
+        
+            // Group by product name
+            if (!isset($chartdata[$productName])) {
+                $chartdata[$productName] = [
+                    'name' => $productName,
+                    'data' => [],
                 ];
-                
-                
             }
-            $chartdata = array_values($chartdata);
-            // dd($chrtdate);
-            // dd($chartdata);
-            // dd($this->filterstock);
+
+            $chartdata[$productName]['data'][] = [
+                'x' => $date,
+                'y' => $quantity,
+            ];
+        }
+        $startOfWeek = now()->startOfWeek();
+        $endOfWeek = now()->endOfWeek();
+        
+        $daysOfWeek = [];
+        
+        $currentDay = $startOfWeek;
+        while ($currentDay <= $endOfWeek) {
+            $daysOfWeek[] = $currentDay->toDateString(); // Or use toDateTimeString() if you need time as well
+            $currentDay->addDay(); // Move to the next day
+        }
+        
+        foreach ($chartdata as $productName => &$productData) {
+            $productData['data'] = array_map(function ($day) use ($productData) {
+                // Find the quantity for each day, default to 0 if not found
+                $dataForDay = collect($productData['data'])->firstWhere('x', $day);
+                return [
+                    'x' => $day,
+                    'y' => $dataForDay ? $dataForDay['y'] : null,
+                ];
+            }, $daysOfWeek);
+        }
+        
+        $chartdata = array_values($chartdata);
+        // dd($chrtdate);
+        // dd($chartdata);
+        // dd($this->filterstock);
+        // dd($daysOfWeek);
+        
+        return view('livewire.grafik-stock',[
+            'chart' => $chartdata,
+            'prod' => $data,
+            'daysOfWeek' => $daysOfWeek,
+        ]);
             
-            return view('livewire.grafik-stock',[
-                'chart' => $chartdata,
-                'prod' => $data,
-                // 'date' => $chrtdate,
-            ]);
     }
 }

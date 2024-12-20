@@ -47,7 +47,9 @@ class UserServiceImplement extends ServiceApi implements UserService{
         'name' => $data['name'],
         'email' => $data['email'],
         'role' => $data['role'],
+        'email_verified_at' => now(),
         'password' => Hash::make($data['password']),
+        'remember_token' => $data['remember_token'],
       ];
 
       return $this->mainRepository->createUser($user);
@@ -101,5 +103,10 @@ class UserServiceImplement extends ServiceApi implements UserService{
         }
 
         return Hash::check($password, $user->password);
+    }
+
+    public function checkmail(string $email)
+    {
+      return $this->mainRepository->checkmail($email);
     }
 }

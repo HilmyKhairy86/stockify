@@ -99,7 +99,7 @@
                                             type="password" 
                                             name="password" 
                                             id="password"
-                                            x-model="password" 
+                                            {{-- x-model="password"  --}}
                                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type password" required=""
                                         >
                                     </div>
@@ -108,9 +108,12 @@
                                         <input 
                                             type="password" 
                                             name="password" 
-                                            id="confirmPassword"
-                                            x-model="confirmPassword"
+                                            id="confirm-password"
+                                            {{-- x-model="confirmPassword" --}}
                                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type password" required="">
+                                    </div>
+                                    <div class="sm:col-span-2">
+                                        <p id="password-status" class="status-message"></p>
                                     </div>
                                     @if (session('error'))    
                                     <div id="error-message">
@@ -127,32 +130,49 @@
                                         });
                                     </script>
                                     @endif
-                                    <div x-show="password && confirmPassword" class="sm:col-span-2">
-                                        <p x-text="passwordsMatch ? 'Passwords match!' : 'Passwords do not match.'" 
-                                        :class="passwordsMatch ? 'text-green-600' : 'text-red-600'">
-                                        </p>
-                                    </div>
                                 </div>
                                 <script>
-                                    function passwordChecker() {
-                                        return {
-                                            password: '',
-                                            confirmPassword: '',
-                                            get passwordsMatch() {
-                                                return this.password === this.confirmPassword;
-                                            },
-                                            submitForm() {
-                                                if (this.passwordsMatch) {
-                                                    alert('Passwords match. Form submitted!');
-                                                } else {
-                                                    alert('Passwords do not match. Please try again.');
-                                                }
+                                    document.addEventListener('DOMContentLoaded', function () {
+                                        const passwordInput = document.getElementById('password');
+                                        const confirmPasswordInput = document.getElementById('confirm-password');
+                                        const submitButton = document.getElementById('submit-btn');
+                                        const passwordStatus = document.getElementById('password-status');
+                                
+                                        // Function to check if passwords match
+                                        function passwordsMatch() {
+                                            return passwordInput.value === confirmPasswordInput.value;
+                                        }
+                                
+                                        // Function to update the status message and enable/disable submit button
+                                        function updatePasswordStatus() {
+                                            if (passwordsMatch()) {
+                                                passwordStatus.textContent = 'Passwords match!';
+                                                passwordStatus.style.color = 'green';
+                                                submitButton.disabled = false;  // Enable the submit button
+                                            } else {
+                                                passwordStatus.textContent = 'Passwords do not match!';
+                                                passwordStatus.style.color = 'red';
+                                                submitButton.disabled = true;  // Disable the submit button
                                             }
-                                        };
-                                    }
+                                        }
+                                
+                                        // Event listeners for password fields
+                                        passwordInput.addEventListener('keyup', updatePasswordStatus);
+                                        confirmPasswordInput.addEventListener('keyup', updatePasswordStatus);
+                                
+                                        // Optional: handle form submission
+                                        document.getElementById('form').addEventListener('submit', function (event) {
+                                            event.preventDefault(); // Prevent default form submission for demonstration
+                                            if (passwordsMatch()) {
+                                                alert('Passwords match. Form submitted!');
+                                            } else {
+                                                alert('Passwords do not match. Please try again.');
+                                            }
+                                        });
+                                    });
                                 </script>
                                 <div class="flex items-center space-x-4">
-                                    <button type="submit" :disabled="!passwordsMatch" class="py-2 px-3 text-sm font-medium text-gray-500 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
+                                    <button type="submit" id="submit-btn" class="py-2 px-3 text-sm font-medium text-gray-500 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
                                         Save Setting
                                     </button>
                                 </div>
@@ -187,7 +207,7 @@
                                             type="password" 
                                             name="password" 
                                             id="password"
-                                            x-model="password" 
+                                            {{-- x-model="password"  --}}
                                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type password" required=""
                                         >
                                     </div>
@@ -196,14 +216,12 @@
                                         <input 
                                             type="password" 
                                             name="password" 
-                                            id="confirmPassword"
-                                            x-model="confirmPassword"
+                                            id="confirm-password"
+                                            {{-- x-model="confirmPassword" --}}
                                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type password" required="">
                                     </div>
-                                    <div x-show="password && confirmPassword" class="sm:col-span-2">
-                                        <p x-text="passwordsMatch ? 'Passwords match!' : 'Passwords do not match.'" 
-                                        :class="passwordsMatch ? 'text-green-600' : 'text-red-600'">
-                                        </p>
+                                    <div class="sm:col-span-2">
+                                        <p id="password-status" class="status-message"></p>
                                     </div>
                                     @if (session('error'))    
                                     <div id="error-message">
@@ -222,25 +240,47 @@
                                     @endif
                                 </div>
                                 <script>
-                                    function passwordChecker() {
-                                        return {
-                                            password: '',
-                                            confirmPassword: '',
-                                            get passwordsMatch() {
-                                                return this.password === this.confirmPassword;
-                                            },
-                                            submitForm() {
-                                                if (this.passwordsMatch) {
-                                                    alert('Passwords match. Form submitted!');
-                                                } else {
-                                                    alert('Passwords do not match. Please try again.');
-                                                }
+                                    document.addEventListener('DOMContentLoaded', function () {
+                                        const passwordInput = document.getElementById('password');
+                                        const confirmPasswordInput = document.getElementById('confirm-password');
+                                        const submitButton = document.getElementById('submit-btn');
+                                        const passwordStatus = document.getElementById('password-status');
+                                
+                                        // Function to check if passwords match
+                                        function passwordsMatch() {
+                                            return passwordInput.value === confirmPasswordInput.value;
+                                        }
+                                
+                                        // Function to update the status message and enable/disable submit button
+                                        function updatePasswordStatus() {
+                                            if (passwordsMatch()) {
+                                                passwordStatus.textContent = 'Passwords match!';
+                                                passwordStatus.style.color = 'green';
+                                                submitButton.disabled = false;  // Enable the submit button
+                                            } else {
+                                                passwordStatus.textContent = 'Passwords do not match!';
+                                                passwordStatus.style.color = 'red';
+                                                submitButton.disabled = true;  // Disable the submit button
                                             }
-                                        };
-                                    }
+                                        }
+                                
+                                        // Event listeners for password fields
+                                        passwordInput.addEventListener('keyup', updatePasswordStatus);
+                                        confirmPasswordInput.addEventListener('keyup', updatePasswordStatus);
+                                
+                                        // Optional: handle form submission
+                                        document.getElementById('form').addEventListener('submit', function (event) {
+                                            event.preventDefault(); // Prevent default form submission for demonstration
+                                            if (passwordsMatch()) {
+                                                alert('Passwords match. Form submitted!');
+                                            } else {
+                                                alert('Passwords do not match. Please try again.');
+                                            }
+                                        });
+                                    });
                                 </script>
                                 <div class="flex items-center space-x-4">
-                                    <button type="submit" :disabled="!passwordsMatch" class="py-2 px-3 text-sm font-medium text-gray-500 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
+                                    <button type="submit" id="submit-btn" class="py-2 px-3 text-sm font-medium text-gray-500 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
                                         Save Setting
                                     </button>
                                 </div>
@@ -275,7 +315,7 @@
                                             type="password" 
                                             name="password" 
                                             id="password"
-                                            x-model="password" 
+                                            {{-- x-model="password"  --}}
                                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type password" required=""
                                         >
                                     </div>
@@ -284,14 +324,12 @@
                                         <input 
                                             type="password" 
                                             name="password" 
-                                            id="confirmPassword"
-                                            x-model="confirmPassword"
+                                            id="confirm-password"
+                                            {{-- x-model="confirmPassword" --}}
                                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type password" required="">
                                     </div>
-                                    <div x-show="password && confirmPassword" class="sm:col-span-2">
-                                        <p x-text="passwordsMatch ? 'Passwords match!' : 'Passwords do not match.'" 
-                                        :class="passwordsMatch ? 'text-green-600' : 'text-red-600'">
-                                        </p>
+                                    <div class="sm:col-span-2">
+                                        <p id="password-status" class="status-message"></p>
                                     </div>
                                     @if (session('error'))    
                                     <div id="error-message">
@@ -310,25 +348,47 @@
                                     @endif
                                 </div>
                                 <script>
-                                    function passwordChecker() {
-                                        return {
-                                            password: '',
-                                            confirmPassword: '',
-                                            get passwordsMatch() {
-                                                return this.password === this.confirmPassword;
-                                            },
-                                            submitForm() {
-                                                if (this.passwordsMatch) {
-                                                    alert('Passwords match. Form submitted!');
-                                                } else {
-                                                    alert('Passwords do not match. Please try again.');
-                                                }
+                                    document.addEventListener('DOMContentLoaded', function () {
+                                        const passwordInput = document.getElementById('password');
+                                        const confirmPasswordInput = document.getElementById('confirm-password');
+                                        const submitButton = document.getElementById('submit-btn');
+                                        const passwordStatus = document.getElementById('password-status');
+                                
+                                        // Function to check if passwords match
+                                        function passwordsMatch() {
+                                            return passwordInput.value === confirmPasswordInput.value;
+                                        }
+                                
+                                        // Function to update the status message and enable/disable submit button
+                                        function updatePasswordStatus() {
+                                            if (passwordsMatch()) {
+                                                passwordStatus.textContent = 'Passwords match!';
+                                                passwordStatus.style.color = 'green';
+                                                submitButton.disabled = false;  // Enable the submit button
+                                            } else {
+                                                passwordStatus.textContent = 'Passwords do not match!';
+                                                passwordStatus.style.color = 'red';
+                                                submitButton.disabled = true;  // Disable the submit button
                                             }
-                                        };
-                                    }
+                                        }
+                                
+                                        // Event listeners for password fields
+                                        passwordInput.addEventListener('keyup', updatePasswordStatus);
+                                        confirmPasswordInput.addEventListener('keyup', updatePasswordStatus);
+                                
+                                        // Optional: handle form submission
+                                        document.getElementById('form').addEventListener('submit', function (event) {
+                                            event.preventDefault(); // Prevent default form submission for demonstration
+                                            if (passwordsMatch()) {
+                                                alert('Passwords match. Form submitted!');
+                                            } else {
+                                                alert('Passwords do not match. Please try again.');
+                                            }
+                                        });
+                                    });
                                 </script>
                                 <div class="flex items-center space-x-4">
-                                    <button type="submit" :disabled="!passwordsMatch" class="py-2 px-3 text-sm font-medium text-gray-500 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
+                                    <button type="submit" id="submit-btn" :disabled="!passwordsMatch" class="py-2 px-3 text-sm font-medium text-gray-500 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
                                         Save Setting
                                     </button>
                                 </div>

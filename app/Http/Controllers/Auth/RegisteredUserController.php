@@ -7,6 +7,7 @@ use Illuminate\View\View;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
+use App\Services\User\UserService;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -15,6 +16,11 @@ use Illuminate\Auth\Events\Registered;
 
 class RegisteredUserController extends Controller
 {
+    protected $userService;
+    public function __construct(UserService $userService)
+    {
+        $this->userService = $userService;
+    }
     /**
      * Display the registration view.
      */
@@ -35,35 +41,19 @@ class RegisteredUserController extends Controller
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
+        $mailcheck = $this->userService->checkmail($request->email);
+        if ($mailcheck) {
+            return response()->json(['status' => 'exists', 'message' => 'Email is already in use.']);
+        } else {
+            User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'email_verified_at' => now(),
+                'password' => Hash::make($request->password),
+                'remember_token' => Str::random(60),
+            ]);
+            return redirect()->route('login');
+        }
 
-        User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'email_verified_at' => now(),
-            'password' => Hash::make($request->password),
-            'remember_token' => Str::random(60),
-            
-        ]);
-
-        // event(new Registered($user));
-
-        // Auth::login($user);
-        // if (Auth::check()) {
-        //     if(Auth::user()->role == 'admin')
-        //     {
-        //         return redirect()->intended(route('admin.dashboard', absolute: false));
-
-        //     } elseif(Auth::user()->role == 'manajer_gudang')
-        //     {
-        //         return redirect()->intended(route('manager.dashboard', absolute: false));
-                
-        //     } elseif(Auth::user()->role == 'staff_gudang')
-        //     {
-        //         return redirect()->intended(route('staff.dashboard', absolute: false));
-        //     }
-        // }
-
-        // return redirect(route('dashboard', absolute: false));
-        return redirect()->route('login');
     }
 }

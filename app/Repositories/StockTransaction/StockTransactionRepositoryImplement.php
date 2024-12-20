@@ -181,38 +181,15 @@ class StockTransactionRepositoryImplement extends Eloquent implements StockTrans
     }
 
     public function FilterStock(string $day){
-        // $query = StockTransaction::query()->where('status', '!=','pending')->where('type','keluar');
-        // // $day = 'week';
-        // switch ($day) {
-        //     case 'day':
-        //         $query->whereDate('date', today());
-        //         break;
-        //     case 'week':
-        //         $query->whereBetween('date', [now()->startOfWeek(), now()->endOfWeek()]);
-        //         break;
 
-        //     case 'month':
-        //         $query->whereMonth('date', now()->month);
-        //         break;
-
-        //     case 'year':
-        //         $query->whereYear('date', now()->year);
-        //         break;
-        //     case 'all':
-        //         break;
-        //     default:
-        //         // No filter applied; get all records
-        //         break;
-        // }
-
-        // return $query->get();
         $results = DB::table('stock_transactions')
         ->join('products', 'stock_transactions.product_id', '=', 'products.id')
         ->selectRaw('products.name as pname, DATE(stock_transactions.date) as date, SUM(stock_transactions.quantity) as total')
         ->where('stock_transactions.status', 'diterima')
         ->where('stock_transactions.type', 'keluar')
         ->whereBetween('date', [now()->startOfWeek(), now()->endOfWeek()])
-        ->groupBy('products.name', 'date');
+        ->groupBy('products.name', 'date')
+        ->orderBy('date', 'asc');
         
         return $results->get();
     }

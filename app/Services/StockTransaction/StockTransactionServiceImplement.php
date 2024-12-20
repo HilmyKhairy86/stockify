@@ -69,14 +69,12 @@ class StockTransactionServiceImplement extends ServiceApi implements StockTransa
       return $this->mainRepository->searchByName($name, $date, $types, $status);
     }
 
-    public function masuk()
+    public function masuk($day)
     {
-      $day = today();
       return $this->mainRepository->findMasukByDay($day);
     }
-    public function keluar()
+    public function keluar($day)
     {
-      $day = today();
       return $this->mainRepository->findKeluarByDay($day);
     }
 

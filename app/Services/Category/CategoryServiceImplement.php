@@ -57,4 +57,9 @@ class CategoryServiceImplement extends Service implements CategoryService{
     {
         return $this->mainRepository->searchByName($name);
     }
+
+    public function getCatbyId($id)
+    {
+      return $this->mainRepository->getCatbyId($id);
+    }
 }

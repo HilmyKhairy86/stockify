@@ -43,7 +43,8 @@
                     <td class="px-4 py-3 text-center">{{ $d->stock_fisik }}</td>
                     <td class="px-4 py-3 text-center">
                         
-                        @if (( $d->stock - ($d->stock_total + $d->stock_fisik) ) > 0)
+                        @if ($d->stock_fisik === 0)
+                        @elseif (( $d->stock - ($d->stock_total + $d->stock_fisik) ) > 0)
                             Kurang {{( $d->stock - ($d->stock_total + $d->stock_fisik) ) }}
                         @endif
                     </td>

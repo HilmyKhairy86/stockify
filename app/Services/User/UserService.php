@@ -22,4 +22,6 @@ interface UserService extends BaseService{
     public function searchById($id);
 
     public function checkpassword($id, string $password);
+
+    public function checkmail(string $email);
 }

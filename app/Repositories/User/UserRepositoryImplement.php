@@ -2,8 +2,9 @@
 
 namespace App\Repositories\User;
 
-use LaravelEasyRepository\Implementations\Eloquent;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use LaravelEasyRepository\Implementations\Eloquent;
 
 class UserRepositoryImplement extends Eloquent implements UserRepository{
 
@@ -62,5 +63,10 @@ class UserRepositoryImplement extends Eloquent implements UserRepository{
         }
 
         return Hash::check($password, $user->password);
+    }
+
+    public function checkmail(string $email)
+    {
+        return User::where('email', $email)->exists();
     }
 }

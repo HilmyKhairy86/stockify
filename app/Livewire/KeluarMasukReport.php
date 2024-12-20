@@ -17,8 +17,9 @@ class KeluarMasukReport extends Component
 
     public function render()
     {
-        $masuk = $this->stockTransactionService->masuk()->paginate(10);
-        $keluar = $this->stockTransactionService->keluar()->paginate(10);
+        $day = today();
+        $masuk = $this->stockTransactionService->masuk($day)->paginate(10);
+        $keluar = $this->stockTransactionService->keluar($day)->paginate(10);
         return view('livewire.keluar-masuk-report',[
             'masuk' => $masuk,
             'keluar' => $keluar,

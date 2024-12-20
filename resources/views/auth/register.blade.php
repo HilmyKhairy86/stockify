@@ -1,4 +1,10 @@
+<?php
+$appName = DB::table('app_settings')->value('app_name');
+?>
 <x-guest-layout>
+    <div class="m-5 text-center">
+        <p class="text-4xl font-semibold">{{ $appName }}</p>
+    </div>
     <form method="POST" action="{{ route('register') }}">
         @csrf
 

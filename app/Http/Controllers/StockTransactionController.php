@@ -55,7 +55,7 @@ class StockTransactionController extends Controller
             "tanggal" => now(),
         ];
         $this->userActivityService->createActivity($act);
-        return redirect()->route("staff.sHistory");
+        return redirect()->back()->with("success", "Action was successful!");
     }
 
     public function generatePDF()

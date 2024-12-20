@@ -295,7 +295,7 @@ $pfp = DB::table('users')->where('id', $userid)->first();
               >
               @elseif (auth()->user()->role == 'staff_gudang')
               <a
-                href=""
+                href="{{ route('staff.profile') }}"
                 class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
                 >Account settings</a
               >
