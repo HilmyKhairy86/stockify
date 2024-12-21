@@ -17,8 +17,8 @@ class TaskMasukKeluar extends Component
 
     public function render()
     {
-        $masuk = $this->stockTransactionService->TaskMasuk()->paginate(10);
-        $keluar = $this->stockTransactionService->TaskKeluar()->paginate(10);
+        $masuk = $this->stockTransactionService->TaskMasuk()->get();
+        $keluar = $this->stockTransactionService->TaskKeluar()->get();
         return view('livewire.task-masuk-keluar',[
             'masuk' => $masuk,
             'keluar' => $keluar,

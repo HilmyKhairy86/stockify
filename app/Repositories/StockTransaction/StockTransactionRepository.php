@@ -20,4 +20,7 @@ interface StockTransactionRepository extends Repository{
     public function FilterStock(string $day);
     public function stockOpname(string $name);
     public function reportSearch(string $day, $cat_id);
+    public function masuk();
+    public function keluar();
+    public function findByName(string $name);
 }

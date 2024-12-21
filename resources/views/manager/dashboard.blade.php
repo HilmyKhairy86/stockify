@@ -20,6 +20,9 @@
 
         <!-- 2 columns -->
         {{-- masuk keluar --}}
-        @livewire('MasukKeluar')
+        <div class="grid grid-cols-1 my-4 xl:grid-cols-2 xl:gap-4">
+            @livewire('ItemMasuk')
+            @livewire('ItemKeluar')
+        </div>
     </div>
 </x-app-layout>

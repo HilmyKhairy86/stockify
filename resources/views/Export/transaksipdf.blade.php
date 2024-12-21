@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formal Report Table</title>
+    <title>Transactions Report</title>
     <style>
         body {
             font-family: "Times New Roman", Times, serif;
@@ -15,7 +15,6 @@
         .table-container {
             margin: 0 auto;
             width: 95%;
-            border: 1px solid #000;
             padding: 15px;
             background-color: #f9f9f9;
         }
@@ -33,32 +32,33 @@
         }
 
         thead {
-            background-color: #d4d4d4;
+            background-color: #e6e6e6;
         }
 
         th, td {
-            border: 1px solid #000;
+            border: 1px solid #cccccc;
             padding: 10px;
             text-align: left;
         }
 
         th {
+            font-size: 0.85rem;
             text-transform: uppercase;
             font-weight: bold;
+            color: #333333;
+        }
+
+        td {
             font-size: 0.9rem;
-            background-color: #eaeaea;
+            color: #333333;
         }
 
         tbody tr:nth-child(odd) {
-            background-color: #f2f2f2;
+            background-color: #f9f9f9;
         }
 
         tbody tr:nth-child(even) {
             background-color: #ffffff;
-        }
-
-        tbody td {
-            font-size: 0.9rem;
         }
 
         .status {

@@ -26,7 +26,7 @@ class SupplierRepositoryImplement extends Eloquent implements SupplierRepository
 
     public function viewSupplier()
     {
-        return $this->model->all();
+        return Supplier::select('id', 'name')->get();
     }
 
     public function updateSupplier($id, array $data)

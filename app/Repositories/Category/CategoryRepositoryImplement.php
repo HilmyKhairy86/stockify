@@ -21,7 +21,7 @@ class CategoryRepositoryImplement extends Eloquent implements CategoryRepository
 
     public function viewCategory()
     {
-        return $this->model->all();
+        return Category::select('id', 'name')->get();
     }
 
     public function getCatbyId($id)

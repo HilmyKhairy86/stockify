@@ -100,7 +100,7 @@ class StockTransactionRepositoryImplement extends Eloquent implements StockTrans
 
     public function reportSearch(string $day, $cat_id)
     {
-        $query = StockTransaction::query()
+        $query = StockTransaction::query()->with(['product:id,name'])
         ->join('products', 'stock_transactions.product_id', '=', 'products.id')
         ->select(
             'stock_transactions.product_id as product_id',
@@ -202,6 +202,31 @@ class StockTransactionRepositoryImplement extends Eloquent implements StockTrans
         ->where('name', 'like', '%' . $name . '%')
         ->whereBetween('stock_transactions.date', [now()->startOfWeek(), now()->endOfWeek()])
         ->groupBy('stock_transactions.product_id', 'stock', 'products.name', 'sku', 'stock_fisik');
+        return $query;
+    }
+
+    public function masuk()
+    {
+        return StockTransaction::where('type', 'masuk');
+    }
+
+    public function keluar()
+    {
+        return StockTransaction::where('type', 'keluar');
+    }
+
+    public function findByName(string $name)
+    {
+        $query = StockTransaction::with(['product', 'user'])
+        ->when(!empty($name), function ($q) use ($name) {
+            $q->whereHas('product', function ($query) use ($name) {
+                $query->where('name', 'like', '%' . $name . '%');
+            });
+        });
+        $query->where('status', 'pending')
+        ->where('date', today())
+        ->orderBy('id', 'desc');
+
         return $query;
     }
 

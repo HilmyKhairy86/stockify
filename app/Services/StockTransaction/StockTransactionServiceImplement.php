@@ -69,13 +69,23 @@ class StockTransactionServiceImplement extends ServiceApi implements StockTransa
       return $this->mainRepository->searchByName($name, $date, $types, $status);
     }
 
-    public function masuk($day)
+    public function masuk()
     {
-      return $this->mainRepository->findMasukByDay($day);
+      return $this->mainRepository->masuk();
     }
-    public function keluar($day)
+    public function keluar()
     {
-      return $this->mainRepository->findKeluarByDay($day);
+      return $this->mainRepository->keluar();
+    }
+
+    public function prodmasuk($input)
+    {
+      return $this->mainRepository->findMasukByDay($input);
+    }
+
+    public function prodkeluar($input)
+    {
+      return $this->mainRepository->findKeluarByDay($input);
     }
 
     public function FilterDateMasuk(string $input)
@@ -111,5 +121,10 @@ class StockTransactionServiceImplement extends ServiceApi implements StockTransa
     public function reportSearch(string $day, $cat_id)
     {
       return $this->mainRepository->reportSearch($day, $cat_id);
+    }
+
+    public function findByName(string $name)
+    {
+      return $this->mainRepository->findByName($name);
     }
 }

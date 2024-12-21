@@ -35,6 +35,7 @@
             border-radius: 8px;
             padding: 20px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
         }
 
         h3 {
@@ -109,10 +110,11 @@
             margin-top: 20px;
             color: #333;
         }
+
     </style>
 </head>
 <body>
-    <div class="grid">
+    <div>
         <h1>Product Keluar Masuk Report</h1>
         <div class="card">
             <h3>Product Masuk</h3>
@@ -122,6 +124,7 @@
                         <th>Product Name</th>
                         <th>SKU</th>
                         <th>Status</th>
+                        <th>Date</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -145,6 +148,7 @@
                                     @break
                             @endswitch
                         </td>
+                        <td>{{ $m->date }}</td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -160,6 +164,7 @@
                         <th>Product Name</th>
                         <th>SKU</th>
                         <th>Status</th>
+                        <th>Date</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -183,6 +188,7 @@
                                     @break
                             @endswitch
                         </td>
+                        <td>{{ $k->date }}</td>
                     </tr>
                     @endforeach
                 </tbody>

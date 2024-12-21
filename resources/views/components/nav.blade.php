@@ -1,7 +1,9 @@
 <?php
 use Illuminate\Support\Facades\DB;
+$appName = Cache::remember('app_settings', 3600, function () {
+            return DB::table('app_settings')->value('app_name');
+        });
 
-$appName = DB::table('app_settings')->value('app_name');
 $appLogo = DB::table('app_settings')->value('logo');
 $userid = Auth::user()?->id;
 $pfp = DB::table('users')->where('id', $userid)->first();

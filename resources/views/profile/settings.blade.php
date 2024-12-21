@@ -94,7 +94,7 @@
                                     </div>
                                     
                                     <div class="sm:col-span-2">
-                                        <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+                                        <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Old Password</label>
                                         <input 
                                             type="password" 
                                             name="password" 
@@ -104,7 +104,7 @@
                                         >
                                     </div>
                                     <div class="sm:col-span-2">
-                                        <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm Password</label>
+                                        <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm Old Password</label>
                                         <input 
                                             type="password" 
                                             name="password" 
@@ -202,7 +202,7 @@
                                     </div>
                                     
                                     <div class="sm:col-span-2">
-                                        <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+                                        <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Old Password</label>
                                         <input 
                                             type="password" 
                                             name="password" 
@@ -212,7 +212,7 @@
                                         >
                                     </div>
                                     <div class="sm:col-span-2">
-                                        <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm Password</label>
+                                        <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm Old Password</label>
                                         <input 
                                             type="password" 
                                             name="password" 
@@ -310,7 +310,7 @@
                                     </div>
                                     
                                     <div class="sm:col-span-2">
-                                        <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+                                        <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Old Password</label>
                                         <input 
                                             type="password" 
                                             name="password" 
@@ -320,7 +320,7 @@
                                         >
                                     </div>
                                     <div class="sm:col-span-2">
-                                        <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm Password</label>
+                                        <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm Old Password</label>
                                         <input 
                                             type="password" 
                                             name="password" 

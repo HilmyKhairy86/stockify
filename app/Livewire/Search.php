@@ -29,26 +29,6 @@ class Search extends Component
 
     public $search = '';
     public $categories = [];
-
-    public function search()
-    {
-        $this->resetPage();
-    }
-
-    public function updatingSearch()
-    {
-        $this->resetPage();
-    }
-
-    public function updatedSearch()
-    {
-        $this->resetPage();
-    }
-
-    public function updatedCategories()
-    {
-        $this->resetPage();
-    }
     
     public function render()
     {   
@@ -59,11 +39,11 @@ class Search extends Component
             return $this->categoryService->viewCategory();
         });
         
-        $result = $this->productService->searchByName($this->search, $this->categories);
+        $result = $this->productService->searchByName($this->search, $this->categories)->with(['category:id,name', 'supplier:id,name'])->paginate(10);
         return view('livewire.search', [
-            'products' => $result->paginate(10),
-            'sup' => $this->supplierService->viewSupplier(),
-            'cat' => $this->categoryService->viewCategory(),
+            'products' => $result,
+            'sup' => $suppliers,
+            'cat' => $categories,
         ]);
     }
 }

@@ -11,8 +11,8 @@ interface StockTransactionService extends BaseService{
     public function updateTransaction($id, array $data);
     public function deleteTransaction($id);
     public function searchByName(string $name, string $date, array $types = [], array $status = []);
-    public function masuk($day);
-    public function keluar($day);
+    public function masuk();
+    public function keluar();
     public function FilterDateMasuk(string $input);
     public function FilterDateKeluar(string $input);
     public function TaskMasuk();
@@ -20,4 +20,7 @@ interface StockTransactionService extends BaseService{
     public function FilterStock(string $day);
     public function stockOpname(string $name);
     public function reportSearch(string $day, $cat_id);
+    public function prodmasuk($input);
+    public function prodkeluar($input);
+    public function findByName(string $name);
 }

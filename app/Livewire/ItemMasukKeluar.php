@@ -6,7 +6,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use App\Services\StockTransaction\StockTransactionService;
 
-class KeluarMasukReport extends Component
+class ItemMasukKeluar extends Component
 {
     use WithPagination;
     protected $stockTransactionService;
@@ -17,9 +17,9 @@ class KeluarMasukReport extends Component
 
     public function render()
     {
-        $masuk = $this->stockTransactionService->masuk()->paginate(10);
-        $keluar = $this->stockTransactionService->keluar()->paginate(10);
-        return view('livewire.keluar-masuk-report',[
+        $masuk = $this->stockTransactionService->prodmasuk(today())->paginate(5);
+        $keluar = $this->stockTransactionService->prodkeluar(today())->paginate(5);
+        return view('livewire.item-masuk-keluar',[
             'masuk' => $masuk,
             'keluar' => $keluar,
         ]);

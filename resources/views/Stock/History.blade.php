@@ -14,7 +14,11 @@
                     </div>
                 </div>
                 <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
+                    @if (auth()->user()->role === 'staff_gudang')
+                    @livewire('StockTransactions')
+                    @else
                     @livewire('Transaksi')
+                    @endif
                 </div>
         </section>
 

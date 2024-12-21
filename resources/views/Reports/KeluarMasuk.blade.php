@@ -33,7 +33,10 @@
                 @endif
             </div>
         </div>
-        @livewire('KeluarMasukReport')
+        <div class="grid grid-cols-1 my-4 xl:grid-cols-2 xl:gap-4">
+            @livewire('ProductMasuk')
+            @livewire('ProductKeluar')
+        </div>
     </div> 
     
 </x-app-layout>
