@@ -2,10 +2,10 @@
     <label for="product_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product</label>
     <input type="text" wire:model.live="search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
     @if (!empty($search))
-        <ul class="border border-gray-300 bg-white w-full">
+        <ul class=" border border-gray-900 dark:border-gray-600 bg-white w-full">
             @forelse ($items as $item)
                 <li 
-                    class="p-2 hover:bg-gray-100 cursor-pointer"
+                    class="p-2 text-gray-900 dark:hover:bg-gray-500 hover:bg-gray-100 dark:bg-gray-700 dark:text-gray-100 bg-gray-300 cursor-pointer"
                     wire:click="selectItem({{ $item->id }})"
                 >
                     {{ $item->id }} - {{ $item->name }}
