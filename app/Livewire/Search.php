@@ -30,6 +30,16 @@ class Search extends Component
     public $search = '';
     public $categories = [];
     
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+
+    public function updatedSearch()
+    {
+        $this->resetPage();
+    }
+
     public function render()
     {   
         $suppliers = Cache::remember('suppliers', 3600, function () {
